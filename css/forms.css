@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    position: relative;
+    background-color: #4D3F8F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.form {
+    position: relative;
+    background-color: #f0f0f0;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: -3px 3px 10px -5px rgba(0,0,0,0.2);
+    padding: 30px;
+}
+
+.form h2 {
+    font-size: 1.7em;
+    font-weight: 700;
+}
+.form p {
+    font-size: 0.9em;
+    padding-bottom: 8px;
+}
+.form form {
+    margin: 8px 0;
+}
+
+.form form .error-text {
+    display: none;
+    color: #851923;
+    padding: 4px 6px;
+    text-align: center;
+    border-radius: 4px;
+    background: #ffe3e5;
+    border: 1px solid #dfa5ab;
+    margin-bottom: 8px;
+}
+
+.form .grid-details {
+    display: flex;
+}
+
+.form .grid-details .input:first-child {
+    margin-right: 8px;
+    width: 100%;
+}
+.form .grid-details .input:last-child {
+    margin-left: 8px;
+    width: 100%;
+}
+
+.form form .input input, .form form .input select {
+    margin: 6px 0;
+    width: 100%;
+    height: 40px;
+    padding: 0 8px;
+    font-size: 0.9em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.form form .input input:focus, .form form .input input:valid, .form form .input select:focus, .form form .input select:valid {
+    border: 2px solid #4D3F8F;
+    transition: 0.1s ease;
+    outline: none;
+}
+
+.form form input.button{
+    margin: 12px 0;
+    height: 45px;
+    border: none;
+    color: #ccc;
+    width: 100%;
+    background-color: #4D3F8F;
+    font-size: 1.1em;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.form .link {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+
+.form .link a {
+    color: #4D3F8F;
+    text-decoration: none;
+    font-weight: 700;
+}
+.form .link a:hover {
+    transition: 0.1s;
+    text-decoration: underline;
+}
+
+.form .terms {
+    margin: 10px 0;
+}
+
+.form .terms input {
+    height: 15px; width: 15px;
+}
+.form .terms a {
+    color: #4D3F8F;
+    text-decoration: none;
+    font-weight: 700;
+}
+.form .terms a:hover {
+    transition: 0.1s;
+    text-decoration: underline;
+}
