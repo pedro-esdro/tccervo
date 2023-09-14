@@ -7,11 +7,10 @@
     require './lib/vendor/autoload.php';
 
     function getCodRec(){
-        $codUsuarioRec = $_SESSION["codUsuarioRec"] ?? false;
-        if ($codUsuarioRec == false)
+        if ($_SESSION["codUsuarioRec"] == false)
             return false;
         else
-            return $codUsuarioRec;
+            return true;
     }
     
 

@@ -24,7 +24,7 @@
 
                 if($codUsuarioRec)
                 {
-                    if(sendEmail($row["nomeUsuario"], $row['emailUsuario'], $row['codUsuarioRec'])){
+                    if(sendEmail($row["nomeUsuario"], $row['emailUsuario'], $codUsuarioRec)){
                         echo "success";
                     }
                     else{
