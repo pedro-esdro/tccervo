@@ -4,7 +4,7 @@ session_start();
 
 include 'php/db.php';
 
-$idUsuario = $_SESSION['idUsuario'];
+$idUsuario = $_SESSION['idUsuario'] ?? "";
 $nome = "visitante";
 
 $sql = mysqli_query($conexao, "SELECT * FROM tbUsuario WHERE idUsuario = '{$idUsuario}';");

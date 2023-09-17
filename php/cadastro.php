@@ -41,55 +41,61 @@
             // Se o email não existir no sistema, verifica se a confirmação de senha corresponde com a senha inserida
             else
             {
-                if ($senha == $csenha)
+                if (strlen($_POST['senha']) >= 8)
                 {
-                    // Criando id de usuário e código de verificação
-                    $idUsuario = rand(1000000, 9999999);
-                    $codUsuario = mt_rand(1111, 9999);
-
-                    //Inserção dos dados
-                    $sqlInsert = mysqli_query($conexao, "INSERT INTO tbUsuario(idUsuario, nomeUsuario, emailUsuario,  senhaUsuario, idCurso, codUsuario, verificacaoUsuario, cargoUsuario) VALUES({$idUsuario}, '{$nome}', '{$email}', '{$senha}', '{$idCurso}', '{$codUsuario}', '{$statusVerificacao}', '{$cargo}');");
-
-                    // Se obtiver sucesso, busca o registro e envia o email de verificação
-                    if($sqlInsert)
+                    if ($senha == $csenha)
                     {
-                        $sqlSelectByEmail = mysqli_query($conexao, "SELECT * FROM tbUsuario WHERE emailUsuario = '{$email}';");
-                        if(mysqli_num_rows($sqlSelectByEmail) > 0)
+                        // Criando id de usuário e código de verificação
+                        $idUsuario = rand(1000000, 9999999);
+                        $codUsuario = mt_rand(1111, 9999);
+
+                        //Inserção dos dados
+                        $sqlInsert = mysqli_query($conexao, "INSERT INTO tbUsuario(idUsuario, nomeUsuario, emailUsuario,  senhaUsuario, idCurso, codUsuario, verificacaoUsuario, cargoUsuario) VALUES({$idUsuario}, '{$nome}', '{$email}', '{$senha}', '{$idCurso}', '{$codUsuario}', '{$statusVerificacao}', '{$cargo}');");
+
+                        // Se obtiver sucesso, busca o registro e envia o email de verificação
+                        if($sqlInsert)
                         {
-                            $row = mysqli_fetch_assoc($sqlSelectByEmail);
-                            $_SESSION['idUsuario'] = $row['idUsuario'];
-                            $_SESSION['emailUsuario'] = $row['emailUsuario'];
-                            $_SESSION['codUsuario'] = $row['codUsuario'];
-
-                            // Enviando email de confirmação. Método sendEmail construido no arquivo mail.php
-
-                            if ($codUsuario)
+                            $sqlSelectByEmail = mysqli_query($conexao, "SELECT * FROM tbUsuario WHERE emailUsuario = '{$email}';");
+                            if(mysqli_num_rows($sqlSelectByEmail) > 0)
                             {
-                                if(sendEmail($nome, $email, $codUsuario))
+                                $row = mysqli_fetch_assoc($sqlSelectByEmail);
+                                $_SESSION['idUsuario'] = $row['idUsuario'];
+                                $_SESSION['emailUsuario'] = $row['emailUsuario'];
+                                $_SESSION['codUsuario'] = $row['codUsuario'];
+
+                                // Enviando email de confirmação. Método sendEmail construido no arquivo mail.php
+
+                                if ($codUsuario)
                                 {
-                                    echo "success";
+                                    if(sendEmail($nome, $email, $codUsuario))
+                                    {
+                                        echo "success";
+                                    }
+                                    else
+                                    {
+                                        echo "Problema no envio do email!";
+                                    }
                                 }
                                 else
                                 {
-                                    echo "Problema no envio do email!";
+                                    echo "Problema ao enviar o código. Tente novamente";
                                 }
-                            }
-                            else
-                            {
-                                echo "Problema ao enviar o código. Tente novamente";
-                            }
 
 
+                            }
+                        }
+                        else
+                        {
+                            echo "Alguma coisa deu errado!";
                         }
                     }
                     else
                     {
-                        echo "Alguma coisa deu errado!";
+                        echo "As senhas inseridas não estão iguais.";
                     }
                 }
-                else
-                {
-                    echo "As senhas inseridas não estão iguais.";
+                else {
+                    echo "A senha deve conter 8 ou mais caracteres";
                 }
             }
         }

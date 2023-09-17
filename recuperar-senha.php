@@ -18,6 +18,7 @@
             <div class="submit">
                 <input type="submit" value="Enviar email" class="button">
             </div>
+            <div class="link"><a href="login.php">Cancelar</a></div>
         </form>
     </main>
     <script src="js/recuperar-senha.js"></script>

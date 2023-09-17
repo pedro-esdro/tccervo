@@ -3,6 +3,7 @@
     include_once "db.php";
     include_once './mail.php';
 
+    session_start();
     $emailUsuario = $_POST['email'];
     
     if(!empty($emailUsuario))
@@ -18,9 +19,9 @@
                 $codUsuarioRec = mt_rand(1111, 9999);
 
                 $_SESSION['idUsuario'] = $row['idUsuario'];
-                $_SESSION['emailUsuario'] = $row['emailUsuario'];
+                $_SESSION['emailUsuarioRec'] = $row['emailUsuario'];
                 $_SESSION['nomeUsuario'] = $row['nomeUsuario'];
-                $_SESSION["codUsuarioRec"] = $codUsuarioRec;
+                $_SESSION['codUsuarioRec'] = $codUsuarioRec;
 
                 if($codUsuarioRec)
                 {

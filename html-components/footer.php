@@ -7,7 +7,7 @@
     <ul>
         <li><a href="#">Sobre</a></li>
         <li><a href="#">Ajuda</a></li>
-        <li><a href="#">Fale Conosco</a></li>
+        <li><a href="fale-conosco.php">Fale Conosco</a></li>
         <li><a href="#">Termos de uso</a></li>
     </ul>
 </footer>

@@ -46,7 +46,7 @@
             <div class="terms">
                 <label>
                     <input type="checkbox" name="aceitarTermos" required>
-                    Aceito os <a href="#" target="_blank">termos de uso</a>
+                    Aceito os <a href="termos-de-uso.php" target="_blank">termos de uso</a>
                 </label>
             </div>
             <div class="submit">
@@ -54,6 +54,7 @@
             </div>
         </form>
         <div class="link">Já tem uma conta? <a href="login.php">Entre</a></div>
+        <div class="link"><a href="index.php">Voltar à página inicial</a></div>
     </main>
     <script src="js/cadastro.js"></script>
 </body>

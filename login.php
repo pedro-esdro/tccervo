@@ -25,6 +25,7 @@
         </form>
         <div class="link"><a href="recuperar-senha.php">Esqueci minha senha</a></div>
         <div class="link">Ainda não está cadastrado? <a href="cadastro.php">Crie sua conta</a></div>
+        <div class="link"><a href="index.php">Voltar à página inicial</a></div>
     </main>
     <script src="js/login.js"></script>
 </body>

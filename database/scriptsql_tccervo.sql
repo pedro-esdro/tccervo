@@ -48,3 +48,7 @@ insert into tbCurso(idCurso, nomeCurso) values
 (4, "Recursos Humanos"),
 (5, "Enfermagem");
 
+
+select * from tbUsuario;
+
+delete from tbUsuario where idUsuario = 3991285;

@@ -62,7 +62,7 @@ body {
     width: 100%;
 }
 
-.form form .input input, .form form .input select {
+.form form .input input, .form form .input select, textarea {
     margin: 6px 0;
     width: 100%;
     height: 40px;
@@ -73,7 +73,12 @@ body {
     outline: none;
 }
 
-.form form .input input:focus, .form form .input input:valid, .form form .input select:focus, .form form .input select:valid {
+textarea {
+    height: 100px;
+    resize: none;
+}
+
+.form form .input input:focus, .form form .input input:valid, .form form .input select:focus, .form form .input select:valid, textarea:focus, textarea:valid {
     border: 2px solid #4D3F8F;
     transition: 0.1s ease;
     outline: none;
