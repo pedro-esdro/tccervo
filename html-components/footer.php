@@ -5,9 +5,8 @@
         </a>
     </div>
     <ul>
-        <li><a href="#">Sobre</a></li>
-        <li><a href="#">Ajuda</a></li>
+        <li><a href="sobre.php">Sobre</a></li>
         <li><a href="fale-conosco.php">Fale Conosco</a></li>
-        <li><a href="#">Termos de uso</a></li>
+        <li><a href="termos-de-uso.php">Termos de uso</a></li>
     </ul>
 </footer>

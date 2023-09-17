@@ -6,6 +6,28 @@
     font-style: normal;
 
 }
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+main {
+    flex-grow: 1;
+}
 
 nav {
     display: flex;
@@ -87,6 +109,7 @@ nav .search-box {
     margin: auto 0;
     height: 35px;
     line-height: 35px;
+    border-radius: 6px 0px 0px 6px;
 }
 
 nav .search-box input {
@@ -97,6 +120,7 @@ nav .search-box input {
     padding: 0 10px;
     font-size: 1.1em;
     width: 350px;
+    border-radius: 6px 0px 0px 6px;
 }
 
 nav .search-box span {
@@ -127,6 +151,7 @@ nav .search-box .adv-search {
     padding: 0px 4px;
     text-decoration: none;
     border-left: 1px solid #4D3F8F;
+    border-radius: 0px 5px 5px 0px;
 }
 
 nav .search-box .adv-search:hover {
@@ -245,7 +270,8 @@ footer {
     background-color: #4D3F8F;
     justify-content: space-between;
     text-align: center;
-    padding: 15px 30px;;
+    padding: 15px 30px;
+    flex-shrink: 0;
 }
 footer .icon a{
     display: inline-flex;

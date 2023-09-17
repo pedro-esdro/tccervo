@@ -2,6 +2,13 @@
 
     include_once 'php/mail.php';
 
+    session_start();
+
+    if (isset($_SESSION['faleConoscoS']) && $_SESSION['faleConoscoS'] === true)
+    {
+        unset($_SESSION['faleConoscoS']);
+    }
+
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
         $nome = $_POST['nome'];
@@ -15,7 +22,9 @@
             {
                 if(sendEmailTccervo($nome, $email, $assunto, $mensagem))
                 {
-                    $success = "Mensagem enviada com sucesso!";
+                    $_SESSION['faleConoscoS'] = true;
+                    header("Location: fale-conosco-sucesso.php");
+                    exit;
                 }
                 else
                 {
@@ -41,43 +50,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fale Conosco</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/navfooter.css">
     <link rel="stylesheet" href="css/forms.css">
-    <style>
-        .sucesso {
-            width: 300px;
-            height: 200px;
-            display: flex;
-            flex-direction: column;
-            background-color: #fff;
-            justify-content: center; align-items: center;
-            border-radius: 12px;
-        }
-        .sucesso p, .sucesso a {
-            display: block;
-        }
-        .sucesso a {
-            background-color: #4D3F8F;
-            text-decoration: none;
-            color: #fff;
-            padding: 10px;
-            border-radius: 12px;
-            margin-top: 15px;
-        }
-
-        .sucesso a:hover {
-            border: 1px solid #4D3F8F;
-            background-color: #Fff;
-            color: #4D3F8F;
-            transition: 0.2s;
-        }
-    </style>
 </head>
 <body>
-    <?php if (isset($success)): ?>
-        <div class="sucesso"><p><?php echo $success; ?></p><a href="index.php">Página inicial</a></div>
-        <style>main {display: none;}</style>
-    <?php endif; ?>
     <main class="form">
         <h2>Fale Conosco</h2>
         <form id="formulario"action="" method="post">
@@ -94,11 +69,11 @@
             </div>
             <div class="input">
                 <label>Assunto</label>
-                <input type="text" name="assunto" placeholder="Insira o assunto" required>
+                <input type="text" name="assunto" placeholder="Insira o assunto" autocomplete="off" required>
             </div>
             <div class="input">
                 <label>Mensagem</label><br>
-                <textarea id="mensagem" name="mensagem" rows="4" cols="50" required></textarea>
+                <textarea id="mensagem" name="mensagem" rows="4" cols="50" autocomplete="off"required></textarea>
             </div>
             <div class="submit">
                 <input type="submit" value="Enviar" class="button">

@@ -1,0 +1,24 @@
+main {
+    margin-top: 30px;
+    width: 65%;
+}
+.sobre-txt {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.sobre-txt ul {
+    margin-left: 20px;
+}
+p {
+    margin-top: 10px;
+    text-align: justify;
+}
+.sobre-txt a {
+    color: #4D3F8F;
+    text-decoration: none;
+    font-weight: 700;
+}
+.sobre-txt a:hover {
+    transition: 0.1s;
+    text-decoration: underline;
+}

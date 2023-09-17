@@ -1,15 +1,16 @@
 <input type="checkbox" id="check">
 <nav>
     <div class="icon">
-        <a href="#">
+        <a href="index.php">
             <img class="logo64" src="assets\logo\logo64h.svg" alt="logo do site">
             <img class="logo48" src="assets\logo\logo48h.svg" alt="logo do site">
             TCCERVO
         </a>
     </div>
     <ul>
-        <li><a href="#">Início</a></li>
-        <li><a href="#">Sobre</a></li>
+        <li><a href="index.php">Início</a></li>
+        <li><a href="login.php">Entrar</a></li>
+        <li><a href="sobre.php">Sobre</a></li>
         <li class="dropdown">
             <a><i class="fa-solid fa-user fa-lg"></i></a>
             <ul class="dropdown-menu">
