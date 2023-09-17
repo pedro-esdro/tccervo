@@ -1,0 +1,144 @@
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+main {
+    margin-top: 30px;
+    background-color: #fff;
+    padding: 50px;
+    width: 65%;
+    border-radius: 12px;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+}
+
+.perfil-parte {
+    position: relative;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.txts {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    justify-content: space-between;
+}
+
+.button input {
+    font-size: 1.05em;
+    background-color: #4D3F8F;
+    width: 120px;
+    padding: 10px 0px;
+    border: none;
+    outline: none;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.button input:hover {
+    background-color: #fff;
+    border: 1px solid #4D3F8F;
+    color: #4D3F8F;
+    transition: 0.2s;
+}
+hr {
+    margin-top: 10px;
+}
+.perfil-parte2 {
+    margin-top: 30px;
+    position: relative;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.botoes {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+}
+
+.botoes button {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    outline: none;
+    font-size: 1.1em;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.botoes button:hover{
+    color: #4D3F8F;
+    text-decoration: underline;
+}
+
+.botoes button:active,
+.botoes button.active {
+    border-bottom: 2px solid #4D3F8F;
+    transform: scale(1.1);
+}
+
+#conteudo {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.info h3{
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 8px 8px 0px 0px;
+}
+.links-info {
+    padding: 15px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.links-info {
+    display: flex;
+    flex-direction: column;
+}
+.links-info a, .links-info p {
+    padding-top: 5px;
+    display: flex;
+    align-items: center;
+}
+.links-info img {
+    display: block;
+    margin-right: 15px;
+    height: 42px;
+    width: 42px;
+}
+
+.links-info a {
+    text-decoration: none;
+    color: #4D3F8F;
+}
+
+.links-info a:hover {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.info2 h3 {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.info2 p{
+    padding: 15px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-radius: 0px 0px 8px 8px;
+}

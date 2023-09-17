@@ -15,19 +15,6 @@
     font-family: 'Roboto', sans-serif;
 }
 
-html, body {
-    height: 100%;
-}
-body {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-main {
-    flex-grow: 1;
-}
 
 nav {
     display: flex;
@@ -271,7 +258,6 @@ footer {
     justify-content: space-between;
     text-align: center;
     padding: 15px 30px;
-    flex-shrink: 0;
 }
 footer .icon a{
     display: inline-flex;

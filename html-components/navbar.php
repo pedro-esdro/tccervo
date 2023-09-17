@@ -20,7 +20,7 @@
         <li class="dropdown">
             <a><i class="fa-solid fa-user fa-lg"></i></a>
             <ul class="dropdown-menu">
-                <li><a href="">Meu perfil</a></li>
+                <li><a href="perfil.php">Meu perfil</a></li>
                 <li><a href="">Meu TCC</a></li>
                 <li><a href="php/logout.php?logout_id=<?php echo $idUsuario;?>">Sair</a></li>
             </ul>

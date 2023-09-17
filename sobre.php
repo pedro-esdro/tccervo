@@ -29,7 +29,7 @@
         </div>
         <div class="sobre-txt">
             <h2>Como usar o TCCervo?</h2>
-            <p>Para publicar seu TCC, é necessário estar em uma conta registrada em nossos sistem. Para isso, <a href="login.php">Entre</a> ou <a href="cadastro.php">Cadastre-se.</a></p>
+            <p>Para publicar seu TCC, é necessário estar em uma conta registrada em nosso sistema. Para isso, <a href="login.php">Entre</a> ou <a href="cadastro.php">Cadastre-se.</a></p>
             <p>Não é necessário estar em uma conta para apenas visualizar outros projetos.</p>
         </div>
         <div class="sobre-txt">
