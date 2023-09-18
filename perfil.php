@@ -1,45 +1,31 @@
 <?php
     include_once "php/db.php";
     session_start();
-
-    $idUsuario = $_SESSION['idUsuario'];
-
-    if(empty($idUsuario))
-    {
-        header("Location: login.php");
-    }
-    else
-    {
-        $buscarUsuario = mysqli_query($conexao, "SELECT * FROM tbUsuario WHERE idUsuario = $idUsuario");
-        if($buscarUsuario)
-        {
-            if(mysqli_num_rows($buscarUsuario) > 0)
-            {
+    
+    $idUsuario = $_SESSION['idUsuario'] ?? "";
+    $idBusc = $_SESSION['idBusc'] ?? "";
+    
+    if (!empty($idBusc)) {
+        $buscarUsuario = mysqli_query($conexao, "SELECT * FROM tbUsuario WHERE idUsuario = $idBusc");
+        if ($buscarUsuario) {
+            if (mysqli_num_rows($buscarUsuario) > 0) {
                 $row = mysqli_fetch_assoc($buscarUsuario);
-                if($row)
-                {
+                if ($row) {
                     $buscaCurso = mysqli_query($conexao, "SELECT * from tbCurso where idCurso = {$row['idCurso']};");
-                    if($buscaCurso)
-                    {
+                    if ($buscaCurso) {
                         $row2 = mysqli_fetch_assoc($buscaCurso);
-                        if($row2)
-                        {
+                        if ($row2) {
                             $nome = $row["nomeUsuario"];
                             $curso = $row2["nomeCurso"];
                             $email = $row["emailUsuario"];
-                            if(!empty($row["linkedinUsuario"]))
-                            {
+                            if (!empty($row["linkedinUsuario"])) {
                                 $linkedin = $row["linkedinUsuario"];
-                            }
-                            else {
+                            } else {
                                 $linkedin = "Sem linkedin associado";
                             }
-                            if(!empty($row["sobreUsuario"]))
-                            {
-                                $sobre = $row["sobreUsuario"]; 
-                            }
-                            else
-                            {
+                            if (!empty($row["sobreUsuario"])) {
+                                $sobre = $row["sobreUsuario"];
+                            } else {
                                 $sobre = "Sem bio ainda.";
                             }
                         }
@@ -47,6 +33,10 @@
                 }
             }
         }
+    }
+    else{
+        unset($_SESSION['idBusc']);
+        header('Location: login.php');
     }
 ?>
 <!DOCTYPE html>
@@ -79,7 +69,7 @@
                 </div>
             </div>
             <div class="button">
-                <input type="submit" value="Editar Perfil">
+                <input id="alterar" type="submit" value="Editar Perfil">
             </div>
         </div>
         <hr>
@@ -95,7 +85,7 @@
                         <div class="links-info">
                             <a href="">
                                 <img src="assets/icons/linkedin.png" alt="logo do linkedin">
-                                Linkedin | pehen092@gmail.com</a>
+                                Linkedin | <?=$linkedin ?></a>
                             <p>
                                 <img src="assets/icons/email.png" alt="imagem de email">
                                 Email | <?= $email ?>
@@ -110,28 +100,35 @@
             </div>
         </div>
     </main>
+    <?php include 'html-components/footer.php';?>
 </body>
 <script>
     $(document).ready(function(){
-
-    $('#botao-informacoes').addClass('active');
-    $('#informacoes-conteudo').show();
-
-    $('#botao-informacoes').click(function(){
-
-        $(this).addClass('active');
+        $('#alterar').hide();
+        $('#botao-informacoes').addClass('active');
         $('#informacoes-conteudo').show();
-        $('#botao-publicacoes').removeClass('active');
 
+        $('#botao-informacoes').click(function(){
+            $(this).addClass('active');
+            $('#informacoes-conteudo').show();
+            $('#botao-publicacoes').removeClass('active');
+        });
+
+        $('#botao-publicacoes').click(function(){
+            $(this).addClass('active');
+            $('#informacoes-conteudo').hide();
+            $('#botao-informacoes').removeClass('active');
+        });
+
+        <?php
+        if (!empty($idUsuario) && !empty($idBusc) && $idUsuario == $idBusc) {
+        ?>
+            $('#alterar').show();
+        <?php
+        }
+        ?>
     });
 
-    $('#botao-publicacoes').click(function(){
-
-        $(this).addClass('active');
-        $('#informacoes-conteudo').hide();
-        $('#botao-informacoes').removeClass('active');
-    });
-});
 
 </script>
 </html>

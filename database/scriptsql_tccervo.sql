@@ -16,6 +16,7 @@ emailUsuario varchar(50) not null,
 linkedinUsuario varchar(100),
 sobreUsuario varchar(250),
 senhaUsuario varchar(100) not null,
+fotoUsuario varchar(100),
 idCurso int,
 verificacaoUsuario varchar(10) not null,
 cargoUsuario varchar(10) not null,
@@ -48,7 +49,10 @@ insert into tbCurso(idCurso, nomeCurso) values
 (4, "Recursos Humanos"),
 (5, "Enfermagem");
 
+ALTER TABLE tbUsuario
+MODIFY COLUMN fotoUsuario varchar(150);
 
 select * from tbUsuario;
+delete from tbUsuario where idUsuario = 3235263;
 
-delete from tbUsuario where idUsuario = 3991285;
+

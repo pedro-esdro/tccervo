@@ -20,8 +20,8 @@
         <li class="dropdown">
             <a><i class="fa-solid fa-user fa-lg"></i></a>
             <ul class="dropdown-menu">
-                <li><a href="perfil.php">Meu perfil</a></li>
-                <li><a href="">Meu TCC</a></li>
+                <li><a class="meuperfil" href="perfil.php">Meu perfil</a></li>
+                <li><a class="meutcc" href="">Meu TCC</a></li>
                 <li><a href="php/logout.php?logout_id=<?php echo $idUsuario;?>">Sair</a></li>
             </ul>
         </li>
@@ -31,3 +31,11 @@
         <span class="fa fa-times" id="times"></span>
     </label>
 </nav>
+<script>
+     $(document).ready(function(){
+        $('.meuperfil').click(function(){
+            <?php $_SESSION['idBusc'] = $_SESSION['idUsuario']; ?>
+            window.location.href = 'perfil.php'
+        })
+     })
+</script>
