@@ -1,3 +1,6 @@
+<script>
+    var idUsuario = "<?php echo isset($_SESSION['idUsuario']) ? $_SESSION['idUsuario'] : ''; ?>";
+</script>
 <input type="checkbox" id="check">
 <nav>
     <div class="icon">
@@ -9,12 +12,12 @@
     </div>
     <ul>
         <li><a href="index.php">Início</a></li>
-        <li><a href="login.php">Entrar</a></li>
+        <li id="entrar"><a href="login.php">Entrar</a></li>
         <li><a href="sobre.php">Sobre</a></li>
         <li class="dropdown">
             <a><i class="fa-solid fa-user fa-lg"></i></a>
             <ul class="dropdown-menu">
-                <li class="meuperfil"><a href="perfil.php">Meu perfil</a></li>
+                <li class="meuperfil"><a href="perfil.php?idBusc=<?php echo "$idUsuario" ?? ""?>">Meu perfil</a></li>
                 <li class="meutcc"><a href="">Meu TCC</a></li>
                 <li><a href="php/logout.php?logout_id=<?php echo $idUsuario;?>">Sair</a></li>
             </ul>
@@ -25,11 +28,15 @@
         <span class="fa fa-times" id="times"></span>
     </label>
 </nav>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
      $(document).ready(function(){
-        $('.meuperfil').click(function(){
-            <?php $_SESSION['idBusc'] = $_SESSION['idUsuario']; ?>
-            window.location.href = 'perfil.php'
-        })
+        $('#entrar').show();
+        if(idUsuario != "")
+        {
+            $('#entrar').hide();
+        }
      })
 </script>
+
+     

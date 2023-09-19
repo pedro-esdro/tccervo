@@ -1,3 +1,6 @@
+<script>
+    var idUsuario = "<?php echo isset($_SESSION['idUsuario']) ? $_SESSION['idUsuario'] : ''; ?>";
+</script>
 <input type="checkbox" id="check">
 <nav>
     <div class="icon">
@@ -8,19 +11,19 @@
         </a>
     </div>
     <div class="search-box">
-        <input type="search" name="search" placeholder="Busque aqui">
-        <span class="fa fa-search"></span>
-        <a class="adv-search" href="#">Busca avançada</a>
+        <input type="search" name="search" id="buscatxt" placeholder="Busque aqui">
+        <span  id="busca"class="fa fa-search"></span>
+        <a class="adv-search" href="filtros.php">Busca avançada</a>   
     </div>
     <ul>
         <li class="adv-search"><a href="#">Busca avançada</a></li>
         <li><a href="index.php">Início</a></li>
-        <li><a href="login.php">Entrar</a></li>
+        <li id="entrar"><a href="login.php">Entrar</a></li>
         <li><a href="sobre.php">Sobre</a></li>
         <li class="dropdown">
             <a><i class="fa-solid fa-user fa-lg"></i></a>
             <ul class="dropdown-menu">
-                <li><a class="meuperfil" href="perfil.php">Meu perfil</a></li>
+                <li><a class="meuperfil" href="perfil.php?idBusc=<?php echo "$idUsuario" ?? ""?>">Meu perfil</a></li>
                 <li><a class="meutcc" href="">Meu TCC</a></li>
                 <li><a href="php/logout.php?logout_id=<?php echo $idUsuario;?>">Sair</a></li>
             </ul>
@@ -31,11 +34,19 @@
         <span class="fa fa-times" id="times"></span>
     </label>
 </nav>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-     $(document).ready(function(){
-        $('.meuperfil').click(function(){
-            <?php $_SESSION['idBusc'] = $_SESSION['idUsuario']; ?>
-            window.location.href = 'perfil.php'
-        })
+    $(document).ready(function(){
+        $('#entrar').show();
+        if(idUsuario != "")
+        {
+            $('#entrar').hide();
+        }
+        $('#busca').click(function() {
+                var termoBusca = $('#buscatxt').val();
+                if (termoBusca !== '') {
+                    window.location.href = 'buscar.php?busca=' + encodeURIComponent(termoBusca);
+                }
+        });
      })
 </script>

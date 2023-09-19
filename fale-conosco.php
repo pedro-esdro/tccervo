@@ -51,6 +51,7 @@
     <title>Fale Conosco</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/forms.css">
+    <link rel="shortcut icon" href="assets\favicon\favicon.svg" type="image/x-icon">
 </head>
 <body>
     <main class="form">

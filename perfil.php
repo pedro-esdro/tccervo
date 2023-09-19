@@ -3,7 +3,14 @@
     session_start();
     
     $idUsuario = $_SESSION['idUsuario'] ?? "";
-    $idBusc = $_SESSION['idBusc'] ?? "";
+    if(isset($_GET['idBusc']) && !empty($_GET['idBusc']))
+    {
+        $idBusc = $_GET['idBusc'];
+        unset($_SESSION['idRecemEdit']);
+    }
+    if(isset($_SESSION['idRecemEdit']) && !empty($_SESSION['idRecemEdit'])){
+        $idBusc = $_SESSION['idRecemEdit'];
+    }
     
     if (!empty($idBusc)) {
         $buscarUsuario = mysqli_query($conexao, "SELECT * FROM tbUsuario WHERE idUsuario = $idBusc");
@@ -28,6 +35,20 @@
                             } else {
                                 $sobre = "Sem bio ainda.";
                             }
+                            if(!empty($row['fotoUsuario'])){
+                                $caminhofoto = "database/fotosUsuarios/".$row['fotoUsuario'];
+                                if(file_exists($caminhofoto))
+                                {
+                                    $foto = $caminhofoto;
+                                }
+                                else{
+                                    $foto = "assets/icons/avatar.svg";
+                                }
+                            }
+                            else
+                            {
+                                $foto = "assets/icons/avatar.svg";
+                            }
                         }
                     }
                 }
@@ -35,7 +56,6 @@
         }
     }
     else{
-        unset($_SESSION['idBusc']);
         header('Location: login.php');
     }
 ?>
@@ -49,14 +69,13 @@
     <link rel="shortcut icon" href="assets\favicon\favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="css/navfooter.css">
     <link rel="stylesheet" href="css/perfil.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <?php include 'html-components/navbar.php'; ?>
     <main>
         <div class="perfil-parte">
             <div id="foto-perfil">
-                <img src="http://via.placeholder.com/150x180" alt="foto de perfil">
+                <img id="imagem-preview" src="<?= $foto ?>" alt="foto de perfil">
             </div>
             <div class="txts">
                 <div class="txt">
@@ -68,8 +87,8 @@
                     <p>ETEC ANTÔNIO FURLAN</p>
                 </div>
             </div>
-            <div class="button">
-                <input id="alterar" type="submit" value="Editar Perfil">
+            <div id="editar" class="button">
+                <a href="perfil-editar.php">Editar Perfil</a>
             </div>
         </div>
         <hr>
@@ -83,9 +102,9 @@
                     <div class="info">
                         <h3>Informações de contato</h3>
                         <div class="links-info">
-                            <a href="">
+                            <p>
                                 <img src="assets/icons/linkedin.png" alt="logo do linkedin">
-                                Linkedin | <?=$linkedin ?></a>
+                                Linkedin | <?=$linkedin ?></p>
                             <p>
                                 <img src="assets/icons/email.png" alt="imagem de email">
                                 Email | <?= $email ?>
@@ -102,9 +121,10 @@
     </main>
     <?php include 'html-components/footer.php';?>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function(){
-        $('#alterar').hide();
+        $('#editar').hide();
         $('#botao-informacoes').addClass('active');
         $('#informacoes-conteudo').show();
 
@@ -122,8 +142,9 @@
 
         <?php
         if (!empty($idUsuario) && !empty($idBusc) && $idUsuario == $idBusc) {
+            $_SESSION['idEditar'] = $idUsuario;
         ?>
-            $('#alterar').show();
+            $('#editar').show();
         <?php
         }
         ?>

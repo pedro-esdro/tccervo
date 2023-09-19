@@ -53,6 +53,7 @@ ALTER TABLE tbUsuario
 MODIFY COLUMN fotoUsuario varchar(150);
 
 select * from tbUsuario;
+update tbUsuario set senhaUsuario = 'cae8af46a192bf5b2ed659eff69c7ac4' where idUsuario = 4327242;
 delete from tbUsuario where idUsuario = 3235263;
 
 

@@ -6,7 +6,6 @@
 
     // Recebendo os dados do formulário de cadastro
     $nome = $_POST['nome'];
-    $email = $_POST['email'];
     $curso = $_POST['curso'];
     $senha = md5($_POST['senha']);
     $csenha = md5($_POST['csenha']);

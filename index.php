@@ -46,9 +46,9 @@ if (mysqli_num_rows($sql) > 0) {
         <h1>Bem-vindo ao TCCERVO!</h1>
         <p>Olá, <b><?php echo $nome; ?></b><br>Tenha acesso ao acervo digital de TCCs da ETEC Antônio Furlan</p>
         <div class="search-box">
-            <input type="search" name="search" placeholder="Busque aqui">
-            <span class="fa fa-search"></span>
-            <a class="adv-search" href="#">Busca avançada</a>
+            <input type="search" name="search" id="buscatxt" placeholder="Busque aqui">
+            <span id="busca" class="fa fa-search"></span>
+            <a class="adv-search" href="filtros.php">Busca avançada</a>
         </div>
     </header>
     <main>
@@ -247,10 +247,20 @@ if (mysqli_num_rows($sql) > 0) {
     </main>
     <?php include 'html-components/footer.php' ?>
 
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/index-carrossel.js"></script>
     <script src="js/index-carrossel-ods.js"></script>
     <script src="js/index-carrossel-tcc.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#busca').click(function() {
+                var termoBusca = $('#buscatxt').val();
+                if (termoBusca !== '') {
+                    window.location.href = 'buscar.php?busca=' + encodeURIComponent(termoBusca);
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

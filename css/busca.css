@@ -1,0 +1,53 @@
+/* Estilos básicos para os cards */
+.user-card,
+.tcc-card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    max-width: 200px; /* Defina o tamanho máximo */
+    width: 100%; /* Garanta que os cards ocupem toda a largura máxima */
+}
+
+/* Alinhar os cards horizontalmente */
+.user-cards,
+.tcc-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+/* Estilização do link */
+.btn-link {
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* Estilização do botão */
+.btn {
+    background-color: #4D3F8F;
+    color: #fff;
+    border: 2px solid #4D3F8F;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+/* Estilização do botão no hover */
+.btn:hover {
+    background-color: #fff;
+    color: #4D3F8F;
+    border-color: #4D3F8F;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .user-card,
+    .tcc-card {
+        width: calc(50% - 20px); /* Ajuste a largura para telas menores */
+    }
+}
