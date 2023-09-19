@@ -7,7 +7,7 @@ nomeCurso varchar(30) not null);
 
 create table tbOds(
 idOds int primary key,
-nomeOds varchar(30) not null);
+nomeOds varchar(70) not null);
 
 create table tbUsuario(
 idUsuario int primary key,
@@ -32,8 +32,11 @@ anoTcc date not null,
 arquivoTcc varchar(255) not null,
 idUsuario int,
 idCurso int,
+idOds int,
 FOREIGN KEY (idUsuario) REFERENCES tbUsuario(idUsuario), 
 FOREIGN KEY (idCurso) REFERENCES tbUsuario(idCurso));
+
+
 
 create table tbOds_tbTcc(
 idOds int,
@@ -49,8 +52,26 @@ insert into tbCurso(idCurso, nomeCurso) values
 (4, "Recursos Humanos"),
 (5, "Enfermagem");
 
-ALTER TABLE tbUsuario
-MODIFY COLUMN fotoUsuario varchar(150);
+INSERT INTO tbOds (idOds, nomeOds) VALUES
+(1, 'Erradicação da Pobreza'),
+(2, 'Fome Zero e Agricultura Sustentável'),
+(3, 'Saúde e Bem-Estar'),
+(4, 'Educação de Qualidade'),
+(5, 'Igualdade de Gênero'),
+(6, 'Água Limpa e Saneamento'),
+(7, 'Energia Acessível e Limpa'),
+(8, 'Trabalho Decente e Crescimento Econômico'),
+(9, 'Indústria, Inovação e Infraestrutura'),
+(10, 'Redução das Desigualdades'),
+(11, 'Cidades e Comunidades Sustentáveis'),
+(12, 'Consumo e Produção Responsáveis'),
+(13, 'Ação contra a Mudança Global do Clima'),
+(14, 'Vida na Água'),
+(15, 'Vida Terrestre'),
+(16, 'Paz, Justiça e Instituições Eficazes'),
+(17, 'Parcerias e Meios de Implementação');
+
+select * from tbOds;
 
 select * from tbUsuario;
 update tbUsuario set senhaUsuario = 'cae8af46a192bf5b2ed659eff69c7ac4' where idUsuario = 4327242;

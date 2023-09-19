@@ -269,3 +269,39 @@ textarea {
     border: 1px solid #dfa5ab;
     margin-bottom: 8px;
 }
+input[type="date"] {
+    border: 1px solid #ccc !important;
+    outline: none !important;
+}
+
+/* Defina um estilo de foco personalizado com !important para dar prioridade a esta regra */
+input[type="date"]:focus {
+    border: 2px solid #4D3F8F !important;
+}
+
+/* Estilo para manter a borda após a inserção de uma data */
+input[type="date"].data-filled {
+    border: 2px solid #4D3F8F !important;
+}
+
+.input input[type="submit"] { 
+        display: block;
+        text-align: center;
+        font-size: 1.05em;
+        background-color: #4D3F8F;
+        width: 150px;
+        padding: 10px 0px;
+        border: none;
+        outline: none;
+        color: #fff;
+        border-radius: 8px;
+        cursor: pointer;
+        text-decoration: none;
+}
+
+.input input[type="submit"]:hover {
+    background-color: #fff;
+    border: 1px solid #4D3F8F;
+    color: #4D3F8F;
+    transition: 0.2s;
+}
