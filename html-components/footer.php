@@ -1,6 +1,6 @@
 <footer>
     <div class="icon">
-        <a href="#">
+        <a href="index.php">
         <img class="logo64"src="assets\logo\logo64h.svg" alt="logo do site">
         </a>
     </div>
