@@ -1,0 +1,166 @@
+/* Estilos gerais para o HTML do TCC */
+body {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+form {
+    flex-grow: 1;
+    position: relative;
+    margin-top: 30px;
+    background-color: #fff;
+    padding: 50px;
+    width: 65%;
+    border-radius: 12px;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.tcc-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Estilos para a coluna da esquerda (capa do TCC e botões) */
+.left-column {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Estilos para a coluna da direita (outros campos do formulário) */
+.right-column {
+    width: 65%;
+}
+
+/* Estilos para os elementos do formulário */
+.form-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    width: 48%; /* Defina a largura dos campos */
+}
+
+form label {
+    margin-bottom: 8px;
+}
+
+form input[type="text"],
+form textarea,
+form select {
+    margin: 6px 0;
+    width: 100%;
+    height: 40px;
+    padding: 0 8px;
+    font-size: 0.9em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+
+/* Estilos para a capa do TCC */
+#foto-perfil {
+    text-align: center;
+}
+
+#imagem-preview {
+    width: 150px;
+    height: 180px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.arquivoinput, .submit {
+    display: block;
+    text-align: center;
+    font-size: 1.05em;
+    background-color: #4D3F8F;
+    width: 100%;
+    padding: 10px 3px;
+    border: none;
+    outline: none;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.arquivoinput:hover, .submit:hover {
+    background-color: #fff;
+    color: #4D3F8F;
+    border: 1px solid #4D3F8F
+}
+.arquivoTcc{
+    display: none;
+}
+.ods-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.ods-dropdown-label {
+    background-color: #4D3F8F;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.ods-dropdown-label::after {
+    content: "▼"; 
+    margin-left: 5px;
+}
+
+.ods-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 150px;
+    max-width: 250px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+    border: 1px solid #ccc;
+}
+
+.ods-dropdown-content label {
+    cursor: pointer;
+    border-bottom: 1px solid black;
+    display: block;
+}
+.ods-dropdown-content label:hover {
+    background-color: #4D3F8F;
+    color: #fff;
+}
+/* Estilos para checkboxes selecionados */
+.ods-dropdown-content label input[type="checkbox"]:checked + span {
+    background-color: #4D3F8F;
+    color: #fff;
+}
+
+.error-text {
+    display: none;
+    color: #851923;
+    padding: 4px 6px;
+    text-align: center;
+    border-radius: 4px;
+    background: #ffe3e5;
+    border: 1px solid #dfa5ab;
+    margin-bottom: 8px;}

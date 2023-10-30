@@ -14,7 +14,7 @@ if (isset($_GET['busca']) && !empty($_GET['busca'])) {
     $sqlTccs = "SELECT * FROM tbTcc WHERE nomeTcc LIKE '%$termoBusca%'";
     $resultTccs = mysqli_query($conexao, $sqlTccs);
 } else {
-    echo "aaaaaaaa";
+    echo "Nada foi encontrado";
 }
 ?>
 

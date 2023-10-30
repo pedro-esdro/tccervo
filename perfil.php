@@ -12,6 +12,7 @@
         $idBusc = $_SESSION['idRecemEdit'];
     }
     
+    
     if (!empty($idBusc)) {
         $buscarUsuario = mysqli_query($conexao, "SELECT * FROM tbUsuario WHERE idUsuario = $idBusc");
         if ($buscarUsuario) {

@@ -44,6 +44,12 @@
     border-color: #4D3F8F;
 }
 
+.user-card img {
+    width: 100%; /* Largura desejada */
+    height: 180px; /* Altura desejada */
+    object-fit: cover; /* Evita distorções e mantém a proporção */
+}
+
 /* Estilos responsivos */
 @media (max-width: 768px) {
     .user-card,
