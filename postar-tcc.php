@@ -1,7 +1,18 @@
 <?php
-    include_once 'php/db.php'; 
-    session_start();
-    $idUsuario = $_SESSION['idUsuario'] ?? "";
+include_once 'php/db.php';
+session_start();
+$idUsuario = $_SESSION['idUsuario'] ?? "";
+if (!empty($idUsuario)) {
+    $sqlCurso = "SELECT UCurso.idCurso, C.nomeCurso
+                FROM tbUsuario_tbCurso AS UCurso
+                JOIN tbCurso AS C ON UCurso.idCurso = C.idCurso
+                WHERE UCurso.idUsuario = $idUsuario";
+
+    $resultCursos = mysqli_query($conexao, $sqlCurso);
+}
+else {
+    header("Location: index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -47,7 +58,7 @@
                     <div class="form-group">
                         <label for="anoTcc">Ano do TCC*:</label>
                         <select name="anoTcc" id="anoTcc" required>
-                        <option value="">Selecione um ano</option>
+                            <option value="">Selecione um ano</option>
                             <?php
                             $anoAtual = date("Y");
                             for ($ano = 1970; $ano <= $anoAtual; $ano++) {
@@ -81,11 +92,12 @@
                         <label for="curso">Curso*:</label>
                         <select name="curso" required>
                             <option value="">Selecione um curso</option>
-                            <option value="Informática para Internet">Informática para Internet</option>
-                            <option value="Administração">Administração</option>
-                            <option value="Contabilidade">Contabilidade</option>
-                            <option value="Recursos Humanos">Recursos Humanos</option>
-                            <option value="Enfermagem">Enfermagem</option>
+                            <?php
+                                while ($rowCurso = mysqli_fetch_assoc(($resultCursos)))
+                                {
+                                    echo "<option value='{$rowCurso['nomeCurso']}'>{$rowCurso['nomeCurso']}</option>";
+                                }
+                            ?>
                         </select>
                     </div>
                     <div class="form-group" id="linkArquivo">
