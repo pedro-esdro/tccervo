@@ -40,7 +40,7 @@
             else
             {
                 $mail->Subject = "Código de verificação - TCCervo";
-                $mail->Body = "Olá, @@{$nome}. Seu código de verificação é: <b>{$cod}</b>";
+                $mail->Body = "Olá, {$nome}. Seu código de verificação é: <b>{$cod}</b>";
             }
             
             $mail->send();
