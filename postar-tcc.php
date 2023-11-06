@@ -1,3 +1,8 @@
+<?php
+    include_once 'php/db.php'; 
+    session_start();
+    $idUsuario = $_SESSION['idUsuario'] ?? "";
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -8,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="css/tcc.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/navfooter.css">
+    <script src="https://kit.fontawesome.com/cbdcf7d21d.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -27,7 +33,7 @@
 
                 <div class="buttons">
                     <input class="submit" type="submit" value="Postar TCC"><br>
-                    <a href="cancelar.php">Cancelar</a>
+                    <a href="index.php">Cancelar</a>
                 </div>
             </div>
 
@@ -41,6 +47,7 @@
                     <div class="form-group">
                         <label for="anoTcc">Ano do TCC*:</label>
                         <select name="anoTcc" id="anoTcc" required>
+                        <option value="">Selecione um ano</option>
                             <?php
                             $anoAtual = date("Y");
                             for ($ano = 1970; $ano <= $anoAtual; $ano++) {
@@ -71,23 +78,26 @@
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="idCurso">Curso*:</label>
-                        <select name="idCurso" required>
+                        <label for="curso">Curso*:</label>
+                        <select name="curso" required>
                             <option value="">Selecione um curso</option>
-                            <option value="1">Informática para Internet</option>
-                            <option value="2">Administração</option>
-                            <!-- Repita para outros cursos -->
+                            <option value="Informática para Internet">Informática para Internet</option>
+                            <option value="Administração">Administração</option>
+                            <option value="Contabilidade">Contabilidade</option>
+                            <option value="Recursos Humanos">Recursos Humanos</option>
+                            <option value="Enfermagem">Enfermagem</option>
                         </select>
                     </div>
                     <div class="form-group" id="linkArquivo">
-                        <label for="linkArquivo">Link para o arquivo:</label>
-                        <input type="text" name="linkArquivo" id="linkArquivo" placeholder="https://www.exemplo.com/arquivo.pdf">
+                        <label for="linkArquivo">Link para o arquivo*:</label>
+                        <input type="text" name="linkArquivo" id="linkArquivo" placeholder="https://www.exemplo.com">
                     </div>
 
                     <div class="form-group" id="uploadArquivo" style="display: none;">
                         <div style="visibility: hidden;">a</div>
-                        <label class="arquivoinput" for="arquivoTcc">Arquivo (.PDF, .ZIP ou .RAR):</label>
+                        <label class="arquivoinput" for="arquivoTcc">Arquivo (.PDF, .ZIP ou .RAR)*</label>
                         <input type="file" name="arquivoTcc" id="arquivoTcc" style="display:none;">
+                        <p id="arquivoPreviewNome"></p>
                     </div>
 
 
@@ -100,6 +110,7 @@
                                 <label><input type="checkbox" name="ods[]" value="1"><span>Sustentabilidade</span></label>
                                 <label><input type="checkbox" name="ods[]" value="2"><span>ODS 2</span></label>
                                 <label><input type="checkbox" name="ods[]" value="3"><span>ODS 3</span></label>
+                                <label><input type="checkbox" name="ods[]" value="4"><span>ODS 4</span></label>
                             </div>
                         </div>
                     </div>

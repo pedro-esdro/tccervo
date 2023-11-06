@@ -17,11 +17,9 @@ linkedinUsuario varchar(50),
 sobreUsuario varchar(255),
 senhaUsuario varchar(100) not null,
 fotoUsuario varchar(255),
-idCurso int,
 verificacaoUsuario varchar(10) not null,
 cargoUsuario varchar(10) not null,
-codUsuario varchar(4) not null,
-FOREIGN KEY (idCurso) REFERENCES tbCurso(idCurso));
+codUsuario varchar(4) not null);
 
 create table tbTcc(
 idTcc int primary key,
@@ -30,13 +28,22 @@ descricaoTcc varchar(255),
 capaTcc varchar(255),
 anoTcc date not null,
 arquivoTcc varchar(255) not null,
-idUsuario int,
 idCurso int,
-idOds int,
+FOREIGN KEY (idCurso) REFERENCES tbCurso(idCurso));
+
+create table tbUsuario_tbCurso(
+idCurso int,
+idUsuario int,
+PRIMARY KEY(idCurso, idUsuario),
+FOREIGN KEY (idCurso) REFERENCES tbCurso(idCurso),
+FOREIGN KEY (idUsuario) REFERENCES tbUsuario(idUsuario));
+
+create table tbUsuario_tbTcc(
+idUsuario int,
+idTcc int,
+PRIMARY KEY(idUsuario, idTcc),
 FOREIGN KEY (idUsuario) REFERENCES tbUsuario(idUsuario), 
-FOREIGN KEY (idCurso) REFERENCES tbUsuario(idCurso));
-
-
+FOREIGN KEY (idTcc) REFERENCES tbTcc(idTcc));
 
 create table tbOds_tbTcc(
 idOds int,
@@ -70,11 +77,4 @@ INSERT INTO tbOds (idOds, nomeOds) VALUES
 (15, 'Vida Terrestre'),
 (16, 'Paz, Justiça e Instituições Eficazes'),
 (17, 'Parcerias e Meios de Implementação');
-
-select * from tbOds;
-
-select * from tbUsuario;
-update tbUsuario set senhaUsuario = 'cae8af46a192bf5b2ed659eff69c7ac4' where idUsuario = 4327242;
-delete from tbUsuario where idUsuario = 3235263;
-
 

@@ -1,5 +1,7 @@
 <?php
 include_once 'php/db.php'; 
+session_start();
+$idUsuario = $_SESSION['idUsuario'] ?? "";
 
 if (isset($_GET['busca']) && !empty($_GET['busca'])) {
     $termoBusca = $_GET['busca'];
@@ -66,7 +68,6 @@ if (isset($_GET['busca']) && !empty($_GET['busca'])) {
             <div class="tcc-card">
                 <h3><?= $rowTcc['nomeTcc'] ?></h3>
                 <p>Descrição: <?= $rowTcc['descricaoTcc'] ?></p>
-                <!-- Adicione outras informações do TCC conforme necessário -->
             </div>
         <?php endwhile; ?>
     </div>

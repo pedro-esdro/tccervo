@@ -1,3 +1,7 @@
+const form = document.querySelector("form");
+const submitbtn = form.querySelector(".buttons .submit");
+const errortxt = form.querySelector(".error-text");
+
 $(document).ready(function() {
     $(".ods-dropdown-label").click(function() {
         $("#odsDropdown").toggle();
@@ -57,4 +61,58 @@ $(document).ready(function() {
             }
         }
     });
+    $("#linkArquivo input").on("blur", function() {
+        var linkInput = $(this).val();
+        var linkRegex = /^(https?:\/\/)?([\w\d.-]+\.[a-z]{2,4})(\/\S*)?$/;
+    
+        if (!linkRegex.test(linkInput)) {
+            errortxt.textContent = "Erro: Insira um link válido (ex: https://www.exemplo.com)";
+            errortxt.style.display = "block";
+        } else {
+            errortxt.textContent = "";
+            errortxt.style.display = "none";
+        }
+    });
+    $("#arquivoTcc").on("change", function() {
+        var arquivoInput = $(this)[0];
+        var arquivoName = arquivoInput.files[0].name;
+        var extensoesPermitidas = /\.(pdf|zip|rar)$/i;
+        var nomePreview = $("#arquivoPreviewNome");
+    
+        if (!extensoesPermitidas.test(arquivoName)) {
+            // A extensão do arquivo não é permitida, exiba uma mensagem de erro
+            errortxt.textContent = "Erro: Insira um arquivo válido (Somente PDF, ZIP e RAR são permitidos.)";
+            errortxt.style.display = "block";
+            $(this).val(''); // Limpa o campo de entrada de arquivo
+            nomePreview.text('');
+        } else {
+            errortxt.textContent = "";
+            errortxt.style.display = "none";
+            nomePreview.text(arquivoName)
+        }
+    });
+    
 });
+form.onsubmit = (e) => {
+    e.preventDefault();
+};
+
+submitbtn.onclick = () => {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "./php/postar-tcc.php", true);
+    xhr.onload = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status == 200) {
+                let data = xhr.response;
+                if (data == "success") {
+                    window.location.assign("./index.php");  
+                } else {
+                    errortxt.textContent = data;
+                    errortxt.style.display = "block";
+                }
+            }
+        }
+    };
+    let formData = new FormData(form);
+    xhr.send(formData);
+};
