@@ -50,10 +50,12 @@
                         $codUsuario = mt_rand(1111, 9999);
 
                         //Inserção dos dados
-                        $sqlInsert = mysqli_query($conexao, "INSERT INTO tbUsuario(idUsuario, nomeUsuario, emailUsuario,  senhaUsuario, idCurso, codUsuario, verificacaoUsuario, cargoUsuario) VALUES({$idUsuario}, '{$nome}', '{$email}', '{$senha}', '{$idCurso}', '{$codUsuario}', '{$statusVerificacao}', '{$cargo}');");
+                        $sqlInsert = mysqli_query($conexao, "INSERT INTO tbUsuario(idUsuario, nomeUsuario, emailUsuario,  senhaUsuario, codUsuario, verificacaoUsuario, cargoUsuario) VALUES({$idUsuario}, '{$nome}', '{$email}', '{$senha}', '{$codUsuario}', '{$statusVerificacao}', '{$cargo}');");
+
+                        $sqlInsertCurso = mysqli_query($conexao, "INSERT INTO tbUsuario_tbCurso(idCurso, idUsuario) VALUES ({$idCurso}, {$idUsuario});");
 
                         // Se obtiver sucesso, busca o registro e envia o email de verificação
-                        if($sqlInsert)
+                        if($sqlInsert && $sqlInsertCurso)
                         {
                             $sqlSelectByEmail = mysqli_query($conexao, "SELECT * FROM tbUsuario WHERE emailUsuario = '{$email}';");
                             if(mysqli_num_rows($sqlSelectByEmail) > 0)

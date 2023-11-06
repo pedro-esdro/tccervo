@@ -34,6 +34,42 @@ $(document).ready(function() {
             }
         }
     });
+    // Use a delegação de eventos para os botões de adicionar cursos
+$(document).on('click', '.adicionar-curso', function() {
+    var cursoId = $(this).data('curso-id');
+    errortxt.textContent = "";
+    errortxt.style.display = "none";
+    $.post('./php/adicionar_curso.php', { cursoId: cursoId }, function(resp) {
+        $('#cursos-atuais').load('perfil-editar.php #cursos-atuais');
+        $('#cursos-disponiveis').load('perfil-editar.php #cursos-disponiveis');
+    }).fail(function(){
+        alert("Erro ao adicionar");
+    });
+});
+
+$(document).on('click', '.remover-curso', function() {
+    var cursoId = $(this).data('curso-id');
+
+    // Verifique se há pelo menos um curso restante associado ao usuário
+    if ($('.remover-curso').length === 1) {
+        errortxt.textContent = "Erro: Você deve ter pelo menos 1 curso associado.";
+        errortxt.style.display = "block";
+        return;
+    }
+    else
+    {
+        $.post('./php/remover_curso.php', { cursoId: cursoId }, function(resp) {
+            $('#cursos-disponiveis').load('perfil-editar.php #cursos-disponiveis');
+            $('#cursos-atuais').load('perfil-editar.php #cursos-atuais');
+        }).fail(function(){
+            alert("Erro ao remover");
+        });
+    }
+
+});
+
+
+
 
     $('#botaosenha').click(function() {
         var senhaAtualInput = $('#senhaatual');

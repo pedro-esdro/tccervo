@@ -78,3 +78,19 @@ INSERT INTO tbOds (idOds, nomeOds) VALUES
 (16, 'Paz, Justiça e Instituições Eficazes'),
 (17, 'Parcerias e Meios de Implementação');
 
+
+select * from tbUsuario_tbCurso;
+INSERT INTO tbUsuario_tbCurso (idCurso, idUsuario)
+VALUES (2, 5132567);
+
+SELECT C.nomeCurso
+FROM tbUsuario_tbCurso AS UCurso
+JOIN tbCurso AS C ON UCurso.idCurso = C.idCurso
+WHERE UCurso.idUsuario = 5132567;
+
+
+SELECT U.idUsuario, U.nomeUsuario, C.nomeCurso
+            FROM tbUsuario AS U
+            LEFT JOIN tbUsuario_tbCurso AS UC ON U.idUsuario = UC.idUsuario
+            LEFT JOIN tbCurso AS C ON UC.idCurso = C.idCurso
+            WHERE U.nomeUsuario LIKE '%josu%';

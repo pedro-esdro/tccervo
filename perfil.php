@@ -13,52 +13,51 @@
     }
     
     
-    if (!empty($idBusc)) {
-        $buscarUsuario = mysqli_query($conexao, "SELECT * FROM tbUsuario WHERE idUsuario = $idBusc");
-        if ($buscarUsuario) {
-            if (mysqli_num_rows($buscarUsuario) > 0) {
-                $row = mysqli_fetch_assoc($buscarUsuario);
-                if ($row) {
-                    $buscaCurso = mysqli_query($conexao, "SELECT * from tbCurso where idCurso = {$row['idCurso']};");
-                    if ($buscaCurso) {
-                        $row2 = mysqli_fetch_assoc($buscaCurso);
-                        if ($row2) {
-                            $nome = $row["nomeUsuario"];
-                            $curso = $row2["nomeCurso"];
-                            $email = $row["emailUsuario"];
-                            if (!empty($row["linkedinUsuario"])) {
-                                $linkedin = $row["linkedinUsuario"];
-                            } else {
-                                $linkedin = "Sem linkedin associado";
-                            }
-                            if (!empty($row["sobreUsuario"])) {
-                                $sobre = $row["sobreUsuario"];
-                            } else {
-                                $sobre = "Sem bio ainda.";
-                            }
-                            if(!empty($row['fotoUsuario'])){
-                                $caminhofoto = "database/fotosUsuarios/".$row['fotoUsuario'];
-                                if(file_exists($caminhofoto))
-                                {
-                                    $foto = $caminhofoto;
-                                }
-                                else{
-                                    $foto = "assets/icons/avatar.svg";
-                                }
-                            }
-                            else
-                            {
-                                $foto = "assets/icons/avatar.svg";
-                            }
-                        }
-                    }
-                }
+    $buscarUsuario = mysqli_query($conexao, "SELECT * FROM tbUsuario WHERE idUsuario = $idBusc");
+
+    if ($buscarUsuario && mysqli_num_rows($buscarUsuario) > 0) {
+        $row = mysqli_fetch_assoc($buscarUsuario);
+        $nome = $row["nomeUsuario"];
+        $email = $row["emailUsuario"];
+
+        // Inicialize um array para armazenar os cursos
+        $cursos = array();
+
+        $buscaCursosUsuario = mysqli_query($conexao, "SELECT C.nomeCurso
+        FROM tbUsuario_tbCurso AS UCurso
+        JOIN tbCurso AS C ON UCurso.idCurso = C.idCurso
+        WHERE UCurso.idUsuario = {$row['idUsuario']};");
+
+        if ($buscaCursosUsuario && mysqli_num_rows($buscaCursosUsuario) > 0) {
+            while ($rowCurso = mysqli_fetch_assoc($buscaCursosUsuario)) {
+                $cursos[] = $rowCurso["nomeCurso"];
             }
         }
-    }
-    else{
+
+        if (!empty($row["linkedinUsuario"])) {
+            $linkedin = $row["linkedinUsuario"];
+        } else {
+            $linkedin = "Sem linkedin associado";
+        }
+        if (!empty($row["sobreUsuario"])) {
+            $sobre = $row["sobreUsuario"];
+        } else {
+            $sobre = "Sem bio ainda.";
+        }
+        if (!empty($row['fotoUsuario'])) {
+            $caminhofoto = "database/fotosUsuarios/" . $row['fotoUsuario'];
+            if (file_exists($caminhofoto)) {
+                $foto = $caminhofoto;
+            } else {
+                $foto = "assets/icons/avatar.svg";
+            }
+        } else {
+            $foto = "assets/icons/avatar.svg";
+        }
+    } else {
         header('Location: login.php');
     }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -81,7 +80,14 @@
             <div class="txts">
                 <div class="txt">
                     <h2><?= $nome ?></h2>
-                    <p>Técnico em <?= $curso ?></p>
+                    <ul class="cursos-perfil">
+                    <?php
+                        foreach($cursos as $curso)
+                        {
+                            echo "<li class='cursos'>$curso</li>";
+                        }
+                    ?>
+                    </ul>
                 </div>
                 <div class="txt">
                     <h2>Instituição</h2>

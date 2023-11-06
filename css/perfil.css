@@ -305,3 +305,32 @@ input[type="date"].data-filled {
     color: #4D3F8F;
     transition: 0.2s;
 }
+
+.cursos-perfil {
+    list-style-type: disc; /* Define o tipo de marcador de lista (pontos) */
+    padding: 0; /* Remove o preenchimento (padding) */
+    margin: 0; /* Remove a margem */
+}
+
+.cursos {
+    margin-left: 20px; /* Adicione um recuo personalizado se necessário */
+}
+
+#cursos-atuais {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+}
+#cursos-disponiveis {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+}
+.minibuttons {
+    color: #4D3F8F;
+    transition: 0.2s;
+}
+.minibuttons:hover {
+    color: #7664c9;
+    scale: 1.2;
+}

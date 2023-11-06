@@ -1,55 +1,38 @@
 <?php
 include_once 'php/db.php';
 session_start();
-    if(!isset($_SESSION['idEditar']) || $_SESSION['idEditar']!=$_SESSION['idUsuario']){
-        unset($_SESSION['idEditar']);
-        header("Location: perfil.php");
-    }
-    else
-    {
-        $buscarUsuario = mysqli_query($conexao, "SELECT * FROM tbUsuario WHERE idUsuario = {$_SESSION['idEditar']}");
-        if ($buscarUsuario) {
-            if (mysqli_num_rows($buscarUsuario) > 0) {
-                $row = mysqli_fetch_assoc($buscarUsuario);
-                if ($row) {
-                    $buscaCurso = mysqli_query($conexao, "SELECT * from tbCurso where idCurso = {$row['idCurso']};");
-                    if ($buscaCurso) {
-                        $row2 = mysqli_fetch_assoc($buscaCurso);
-                        if ($row2) {
-                            $nome = $row["nomeUsuario"];
-                            $curso = $row2["nomeCurso"];
-                            if (!empty($row["linkedinUsuario"])) {
-                                $linkedin = $row["linkedinUsuario"];
-                            }
-                            else {
-                                $linkedin = "";
-                            }
-                            if (!empty($row["sobreUsuario"])) {
-                                $sobre = $row["sobreUsuario"];
-                            }
-                            else{
-                                $sobre = "";
-                            }
-                            if(!empty($row['fotoUsuario'])){
-                                $caminhofoto = "database/fotosUsuarios/".$row['fotoUsuario'];
-                                if(file_exists($caminhofoto))
-                                {
-                                    $foto = $caminhofoto;
-                                }
-                                else{
-                                    $foto = "assets/icons/avatar.svg";
-                                }
-                            }
-                            else
-                            {
-                                $foto = "assets/icons/avatar.svg";
-                            }
-                        }
+
+if (!isset($_SESSION['idEditar']) || $_SESSION['idEditar'] != $_SESSION['idUsuario']) {
+    unset($_SESSION['idEditar']);
+    header("Location: perfil.php");
+} else {
+    $idUsuario = $_SESSION['idEditar'];
+
+    $nome = $curso = $linkedin = $sobre = $foto = '';
+
+    $buscarUsuario = mysqli_query($conexao, "SELECT * FROM tbUsuario WHERE idUsuario = $idUsuario");
+    if ($buscarUsuario) {
+        if (mysqli_num_rows($buscarUsuario) > 0) {
+            $row = mysqli_fetch_assoc($buscarUsuario);
+            if ($row) {
+                $nome = $row["nomeUsuario"];
+                $linkedin = !empty($row["linkedinUsuario"]) ? $row["linkedinUsuario"] : "";
+                $sobre = !empty($row["sobreUsuario"]) ? $row["sobreUsuario"] : "";
+
+                if (!empty($row['fotoUsuario'])) {
+                    $caminhofoto = "database/fotosUsuarios/" . $row['fotoUsuario'];
+                    if (file_exists($caminhofoto)) {
+                        $foto = $caminhofoto;
+                    } else {
+                        $foto = "assets/icons/avatar.svg";
                     }
+                } else {
+                    $foto = "assets/icons/avatar.svg";
                 }
             }
         }
     }
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -82,34 +65,63 @@ session_start();
                     <div class="inputs">
                         <div class="input">
                             <label for="nome">Nome*: </label>
-                            <input placeholder="Seu nome" type="text" name="nome" id="nome" value="<?= $nome ?>" pattern="[a-zA-z'-'\s]*" required autocomplete="off">
-                        </div>
-                        <div class="input">
-                            <label for="curso">Curso*:</label>
-                            <select name="curso" required>
-                                <option value="">Selecione um curso</option>
-                                <option value="Informática para Internet" <?php if ($curso == "Informática para Internet") echo "selected"; ?>>Informática para Internet</option>
-                                <option value="Administração" <?php if ($curso == "Admnistração") echo "selected"; ?>>Administração</option>
-                                <option value="Contabilidade" <?php if ($curso == "Contabilidade") echo "selected"; ?>>Contabilidade</option>
-                                <option value="Recursos Humanos" <?php if ($curso == "Recursos Humanos") echo "selected"; ?>>Recursos Humanos</option>
-                                <option value="Enfermagem" <?php if ($curso == "Enfermagem") echo "selected"; ?>>Enfermagem</option>
-                            </select>
+                            <input placeholder="Seu nome" type="text" name="nome" id="nome" value="<?= $nome ?>" pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s'-]*" required autocomplete="off">
                         </div>
                         <div class="input">
                             <label for="linkedin">Linkedin:</label>
-                            <input placeholder="Seu usuário do Linkedin" value="<?= $linkedin ?>"type="text" name="linkedin" id="linkedin" autocomplete="off">
+                            <input placeholder="Seu usuário do Linkedin" value="<?= $linkedin ?>" type="text" name="linkedin" id="linkedin" autocomplete="off">
                         </div>
                         <div class="input">
                             <label for="sobre">Sobre você:</label>
                             <textarea id="sobre" name="sobre" rows="4" cols="50" autocomplete="off" maxlength="255" placeholder="Fale sobre você"><?= $sobre ?></textarea>
                         </div>
+                        <div id="cursos-atuais" class="botoes">
+                            <h4>Cursos</h4>
+                            <ul>
+                                <?php
+                                // Consulta SQL para buscar cursos do usuário
+                                $sql = "SELECT UCurso.idCurso, C.nomeCurso
+                                            FROM tbUsuario_tbCurso AS UCurso
+                                            JOIN tbCurso AS C ON UCurso.idCurso = C.idCurso
+                                            WHERE UCurso.idUsuario = $idUsuario";
+
+                                // Execute a consulta e exiba os cursos
+                                $result = mysqli_query($conexao, $sql);
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<li>{$row['nomeCurso']} <button class='remover-curso' data-curso-id='{$row['idCurso']}'</button><i class='fas fa-times minibuttons'></i></li>";
+                                }
+                                ?>
+                            </ul>
+                        </div>
+                        <div id="cursos-disponiveis" class="botoes">
+                            <h4>Adicionar cursos</h4>
+                            <ul>
+                                <?php
+                                // Consulta SQL para buscar cursos que o usuário ainda não tem
+                                $sql = "SELECT C.idCurso, C.nomeCurso
+                                        FROM tbCurso AS C
+                                        WHERE C.idCurso NOT IN (
+                                            SELECT UCurso.idCurso
+                                            FROM tbUsuario_tbCurso AS UCurso
+                                            WHERE UCurso.idUsuario = $idUsuario
+                                        )";
+
+                                // Execute a consulta e exiba os cursos
+                                $result = mysqli_query($conexao, $sql);
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<li>{$row['nomeCurso']} <button class='adicionar-curso' data-curso-id='{$row['idCurso']}'><i class='fas fa-plus minibuttons'></i></button></li>";
+                                }
+                                ?>
+                            </ul>
+                        </div>
+
                     </div>
 
                 </div>
                 <div class="edit-filho auxedit-filho">
                     <div class="inputsenha">
-                        <input  class="submit" type="submit" value="Concluir">
-                        <a href="perfil.php?idBusc=<?php echo $_SESSION['idUsuario'] ?? ""?>">Cancelar</a>
+                        <input class="submit" type="submit" value="Concluir">
+                        <a href="perfil.php?idBusc=<?php echo $_SESSION['idUsuario'] ?? "" ?>">Cancelar</a>
                     </div>
                     <div class="inputsenha">
                         <div class="edit-filho">

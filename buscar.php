@@ -6,10 +6,8 @@ $idUsuario = $_SESSION['idUsuario'] ?? "";
 if (isset($_GET['busca']) && !empty($_GET['busca'])) {
     $termoBusca = $_GET['busca'];
 
-    // Consulta para buscar usuários por nome com o nome do curso
-    $sqlUsuarios = "SELECT u.*, c.nomeCurso FROM tbUsuario u
-                    LEFT JOIN tbCurso c ON u.idCurso = c.idCurso
-                    WHERE u.nomeUsuario LIKE '%$termoBusca%'";
+    $sqlUsuarios = "select * from tbUsuario where nomeUsuario LIKE '%$termoBusca%'";
+
     $resultUsuarios = mysqli_query($conexao, $sqlUsuarios);
 
     // Consulta para buscar TCCs por nome
@@ -54,7 +52,20 @@ if (isset($_GET['busca']) && !empty($_GET['busca'])) {
         <div class="user-card">
             <img src="<?= $foto ?>" alt="Foto de perfil">
             <h3><?= $rowUsuario['nomeUsuario'] ?></h3>
-            <p><?= $rowUsuario['nomeCurso'] ?></p>
+            <br>
+            <h4>Cursos</h4>
+            <?php 
+                    $sqlCurso = "SELECT UCurso.idCurso, C.nomeCurso
+                    FROM tbUsuario_tbCurso AS UCurso
+                    JOIN tbCurso AS C ON UCurso.idCurso = C.idCurso
+                    WHERE UCurso.idUsuario = {$rowUsuario['idUsuario']}";
+                    
+                    $resultCursos = mysqli_query($conexao, $sqlCurso);
+
+                    while ($rowCurso = mysqli_fetch_assoc(($resultCursos))){
+                        echo "<p>{$rowCurso['nomeCurso']}</p>" ; 
+                    }
+            ?>
             <a href="perfil.php?idBusc=<?php echo $rowUsuario['idUsuario']; ?>" class="btn-link">
             <button class="btn">Ver Perfil</button>
             </a>

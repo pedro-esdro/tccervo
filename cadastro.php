@@ -15,7 +15,7 @@
             <div class="grid-details">
                 <div class="input">
                     <label>Nome</label>
-                    <input type="text" name="nome" placeholder="Nome" required pattern="[a-zA-z'-'\s]*">
+                    <input type="text" name="nome" placeholder="Nome" required pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s'-]*">
                 </div>
                 <div class="input">
                     <label>Email</label>
