@@ -109,26 +109,109 @@ $(document).ready(function () {
     }
   });
 });
-form.onsubmit = (e) => {
-  e.preventDefault();
-};
 
-submitbtn.onclick = () => {
-  let xhr = new XMLHttpRequest();
-  xhr.open("POST", "./php/postar-tcc.php", true);
-  xhr.onload = () => {
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-      if (xhr.status == 200) {
-        let data = xhr.response;
-        if (data == "success") {
-          window.location.assign("./index.php");
-        } else {
-          errortxt.textContent = data;
-          errortxt.style.display = "block";
-        }
-      }
+$(document).ready(function () {
+    // ...
+
+    // Lógica para abrir o modal de pesquisa de usuários
+    $("#modal").on("click", function () {
+        // Abra o modal
+        $("#overlay").show();
+        $("#modal").show();
+    });
+
+    // Lógica para fechar o modal
+    $("#overlay").on("click", function () {
+        // Feche os modais
+        $(".modal").hide();
+        $("#overlay").hide();
+    });
+
+    // Lógica para pesquisar usuários
+    const searchResults = $("#searchResults");
+    $("#searchUser").on("input", function () {
+        const searchTerm = $(this).val();
+        // Envie a consulta para pesquisa-col-tcc.php usando AJAX
+        $.ajax({
+            type: "POST",
+            url: "./php/pesquisa-col-tcc.php",
+            data: { query: searchTerm },
+            success: function (data) {
+                // Atualize os resultados na div de resultados da pesquisa
+                searchResults.html(data);
+            }
+        });
+    });
+
+    // Lógica para abrir o modal de confirmação de adição de usuário
+    $(document).on("click", ".adicionar-usuario", function () {
+        // Defina os detalhes do usuário selecionado para confirmação
+        const idUsuario = $(this).data("id");
+        const nomeUsuario = $(this).siblings("h3").text();
+        $("#confirmAddUser").data("id", idUsuario);
+        // Abra o modal de confirmação
+        $("#confirmationModal").show();
+    });
+
+    // Lógica para confirmar a adição de usuário
+    $("#confirmAddUser").on("click", function () {
+        const idUsuario = $(this).data("id");
+        // Envie o ID do usuário selecionado para adição ao PHP
+        $.ajax({
+            type: "POST",
+            url: "./php/adicionar-usuario-tcc.php",
+            data: { idUsuario: idUsuario },
+            success: function (response) {
+                if (response === "success") {
+                    // Feche o modal de confirmação
+                    $("#confirmationModal").hide();
+                    // Atualize o seu TCC com o usuário adicionado
+                    updateTccWithUser(idUsuario);
+                } else {
+                    // Lidar com erros de adição
+                    console.log("Erro ao adicionar o usuário ao TCC.");
+                }
+            }
+        });
+    });
+
+    // Lógica para cancelar a adição de usuário
+    $("#cancelAddUser").on("click", function () {
+        // Feche o modal de confirmação
+        $("#confirmationModal").hide();
+    });
+
+    // Função para atualizar seu TCC com o usuário adicionado
+    function updateTccWithUser(idUsuario) {
+        // Lógica para atualizar o seu TCC com o usuário no banco de dados
+        // ...
     }
-  };
-  let formData = new FormData(form);
-  xhr.send(formData);
-};
+
+    // ...
+});
+
+
+        form.onsubmit = (e) => {
+            e.preventDefault();
+        };
+
+        submitbtn.onclick = () => {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "./php/postar-tcc.php", true);
+            xhr.onload = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status == 200) {
+                        let data = xhr.response;
+                        if (data == "success") {
+                            window.location.assign("./index.php");
+                        } else {
+                            errortxt.textContent = data;
+                            errortxt.style.display = "block";
+                        }
+                    }
+                }
+            };
+            let formData = new FormData(form);
+            xhr.send(formData);
+        }
+

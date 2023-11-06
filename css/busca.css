@@ -8,7 +8,7 @@
     margin: 10px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
     max-width: 200px; /* Defina o tamanho máximo */
-    width: 100%; /* Garanta que os cards ocupem toda a largura máxima */
+    width: 80%; /* Garanta que os cards ocupem toda a largura máxima */
 }
 
 /* Alinhar os cards horizontalmente */
@@ -56,4 +56,28 @@
     .tcc-card {
         width: calc(50% - 20px); /* Ajuste a largura para telas menores */
     }
+}
+
+
+.user-card-2 {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    max-width: 120px; /* Defina o tamanho máximo */
+    width: 100%; /* Garanta que os cards ocupem toda a largura máxima */
+    font-size: 12px;
+}
+.user-card-2 img {
+    width: 100%; /* Largura desejada */
+    height: 100px; /* Altura desejada */
+    object-fit: cover; /* Evita distorções e mantém a proporção */
+}
+
+.adicionar-usuario {
+    background-color: #4D3F8F;
+    color: #fff;
+    padding: 3px;
 }

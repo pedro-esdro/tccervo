@@ -26,6 +26,7 @@ if (!empty($idUsuario)) {
     <link rel="stylesheet" type="text/css" href="css/tcc.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/navfooter.css">
+    <link rel="stylesheet" href="css/busca.css">
     <script src="https://kit.fontawesome.com/cbdcf7d21d.js" crossorigin="anonymous"></script>
 </head>
 
@@ -126,8 +127,28 @@ if (!empty($idUsuario)) {
                 </div>
 
             </div>
+            <!-- <div id="modal" class="modal">
+                <div class="modal-content">
 
-        </div>
+                    <h2>Pesquisar Usuários</h2>
+                    <input type="text" id="searchUser" placeholder="Pesquisar usuário">
+                    <div id="searchResults" class="user-cards">
+                    </div>
+                </div>
+            </div>
+
+            <div id="confirmationModal" class="modal">
+                <div class="modal-content">
+                    <h2>Confirmar Adição de Usuário</h2>
+                    <p>Deseja adicionar este usuário ao seu TCC?</p>
+                    <button id="confirmAddUser">Confirmar</button>
+                    <button id="cancelAddUser">Cancelar</button>
+                </div>
+            </div>
+
+            <div id="overlay" class="overlay"></div> -->
+
+
         </div>
     </form>
     <?php include 'html-components/footer.php'; ?>

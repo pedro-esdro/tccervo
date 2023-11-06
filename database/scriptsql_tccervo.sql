@@ -22,12 +22,13 @@ cargoUsuario varchar(10) not null,
 codUsuario varchar(4) not null);
 
 create table tbTcc(
-idTcc int primary key,
+idTcc int primary key auto_increment,
 nomeTcc varchar(50) not null,
 descricaoTcc varchar(255),
 capaTcc varchar(255),
 anoTcc date not null,
 arquivoTcc varchar(255) not null,
+data_postagem datetime not null,
 idCurso int,
 FOREIGN KEY (idCurso) REFERENCES tbCurso(idCurso));
 
@@ -88,9 +89,11 @@ FROM tbUsuario_tbCurso AS UCurso
 JOIN tbCurso AS C ON UCurso.idCurso = C.idCurso
 WHERE UCurso.idUsuario = 5132567;
 
-
 SELECT U.idUsuario, U.nomeUsuario, C.nomeCurso
             FROM tbUsuario AS U
             LEFT JOIN tbUsuario_tbCurso AS UC ON U.idUsuario = UC.idUsuario
             LEFT JOIN tbCurso AS C ON UC.idCurso = C.idCurso
             WHERE U.nomeUsuario LIKE '%josu%';
+
+
+select * from tbOds_tbTcc;
