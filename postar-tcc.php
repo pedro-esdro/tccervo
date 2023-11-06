@@ -9,8 +9,10 @@ if (!empty($idUsuario)) {
                 WHERE UCurso.idUsuario = $idUsuario";
 
     $resultCursos = mysqli_query($conexao, $sqlCurso);
-}
-else {
+
+    $sqlOds = "SELECT * from tbOds";
+    $resultOds = mysqli_query($conexao, $sqlOds);
+} else {
     header("Location: index.php");
 }
 ?>
@@ -52,7 +54,7 @@ else {
                 <div class="form-row">
                     <div class="form-group">
                         <label for="nomeTcc">Nome do TCC*:</label>
-                        <input type="text" name="nomeTcc" id="nomeTcc" required>
+                        <input type="text" name="nomeTcc" id="nomeTcc" placeholder="Nome do trabalho" required>
                     </div>
 
                     <div class="form-group">
@@ -73,12 +75,12 @@ else {
                 <div class="form-row">
                     <div class="form-group">
                         <label for="descricaoTcc">Descrição do TCC:</label>
-                        <textarea name="descricaoTcc" id="descricaoTcc" rows="4" cols="50" autocomplete="off" maxlength="255"></textarea>
+                        <textarea name="descricaoTcc" id="descricaoTcc" rows="4" cols="50" autocomplete="off" maxlength="255" placeholder="Fale sobre o trabalho"></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="tipoArquivo">Escolha o tipo de envio:</label>
-                        <select name="tipoArquivo" id="tipoArquivo">
+                        <select class="semborda" name="tipoArquivo" id="tipoArquivo">
                             <option value="link">Inserir Link</option>
                             <option value="upload">Fazer Upload</option>
                         </select>
@@ -93,10 +95,9 @@ else {
                         <select name="curso" required>
                             <option value="">Selecione um curso</option>
                             <?php
-                                while ($rowCurso = mysqli_fetch_assoc(($resultCursos)))
-                                {
-                                    echo "<option value='{$rowCurso['nomeCurso']}'>{$rowCurso['nomeCurso']}</option>";
-                                }
+                            while ($rowCurso = mysqli_fetch_assoc($resultCursos)) {
+                                echo "<option value='{$rowCurso['nomeCurso']}'>{$rowCurso['nomeCurso']}</option>";
+                            }
                             ?>
                         </select>
                     </div>
@@ -114,19 +115,16 @@ else {
 
 
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <div class="ods-dropdown">
-                            <div class="ods-dropdown-label">ODS</div>
-                            <div class="ods-dropdown-content" id="odsDropdown">
-                                <label><input type="checkbox" name="ods[]" value="1"><span>Sustentabilidade</span></label>
-                                <label><input type="checkbox" name="ods[]" value="2"><span>ODS 2</span></label>
-                                <label><input type="checkbox" name="ods[]" value="3"><span>ODS 3</span></label>
-                                <label><input type="checkbox" name="ods[]" value="4"><span>ODS 4</span></label>
-                            </div>
-                        </div>
-                    </div>
+                <h3 id="odshead">ODS - Escolha até 3:</h3>
+                <div class="form-row ods-row">
+                    <?php while ($rowOds = mysqli_fetch_assoc($resultOds)) : ?>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="ods[]" value="<?php echo $rowOds['nomeOds'] ?>">
+                            <img src="assets/carrossel/ods/ODS_<?php echo $rowOds['idOds'] ?>.png" alt="ods">
+                        </label>
+                    <?php endwhile; ?>
                 </div>
+
             </div>
 
         </div>
