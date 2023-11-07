@@ -98,7 +98,7 @@ SELECT U.idUsuario, U.nomeUsuario, C.nomeCurso
 
 select * from tbOds_tbTcc;
 select * from tbTcc;
-
+select * from tbUsuario;
 select * from tbUsuario_tbTcc;
 
 delete from tbUsuario_tbTcc;
@@ -108,4 +108,14 @@ SELECT TCC.*
     FROM tbUsuario AS U
     JOIN tbUsuario_tbTcc AS UT ON U.idUsuario = UT.idUsuario
     JOIN tbTcc AS TCC ON UT.idTcc = TCC.idTcc
-    WHERE U.idUsuario = 5226997;
+    WHERE U.idUsuario = 1434895;
+
+SELECT U.idUsuario, U.nomeUsuario
+        FROM tbUsuario AS U
+        JOIN tbUsuario_tbTcc AS UT ON U.idUsuario = UT.idUsuario
+        WHERE UT.idTcc = 6626988;
+        
+        SELECT O.idOds
+               FROM tbOds_tbTcc AS TOds
+               JOIN tbOds AS O ON TOds.idOds = O.idOds
+               WHERE TOds.idTcc = 6626988;

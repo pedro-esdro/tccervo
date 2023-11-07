@@ -11,13 +11,27 @@
         .cardtcc img {
             width: 100px;
             height: 100px;
-            border-radius: 50%;
             object-fit: cover;
             margin-right: 10px;
         }
 
         .cardtcc-info {
             flex: 1;
+            display: flex;
+            justify-content: space-between;
+        }
+        .cardtcc-info a {
+            display: block;
+            padding: 4px;
+            text-decoration: none;
+            background-color: #4D3F8F;
+            color: #fff;
+            border: 1px solid #4D3F8F;
+            border-radius: 6px;
+        }
+        .cardtcc-info a:hover {
+            background-color: #fff;
+            color: #4D3F8F;
         }
 
         .cardtcc h3 {
@@ -33,40 +47,53 @@
 <?php
     include 'db.php';
 
-    $idBusc = 5226997;
+    $idPesq = $_GET['idPesq'];
 
     $sqlSelect = "SELECT TCC.* 
     FROM tbUsuario AS U
     JOIN tbUsuario_tbTcc AS UT ON U.idUsuario = UT.idUsuario
     JOIN tbTcc AS TCC ON UT.idTcc = TCC.idTcc
-    WHERE U.idUsuario = $idBusc;
+    WHERE U.idUsuario = $idPesq;
     ";
 
-    $sqlQuery = mysqli_query($conexao, $sqlSelect);
+$sqlQuery = mysqli_query($conexao, $sqlSelect);
 
-    if($sqlQuery && mysqli_num_rows($sqlQuery) > 0)
-    {
-        while ($queryRow = mysqli_fetch_assoc($sqlQuery)) { 
-            $sqlCurso = mysqli_query($conexao, "SELECT nomeCurso from tbCurso WHERE idCurso = {$queryRow['idCurso']}");
-            $resultCurso = mysqli_fetch_assoc($sqlCurso);
-            $nomeCurso = $resultCurso['nomeCurso'];
-            if (!empty($queryRow['capaTcc'])) {
-                $caminhocapa = "database/tcc/capas/" . $queryRow['capaTcc'];
-                if (file_exists($caminhocapa)) {
-                    $capa = $caminhocapa;
-                } else {
-                    $capa = "https://placehold.co/150x180?text=Capa";
-                }}
+if ($sqlQuery && mysqli_num_rows($sqlQuery) > 0) {
+    while ($queryRow = mysqli_fetch_assoc($sqlQuery)) {
+        $sqlCurso = mysqli_query($conexao, "SELECT nomeCurso from tbCurso WHERE idCurso = {$queryRow['idCurso']}");
+        $resultCurso = mysqli_fetch_assoc($sqlCurso);
+        $nomeCurso = $resultCurso['nomeCurso'];
+
+        
+        $capa = "https://placehold.co/150x180?text=Capa"; // Defina um valor padrão para a capa
+
+        if (!empty($queryRow['capaTcc'])) {
+            $caminhocapa = "./database/tcc/capas/" . $queryRow['capaTcc'];
+            
+            if (file_exists($caminhocapa)) {
+                $capa = $caminhocapa;
+            }
+        }
         ?>
-            <div class="cardtcc">
-            <img src="<?php echo $capa?>" alt="Capa do tcc">
+        <div class="cardtcc">
+            <img src="<?php echo $capa ?>" alt="Capa do TCC">
             <div class="cardtcc-info">
-                <h3><?php echo $queryRow['nomeTcc']?></h3>
-                <p><?php echo $nomeCurso?></p>
-                <p>Ano: <?php echo $queryRow['anoTcc']?></p>
-                <p>Descrição: Descrição do TCC do Usuário.</p>
+                <div>
+                    <h3><?php echo $queryRow['nomeTcc'] ?></h3>
+                    <p><?php echo $nomeCurso ?></p>
+                    <p><?php echo date("Y", strtotime($queryRow['anoTcc'])); ?></p>
+                    <?php
+                        if(!empty($queryRow['descricaoTcc'])){
+                            echo "<p> {$queryRow['descricaoTcc']}</p>";
+                        }
+                    ?>
+                </div>
+                <div>
+                    <a href="tcc-detalhes.php?idBuscTcc=<?php echo $queryRow['idTcc']?>">Detalhes</a>
                 </div>
             </div>
-        <?php }
+        </div>
+        <?php
     }
-    ?>
+}
+?>

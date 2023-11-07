@@ -81,3 +81,13 @@
     color: #fff;
     padding: 3px;
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Preenche a altura da viewport */
+}
+
+main {
+    flex: 1;
+}

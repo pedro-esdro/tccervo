@@ -14,6 +14,10 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 100vh; /* Preenche a altura da viewport */
+}
+main {
+    flex: 1;
 }
 header {
     text-align: center;

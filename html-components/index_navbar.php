@@ -28,7 +28,7 @@
     <label for="check" class="bar">
         <span class="fa fa-bars" id=bars></span>
         <span class="fa fa-times" id="times"></span>
-    </label>
+    </label>    
 </nav>
 <script src="https://kit.fontawesome.com/cbdcf7d21d.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

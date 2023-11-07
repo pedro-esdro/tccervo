@@ -70,7 +70,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Perfil</title>
+    <title>Perfil</title>
     <script src="https://kit.fontawesome.com/cbdcf7d21d.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="assets\favicon\favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="css/navfooter.css">
@@ -129,6 +129,8 @@
                         <p><?= $sobre ?></p>
                     </div>
                 </div>
+                <div id="publicacoes-conteudo">
+                </div>
             </div>
         </div>
     </main>
@@ -142,23 +144,28 @@
         $('#informacoes-conteudo').show();
 
         $('#botao-informacoes').click(function(){
-            var idBusc = <?php echo json_encode($idBusc); ?>;
             $(this).addClass('active');
             $('#informacoes-conteudo').show();
+            $('#publicacoes-conteudo').hide()
             $('#botao-publicacoes').removeClass('active');
-            $.post('./php/pesquisa-pub.php', { idBusc: idBusc }, function(resp) {
-                
-            }).fail(function(){
-                alert("Erro ao exibir");
-            });
 
         });
 
         $('#botao-publicacoes').click(function(){
-            $(this).addClass('active');
-            $('#informacoes-conteudo').hide();
-            $('#botao-informacoes').removeClass('active');
-        });
+    $(this).addClass('active');
+    var idBusc = <?php echo $idBusc; ?>;
+    $('#informacoes-conteudo').hide();
+    $('#publicacoes-conteudo').show();
+    $('#botao-informacoes').removeClass('active');
+
+    $.get('php/pesquisa-pub.php', { idPesq: idBusc }, function(resp) {
+        // Você pode fazer algo com a resposta (resp) se necessário
+        $('#publicacoes-conteudo').html(resp);
+    }).fail(function(){
+        alert("Erro ao exibir");
+    });
+});
+
 
         <?php
         if (!empty($idUsuario) && !empty($idBusc) && $idUsuario == $idBusc) {
