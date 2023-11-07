@@ -32,7 +32,7 @@ $(document).ready(function () {
       $("#linkArquivo input").val("");
     }
   });
-  $("#foto").on("change", function () {
+  $("#capaTcc").on("change", function () {
     var fileInput = $(this)[0];
 
     if (fileInput.files && fileInput.files[0]) {

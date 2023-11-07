@@ -98,6 +98,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sqlInsert = "INSERT INTO tbTcc (idTcc, nomeTcc, anoTcc, arquivoTcc, data_postagem, idCurso) VALUES ($idTcc, '$nomeTcc', '$ano', '$nomeArquivo', '$horaAtual', $idCurso)";
             
             if (mysqli_query($conexao, $sqlInsert)) {
+                if (!empty($foto) && $foto["error"] === UPLOAD_ERR_OK) {
+                    $caminhoFoto = "../database/tcc/capas/";
+                    $nomeFoto = $foto["name"];
+                    $caminhoTemporario = $foto["tmp_name"];
+                    
+                    $nomeFoto = uniqid() . "_" . $nomeFoto;
+                    $caminhoFinal = $caminhoFoto . $nomeFoto;
+                    
+                    if (move_uploaded_file($caminhoTemporario, $caminhoFinal)) {
+                        mysqli_query($conexao, "UPDATE tbTcc SET capaTcc = '$nomeFoto' WHERE idTcc = $idTcc");
+                    } else {
+                        echo "Erro ao carregar imagem";
+                    }
+                }
+                
+                if (!empty($descricao)) {
+                    mysqli_query($conexao, "UPDATE tbTcc SET descricaoTcc = '$descricao' WHERE idTcc = $idTcc");
+                }
                 foreach ($odsSelecionadas as $ods) {
                     $idOds = obterIdDaOdsPorNome($ods, $conexao);
                     

@@ -100,6 +100,8 @@ select * from tbOds_tbTcc;
 select * from tbTcc;
 
 select * from tbUsuario_tbTcc;
+
+delete from tbUsuario_tbTcc;
 delete from tbTcc;
 delete from tbOds_tbTCc;
 SELECT TCC.* 

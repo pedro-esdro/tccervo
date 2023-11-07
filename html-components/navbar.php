@@ -21,7 +21,7 @@
             <div class="div"><i class="fa-solid fa-user fa-lg"></i> <i class="fa-solid fa-caret-down"></i></div>
             <ul class="dropdown-content">
             <li><a class="meuperfil" href="perfil.php?idBusc=<?php echo "$idUsuario" ?? ""?>">Meu perfil</a></li>
-                <li><a class="meutcc" href="">Meu TCC</a></li>
+                <li><a class="meutcc" href="postar-tcc.php">Meu TCC</a></li>
                 <li><a href="php/logout.php?logout_id=<?php echo $idUsuario;?>">Sair</a></li>
             </ul>
         </li>

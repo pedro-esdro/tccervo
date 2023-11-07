@@ -22,7 +22,7 @@ if (!empty($idUsuario)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de TCC</title>
+    <title>Publique seu TCC</title>
     <link rel="stylesheet" type="text/css" href="css/tcc.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/navfooter.css">
@@ -41,8 +41,8 @@ if (!empty($idUsuario)) {
             <div class="left-column">
                 <div id="foto-perfil">
                     <img id="imagem-preview" src="https://placehold.co/150x180?text=Capa" alt="Capa do TCC">
-                    <label class="arquivoinput" for="foto">Escolher uma capa</label>
-                    <input type="file" name="foto" id="foto" style="display:none">
+                    <label class="arquivoinput" for="capaTcc">Escolher uma capa</label>
+                    <input type="file" name="capaTcc" id="capaTcc" style="display:none">
                 </div>
 
                 <div class="buttons">
