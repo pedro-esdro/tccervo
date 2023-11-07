@@ -68,15 +68,21 @@ if ($sqlQuery && mysqli_num_rows($sqlQuery) > 0) {
         $capa = "https://placehold.co/150x180?text=Capa"; // Defina um valor padrão para a capa
 
         if (!empty($queryRow['capaTcc'])) {
-            $caminhocapa = "./database/tcc/capas/" . $queryRow['capaTcc'];
+            $caminhocapa = "C:/laragon/www/tccervo/database/tcc/capas/" . $queryRow['capaTcc'];
             
             if (file_exists($caminhocapa)) {
                 $capa = $caminhocapa;
+                echo "<img src='{$caminhocapa}'>";
+                echo $capa;
             }
+            else {
+                echo "DEU FALSO";
+            }
+    
         }
         ?>
         <div class="cardtcc">
-            <img src="<?php echo $capa ?>" alt="Capa do TCC">
+            <img src="<?= $capa?>">
             <div class="cardtcc-info">
                 <div>
                     <h3><?php echo $queryRow['nomeTcc'] ?></h3>
