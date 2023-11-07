@@ -1,5 +1,5 @@
 <?php
-include_once 'db.php';
+include_once './db.php';
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -12,7 +12,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $uploadArquivo = $_FILES['arquivoTcc'] ?? "";
     $foto = $_FILES['capaTcc'] ?? "";
     $odsSelecionadas = $_POST["ods"] ?? [];
-
     $idCursos = array(
         "Informática para Internet" => 1,
         "Administração" => 2,
@@ -21,8 +20,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         "Enfermagem" => 5
     );
 
-    if (empty($nomeTcc) || empty($ano) || empty($curso)) {
-        echo "Insira todas as informações obrigatórias(*)";
+    $odsError = false; // Variável para controlar erros relacionados às ODS
+
+    if (empty($odsSelecionadas) || count($odsSelecionadas) < 1 || count($odsSelecionadas) > 3) {
+        $odsError = true;
+    }
+
+    $otherFieldsError = empty($nomeTcc) || empty($ano) || !isset($curso);
+
+    if (empty($nomeTcc) || empty($ano) || !isset($curso)) {
+        echo "Preencha todas as informações obrigatórias(*).";
+    } elseif ($odsError) {
+        echo "Selecione no mínimo 1 e no máximo 3 ODS.";
     } else {
         $idCurso = $idCursos[$curso];
         $ano = $ano . "-12-31";
@@ -60,22 +69,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         mysqli_query($conexao, "UPDATE tbTcc SET descricaoTcc = '$descricao' WHERE idTcc = $idTcc");
                     }
                     
-                    if (!empty($odsSelecionadas)) {
-                        if (count($odsSelecionadas) >= 1 && count($odsSelecionadas) <= 3) {
-                            foreach ($odsSelecionadas as $ods) {
-                                $idOds = obterIdDaOdsPorNome($ods, $conexao);
-                                
-                                if ($idOds !== null) {
-                                    $sqlInsertOds = "INSERT INTO tbOds_tbTcc (idOds, idTcc) VALUES ($idOds, $idTcc)";
-                                    mysqli_query($conexao, $sqlInsertOds);
-                                }
-                            }
-                            echo "success";
-                        } else {
-                            echo "Escolha no mínimo 1 e no máximo 3 ODS.";
+                    foreach ($odsSelecionadas as $ods) {
+                        $idOds = obterIdDaOdsPorNome($ods, $conexao);
+                        
+                        if ($idOds !== null) {
+                            $sqlInsertOds = "INSERT INTO tbOds_tbTcc (idOds, idTcc) VALUES ($idOds, $idTcc)";
+                            mysqli_query($conexao, $sqlInsertOds);
                         }
+                    }
+                    
+                    // Adicionar entrada na tabela tbUsuario_tbTcc
+                    $idUsuario = $_SESSION['idUsuario']; // Substitua pelo nome da variável de sessão correta
+                    $sqlInsertUsuarioTcc = "INSERT INTO tbUsuario_tbTcc (idUsuario, idTcc) VALUES ($idUsuario, $idTcc)";
+                    
+                    if (mysqli_query($conexao, $sqlInsertUsuarioTcc)) {
+                        echo "success";
                     } else {
-                        echo "Escolha no mínimo 1 ODS.";
+                        echo "Erro ao associar usuário ao TCC.";
                     }
                 } else {
                     echo "Erro ao carregar TCC";
@@ -88,28 +98,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sqlInsert = "INSERT INTO tbTcc (idTcc, nomeTcc, anoTcc, arquivoTcc, data_postagem, idCurso) VALUES ($idTcc, '$nomeTcc', '$ano', '$nomeArquivo', '$horaAtual', $idCurso)";
             
             if (mysqli_query($conexao, $sqlInsert)) {
-                if (!empty($odsSelecionadas)) {
-                    if (count($odsSelecionadas) >= 1 && count($odsSelecionadas) <= 3) {
-                        foreach ($odsSelecionadas as $ods) {
-                            $idOds = obterIdDaOdsPorNome($ods, $conexao);
-                            
-                            if ($idOds !== null) {
-                                $sqlInsertOds = "INSERT INTO tbOds_tbTcc (idOds, idTcc) VALUES ($idOds, $idTcc)";
-                                mysqli_query($conexao, $sqlInsertOds);
-                            }
-                        }
-                        echo "success";
-                    } else {
-                        echo "Escolha no mínimo 1 e no máximo 3 ODS.";
+                foreach ($odsSelecionadas as $ods) {
+                    $idOds = obterIdDaOdsPorNome($ods, $conexao);
+                    
+                    if ($idOds !== null) {
+                        $sqlInsertOds = "INSERT INTO tbOds_tbTcc (idOds, idTcc) VALUES ($idOds, $idTcc)";
+                        mysqli_query($conexao, $sqlInsertOds);
                     }
+                }
+                
+                // Adicionar entrada na tabela tbUsuario_tbTcc
+                $idUsuario = $_SESSION['idUsuario']; // Substitua pelo nome da variável de sessão correta
+                $sqlInsertUsuarioTcc = "INSERT INTO tbUsuario_tbTcc (idUsuario, idTcc) VALUES ($idUsuario, $idTcc)";
+                
+                if (mysqli_query($conexao, $sqlInsertUsuarioTcc)) {
+                    echo "success";
                 } else {
-                    echo "Escolha no mínimo 1 ODS.";
+                    echo "Erro ao associar usuário ao TCC.";
                 }
             } else {
                 echo "Erro ao carregar TCC";
             }
         } else {
-            echo "Insira todas as informações obrigatórias(*)";
+            echo "Preencha todas as informações obrigatórias(*).";
         }
     }
 }
@@ -129,3 +140,4 @@ function obterIdDaOdsPorNome($nomeOds, $conexao)
         return null; // Retorne null se a ODS não for encontrada
     }
 }
+?>

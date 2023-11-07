@@ -203,7 +203,7 @@ $(document).ready(function () {
                     if (xhr.status == 200) {
                         let data = xhr.response;
                         if (data == "success") {
-                            window.location.assign("./index.php");
+                            window.location.assign("./perfil.php");
                         } else {
                             errortxt.textContent = data;
                             errortxt.style.display = "block";

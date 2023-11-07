@@ -8,8 +8,14 @@
         $idBusc = $_GET['idBusc'];
         unset($_SESSION['idRecemEdit']);
     }
-    if(isset($_SESSION['idRecemEdit']) && !empty($_SESSION['idRecemEdit'])){
+    elseif(isset($_SESSION['idRecemEdit']) && !empty($_SESSION['idRecemEdit'])){
         $idBusc = $_SESSION['idRecemEdit'];
+    }
+    elseif(isset($_SESSION['idUsuario']) && !empty($_SESSION['idUsuario'])){
+        $idBusc = $_SESSION['idUsuario'];
+    }
+    else {
+        header("Location: login.php");
     }
     
     
@@ -136,9 +142,16 @@
         $('#informacoes-conteudo').show();
 
         $('#botao-informacoes').click(function(){
+            var idBusc = <?php echo json_encode($idBusc); ?>;
             $(this).addClass('active');
             $('#informacoes-conteudo').show();
             $('#botao-publicacoes').removeClass('active');
+            $.post('./php/pesquisa-pub.php', { idBusc: idBusc }, function(resp) {
+                
+            }).fail(function(){
+                alert("Erro ao exibir");
+            });
+
         });
 
         $('#botao-publicacoes').click(function(){

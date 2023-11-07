@@ -97,3 +97,16 @@ SELECT U.idUsuario, U.nomeUsuario, C.nomeCurso
 
 
 select * from tbOds_tbTcc;
+
+select * from tbTcc;
+
+select * from tbUsuario_tbTcc;
+
+delete from tbTcc;
+delete from tbOds_tbTCc;
+
+SELECT TCC.* 
+    FROM tbUsuario AS U
+    JOIN tbUsuario_tbTcc AS UT ON U.idUsuario = UT.idUsuario
+    JOIN tbTcc AS TCC ON UT.idTcc = TCC.idTcc
+    WHERE U.idUsuario = 5226997;
