@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nomeTcc = $_POST['nomeTcc'];
     $ano = $_POST['anoTcc'];
     $curso = $_POST['curso'];
-    $descricao = $_POST['descricaoTcc'] ?? "";
+    $descricao = $_POST['descricaoTcc'];
     $tipoArquivo = $_POST['tipoArquivo'];
     $linkArquivo = $_POST['linkArquivo'] ?? "";
     $uploadArquivo = $_FILES['arquivoTcc'] ?? "";
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $otherFieldsError = empty($nomeTcc) || empty($ano) || !isset($curso);
 
-    if (empty($nomeTcc) || empty($ano) || !isset($curso)) {
+    if (empty($nomeTcc) || empty($ano) || !isset($curso) || empty($descricao)) {
         echo "Preencha todas as informações obrigatórias(*).";
     } elseif ($odsError) {
         echo "Selecione no mínimo 1 e no máximo 3 ODS.";
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $caminhoArquivoFinal = $caminhoArquivo . $nomeArquivo;
             
             if (move_uploaded_file($caminhoTemp, $caminhoArquivoFinal)) {
-                $sqlInsert = "INSERT INTO tbTcc (idTcc, nomeTcc, anoTcc, arquivoTcc, data_postagem, idCurso) VALUES ($idTcc, '$nomeTcc', '$ano', '$nomeArquivo', '$horaAtual', $idCurso)";
+                $sqlInsert = "INSERT INTO tbTcc (idTcc, nomeTcc, anoTcc, descricaoTcc, arquivoTcc, data_postagem, idCurso) VALUES ($idTcc, '$nomeTcc', '$ano', '$descricao', '$nomeArquivo', '$horaAtual', $idCurso)";
                 
                 if (mysqli_query($conexao, $sqlInsert)) {
                     if (!empty($foto) && $foto["error"] === UPLOAD_ERR_OK) {
@@ -63,10 +63,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         } else {
                             echo "Erro ao carregar imagem";
                         }
-                    }
-                    
-                    if (!empty($descricao)) {
-                        mysqli_query($conexao, "UPDATE tbTcc SET descricaoTcc = '$descricao' WHERE idTcc = $idTcc");
                     }
                     
                     foreach ($odsSelecionadas as $ods) {
@@ -95,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         } elseif (!empty($linkArquivo)) {
             $nomeArquivo = $linkArquivo;
-            $sqlInsert = "INSERT INTO tbTcc (idTcc, nomeTcc, anoTcc, arquivoTcc, data_postagem, idCurso) VALUES ($idTcc, '$nomeTcc', '$ano', '$nomeArquivo', '$horaAtual', $idCurso)";
+            $sqlInsert = "INSERT INTO tbTcc (idTcc, nomeTcc, anoTcc, descricaoTcc, linkTcc, data_postagem, idCurso) VALUES ($idTcc, '$nomeTcc', '$ano', '$descricao', '$nomeArquivo', '$horaAtual', $idCurso)";
             
             if (mysqli_query($conexao, $sqlInsert)) {
                 if (!empty($foto) && $foto["error"] === UPLOAD_ERR_OK) {
@@ -113,9 +109,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                 }
                 
-                if (!empty($descricao)) {
-                    mysqli_query($conexao, "UPDATE tbTcc SET descricaoTcc = '$descricao' WHERE idTcc = $idTcc");
-                }
                 foreach ($odsSelecionadas as $ods) {
                     $idOds = obterIdDaOdsPorNome($ods, $conexao);
                     

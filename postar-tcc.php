@@ -64,7 +64,7 @@ if (!empty($idUsuario)) {
                             <option value="">Selecione um ano</option>
                             <?php
                             $anoAtual = date("Y");
-                            for ($ano = 1970; $ano <= $anoAtual; $ano++) {
+                            for ($ano = 2011; $ano <= $anoAtual; $ano++) {
                                 echo "<option value='$ano'>$ano</option>";
                             }
                             ?>
@@ -75,8 +75,8 @@ if (!empty($idUsuario)) {
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="descricaoTcc">Descrição do TCC:</label>
-                        <textarea name="descricaoTcc" id="descricaoTcc" rows="4" cols="50" autocomplete="off" maxlength="255" placeholder="Fale sobre o trabalho"></textarea>
+                        <label for="descricaoTcc">Descrição do TCC*:</label>
+                        <textarea name="descricaoTcc" id="descricaoTcc" required rows="4" cols="50" autocomplete="off" maxlength="255" placeholder="Fale sobre o trabalho"></textarea>
                     </div>
 
                     <div class="form-group">
