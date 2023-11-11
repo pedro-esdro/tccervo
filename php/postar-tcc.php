@@ -17,7 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         "Administração" => 2,
         "Contabilidade" => 3,
         "Recursos Humanos" => 4,
-        "Enfermagem" => 5
+        "Enfermagem" => 5,
+        "Desenvolvimento de Sistemas" => 6,
+        "Segurança do Trabalho" => 7
     );
 
     $odsError = false; // Variável para controlar erros relacionados às ODS

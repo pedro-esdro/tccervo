@@ -96,8 +96,15 @@ if (!empty($idTcc)) {
                         <p><?= $descricao ?></p>
                     </div>
                     <div>
-                        <h3>Arquivo</h3>
-                        <a download href="database/tcc/arquivos/<?=$tcc['arquivoTcc']?>">Encontre o arquivo aqui!</a>
+                        <h3>Trabalho</h3>
+                        <?php
+                            if(!empty($tcc['arquivoTcc'])){
+                                echo "<a download href='database/tcc/arquivos/{$tcc['arquivoTcc']}'>Encontre o trabalho aqui!</a>";
+                            }
+                            else {
+                                echo "<a  href='//{$tcc['linkTcc']}' target='_blank'>Encontre o trabalho aqui! (Link externo)</a>";
+                            }
+                        ?>
                     </div>
                 </div>
                 <div class="part">

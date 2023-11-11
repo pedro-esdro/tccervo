@@ -19,7 +19,9 @@
         "Administração" => 2,
         "Contabilidade" => 3,
         "Recursos Humanos" => 4,
-        "Enfermagem" => 5
+        "Enfermagem" => 5,
+        "Desenvolvimento de Sistemas" => 6,
+        "Segurança do Trabalho" => 7
     );
 
     // Verificando se todos os campos do formulário foram preenchidos

@@ -59,7 +59,9 @@ insert into tbCurso(idCurso, nomeCurso) values
 (2, "Administração"),
 (3, "Contabilidade"),
 (4, "Recursos Humanos"),
-(5, "Enfermagem");
+(5, "Enfermagem"),
+(6, "Desenvolvimento de Sistemas"),
+(7, "Segurança do Trabalho");
 
 INSERT INTO tbOds (idOds, nomeOds) VALUES
 (1, 'Erradicação da Pobreza'),

@@ -31,6 +31,8 @@
                     <option value="Contabilidade">Contabilidade</option>
                     <option value="Recursos Humanos">Recursos Humanos</option>
                     <option value="Enfermagem">Enfermagem</option>
+                    <option value="Desenvolvimento de Sistemas">Desenvolvimento de Sistemas</option>
+                    <option value="Segurança do Trabalho">Segurança do Trabalho</option>
                 </select>
             </div>
             <div class="grid-details">

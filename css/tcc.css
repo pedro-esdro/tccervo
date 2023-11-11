@@ -228,54 +228,34 @@ textarea:not(:placeholder-shown) {
     100% {margin-left: 0;}
   }
 
-/* Estilo para o overlay do modal */
-.overlay {
+
+/* Estilo para o overlay (fundo escurecido) */
+#overlay {
   display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5); /* Cor preta com opacidade de 50% */
+  z-index: 1000; /* Coloca o overlay sobre todos os outros elementos */
 }
 
-/* Estilo para o conteúdo do modal */
+/* Estilo para o modal */
 .modal {
   display: none;
   position: fixed;
-  background-color: #fff;
-  width: 80%;
-  max-width: 400px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
-  border-radius: 5px;
-  z-index: 2;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  z-index: 1001; /* Coloca o modal sobre o overlay */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra ao modal */
 }
 
-/* Estilo para o título do modal */
-.modal h2 {
-  font-size: 20px;
-  margin: 0 0 20px;
+/* Estilo para o conteúdo do modal */
+.modal-content {
+  max-width: 600px; /* Largura máxima do conteúdo do modal */
+  margin: auto;
 }
-
-/* Estilo para os botões no modal */
-.modal button {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-right: 10px;
-  font-weight: bold;
-}
-
-/* Estilo para os botões no modal quando hover */
-.modal button:hover {
-  background-color: #0056b3;
-}
-

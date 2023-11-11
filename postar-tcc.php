@@ -45,6 +45,26 @@ if (!empty($idUsuario)) {
                     <input type="file" name="capaTcc" id="capaTcc" style="display:none">
                 </div>
 
+                <div class="add-colaboradores">
+                    <button id="add-col-button">Adicionar outros autores</button>
+                </div>
+                <div id="modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-modal">&times;</span>
+                        <h2>Adicionar outros autores</h2>
+                        <input type="text" id="search-users-modal" placeholder="Pesquisar usuários...">
+                        <div id="usuarios-no-projeto">
+                            <h3>Usuários no Projeto</h3>
+                            <div id="adicionados-modal"></div>
+                        </div>
+                        <div id="usuarios-disponiveis">
+                            <h3>Usuários Disponíveis</h3>
+                            <div id="disponiveis-modal"></div>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="buttons">
                     <input class="submit" type="submit" value="Postar TCC"><br>
                     <a href="index.php">Cancelar</a>
@@ -127,33 +147,38 @@ if (!empty($idUsuario)) {
                 </div>
 
             </div>
-            <!-- <div id="modal" class="modal">
-                <div class="modal-content">
-
-                    <h2>Pesquisar Usuários</h2>
-                    <input type="text" id="searchUser" placeholder="Pesquisar usuário">
-                    <div id="searchResults" class="user-cards">
-                    </div>
-                </div>
-            </div>
-
-            <div id="confirmationModal" class="modal">
-                <div class="modal-content">
-                    <h2>Confirmar Adição de Usuário</h2>
-                    <p>Deseja adicionar este usuário ao seu TCC?</p>
-                    <button id="confirmAddUser">Confirmar</button>
-                    <button id="cancelAddUser">Cancelar</button>
-                </div>
-            </div>
-
-            <div id="overlay" class="overlay"></div> -->
-
 
         </div>
     </form>
+    <!-- Adicione esta div ao seu HTML -->
+    <div id="overlay"></div>
+
     <?php include 'html-components/footer.php'; ?>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="js/postartcc.js"></script>
+<script>
+$(document).ready(function () {
+    var modal = $('#modal');
+    var overlay = $('#overlay');
+    var addButton = $('#add-col-button');
+    var closeModalButton = $('.close-modal');
+
+    addButton.click(function (event) {
+        event.preventDefault();
+
+        modal.show();
+        overlay.show();
+        
+    });
+
+    closeModalButton.click(function () {
+        modal.hide();
+        overlay.hide();
+    });
+    
+    });
+    
+</script>
 
 </html>

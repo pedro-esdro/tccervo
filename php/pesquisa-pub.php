@@ -1,3 +1,6 @@
+<div class="button">
+    <a href="postar-tcc.php">Publicar TCC</a>
+</div>
 <style>
         /* Estilo para os cards */
         .cardtcc {
@@ -53,7 +56,8 @@
     FROM tbUsuario AS U
     JOIN tbUsuario_tbTcc AS UT ON U.idUsuario = UT.idUsuario
     JOIN tbTcc AS TCC ON UT.idTcc = TCC.idTcc
-    WHERE U.idUsuario = $idPesq;
+    WHERE U.idUsuario = $idPesq
+    ORDER BY TCC.`data_postagem` DESC;
     ";
 
 $sqlQuery = mysqli_query($conexao, $sqlSelect);
