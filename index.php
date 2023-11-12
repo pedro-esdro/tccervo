@@ -186,62 +186,49 @@ if (mysqli_num_rows($sql) > 0) {
                 </div>
                 <div class="slider-container2">
                     <div class="slides3">
-                        <div class="slide3 first">
-                            <div class="espaco_tcc"></div>
-                        </div>
-                        <div class="slide3">
-                            <div class="espaco_tcc"></div>
-                        </div>
-                        <div class="slide3">
-                            <div class="espaco_tcc"></div>
-                        </div>
-                        <div class="slide3">
-                            <div class="espaco_tcc"></div>
-                        </div>
-                        <div class="slide3">
-                            <div class="espaco_tcc"></div>
-                        </div>
-                        <div class="slide3">
-                            <div class="espaco_tcc"></div>
-                        </div>
-                        <div class="slide3">
-                            <div class="espaco_tcc"></div>
-                        </div>
-                        <div class="slide3">
-                            <div class="espaco_tcc"></div>
-                        </div>
-                        <div class="slide3">
-                            <div class="espaco_tcc"></div>
-                        </div>
-                        <div class="slide3">
-                            <div class="espaco_tcc"></div>
-                        </div>
-                        <div class="slide3">
-                            <div class="espaco_tcc"></div>
-                        </div>
-                        <div class="slide3">
-                            <div class="espaco_tcc"></div>
-                        </div>
-                        <div class="slide3">
-                            <div class="espaco_tcc"></div>
-                        </div>
-                        <div class="slide3">
-                            <div class="espaco_tcc"></div>
-                        </div>
-                        <div class="slide3">
-                            <div class="espaco_tcc"></div>
-                        </div>
-                        <div class="slide3">
-                            <div class="espaco_tcc"></div>
-                        </div>
-                        <div class="slide3">
-                            <div class="espaco_tcc2"></div>
-                        </div>
+                        
+                            <div class='slide3'>
+                                <div class='espaco_tcc'>
+                                </div>
+                            </div>
+                            <div class='slide3'>
+                                <div class='espaco_tcc'>
+                                </div>
+                            </div>
+                            <div class='slide3'>
+                                <div class='espaco_tcc'>
+                                </div>
+                            </div>
+                            <div class='slide3'>
+                                <div class='espaco_tcc'>
+                                </div>
+                            </div>
+                            <div class='slide3'>
+                                <div class='espaco_tcc'>
+                                </div>
+                            </div>
+                            <div class='slide3'>
+                                <div class='espaco_tcc'>
+                                </div>
+                            </div>
+                            <div class='slide3'>
+                                <div class='espaco_tcc'>
+                                </div>
+                            </div>
+                            <div class='slide3'>
+                                <div class='espaco_tcc'>
+                                </div>
+                            </div>
+                            <div class='slide3'>
+                                <div class='espaco_tcc'>
+                                </div>
+                            </div>
+                           
                     </div>
-                </div>
-                <div class="button-container2">
-                    <button id="next-button2"><img src="assets/carrossel/ods/next-button.png" alt="next"></button>
-                </div>
+            </div>
+            <div class="button-container2">
+                <button id="next-button2"><img src="assets/carrossel/ods/next-button.png" alt="next"></button>
+            </div>
             </div>
         </section>
     </main>

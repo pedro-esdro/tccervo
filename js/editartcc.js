@@ -73,13 +73,13 @@ form.onsubmit = (e) => {
 
 submitbtn.onclick = () => {
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "./php/postar-tcc.php", true);
+  xhr.open("POST", "./php/editar-tcc.php", true);
   xhr.onload = () => {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status == 200) {
         let data = xhr.response;
         if (data == "success") {
-          window.location.assign("./perfil.php");
+          window.location.assign("./tcc-detalhes.php");
         } else {
           errortxt.textContent = data;
           errortxt.style.display = "block";

@@ -228,6 +228,42 @@ textarea:not(:placeholder-shown) {
     100% {margin-left: 0;}
   }
 
+  #add-col-button {
+    display: block;
+    text-align: center;
+    font-size: 1.05em;
+    background-color: #4d3f8f;
+    width: 100%;
+    padding: 10px 3px;
+    border: none;
+    outline: none;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  #add-col-button:hover {
+    background-color: #fff;
+    color: #4D3F8F;
+    border: 1px solid #4D3F8F
+  }
+  #btnDeletar{
+
+    background-color: rgb(225, 32, 32);
+    text-align: center;
+    font-size: 1.05em;
+    width: 100%;
+    padding: 10px 3px;
+    border: none;
+    outline: none;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  #btnDeletar:hover {
+    background-color: #851923;
+  }
 
 /* Estilo para o overlay (fundo escurecido) */
 #overlay {

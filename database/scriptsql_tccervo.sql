@@ -54,6 +54,7 @@ PRIMARY KEY (idOds, idTcc),
 FOREIGN KEY (idOds) REFERENCES tbOds(idOds), 
 FOREIGN KEY (idTcc) REFERENCES tbTcc(idTcc));
 
+
 insert into tbCurso(idCurso, nomeCurso) values
 (1, "Informática para Internet"),
 (2, "Administração"),

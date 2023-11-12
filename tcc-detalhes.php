@@ -2,7 +2,13 @@
 include_once 'php/db.php';
 session_start();
 $idUsuario = $_SESSION['idUsuario'] ?? "";
-$idTcc = $_GET['idBuscTcc'] ?? "";
+if (isset($_GET['idBuscTcc']) && !empty($_GET['idBuscTcc'])) {
+    $idTcc = $_GET['idBuscTcc'];
+    unset($_SESSION['idRecemEditTcc']);
+} elseif (isset($_SESSION['idRecemEditTcc']) && !empty($_SESSION['idRecemEditTcc'])) {
+    $idTcc = $_SESSION['idRecemEditTcc'];
+} 
+
 if (!empty($idTcc)) {
     // Recupere as informações do TCC do banco de dados (você precisa escrever a lógica para isso)
     $tccId = $idTcc; // Suponha que você tenha um parâmetro na URL com o ID do TCC
@@ -17,7 +23,7 @@ if (!empty($idTcc)) {
     $resultCurso = mysqli_query($conexao, $sqlCurso);
     $curso = mysqli_fetch_assoc($resultCurso);
 
-    // Recupere as informações das ODS associadas ao TCC (você precisa escrever a lógica para isso)
+
     $sqlOds = "SELECT O.idOds
                FROM tbOds_tbTcc AS TOds
                JOIN tbOds AS O ON TOds.idOds = O.idOds
@@ -85,7 +91,7 @@ if (!empty($idTcc)) {
                 ?>
             </div>
             <div id="editar" class="button">
-                <a href="tcc-editar.php">Editar TCC</a>
+                <a href="tcc-editar.php?id_tcc=<?=$tcc['idTcc']?>">Editar TCC</a>
             </div>
         </div>
         <hr>
@@ -98,12 +104,7 @@ if (!empty($idTcc)) {
                     <div>
                         <h3>Trabalho</h3>
                         <?php
-                            if(!empty($tcc['arquivoTcc'])){
-                                echo "<a download href='database/tcc/arquivos/{$tcc['arquivoTcc']}'>Encontre o trabalho aqui!</a>";
-                            }
-                            else {
-                                echo "<a  href='//{$tcc['linkTcc']}' target='_blank'>Encontre o trabalho aqui! (Link externo)</a>";
-                            }
+                             echo "<a  href='{$tcc['linkTcc']}' target='_blank'>Encontre o trabalho aqui! (Link externo)</a>";
                         ?>
                     </div>
                 </div>
@@ -131,6 +132,7 @@ if (!empty($idTcc)) {
                 $sqlUt = "SELECT * FROM tbUsuario_tbTcc where idUsuario = $idUsuario and idTcc = $tccId";
                 $utResult = mysqli_query($conexao, $sqlUt);
                 if(mysqli_num_rows($utResult) > 0){
+                    $_SESSION['idEditarTcc_idTcc'] = $tccId;
                     $_SESSION['idEditarTcc'] = $idUsuario; ?>
                     $('#editar').show();
             <?php

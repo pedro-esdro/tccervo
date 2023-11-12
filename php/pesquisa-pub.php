@@ -69,7 +69,7 @@ if ($sqlQuery && mysqli_num_rows($sqlQuery) > 0) {
         $nomeCurso = $resultCurso['nomeCurso'];
 
         
-        $capa = "https://placehold.co/150x180?text=Capa"; // Defina um valor padrão para a capa
+        $capa = "https://placehold.co/150x180?text=Capa";
 
         if (!empty($queryRow['capaTcc'])) {
             $caminhocapa = "database/tcc/capas/" . $queryRow['capaTcc'];

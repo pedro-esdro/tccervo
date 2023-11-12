@@ -99,14 +99,11 @@ if (!empty($idUsuario)) {
                         <textarea name="descricaoTcc" id="descricaoTcc" required rows="4" cols="50" autocomplete="off" maxlength="255" placeholder="Fale sobre o trabalho"></textarea>
                     </div>
 
-                    <div class="form-group">
-                        <label for="tipoArquivo">Escolha o tipo de envio:</label>
-                        <select class="semborda" name="tipoArquivo" id="tipoArquivo">
-                            <option value="link">Inserir Link</option>
-                            <option value="upload">Fazer Upload</option>
-                        </select>
+                    <div class="form-group" id="linkArquivo">
+                        <label for="linkArquivo">Link para o arquivo*:</label>
+                        <input type="text" name="linkArquivo" id="linkArquivo" placeholder="https://www.exemplo.com" pattern="^https:\/\/[\w\d.-]+\.[a-z]{2,4}(\/\S*)?$" required>
+                        <small>Formato: https://www.exemplo.com</small>
                     </div>
-
 
                 </div>
 
@@ -122,10 +119,7 @@ if (!empty($idUsuario)) {
                             ?>
                         </select>
                     </div>
-                    <div class="form-group" id="linkArquivo">
-                        <label for="linkArquivo">Link para o arquivo*:</label>
-                        <input type="text" name="linkArquivo" id="linkArquivo" placeholder="https://www.exemplo.com">
-                    </div>
+
 
                     <div class="form-group" id="uploadArquivo" style="display: none;">
                         <div style="visibility: hidden;">a</div>
@@ -158,27 +152,26 @@ if (!empty($idUsuario)) {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="js/postartcc.js"></script>
 <script>
-$(document).ready(function () {
-    var modal = $('#modal');
-    var overlay = $('#overlay');
-    var addButton = $('#add-col-button');
-    var closeModalButton = $('.close-modal');
+    $(document).ready(function() {
+        var modal = $('#modal');
+        var overlay = $('#overlay');
+        var addButton = $('#add-col-button');
+        var closeModalButton = $('.close-modal');
 
-    addButton.click(function (event) {
-        event.preventDefault();
+        addButton.click(function(event) {
+            event.preventDefault();
 
-        modal.show();
-        overlay.show();
-        
-    });
+            modal.show();
+            overlay.show();
 
-    closeModalButton.click(function () {
-        modal.hide();
-        overlay.hide();
+        });
+
+        closeModalButton.click(function() {
+            modal.hide();
+            overlay.hide();
+        });
+
     });
-    
-    });
-    
 </script>
 
 </html>
