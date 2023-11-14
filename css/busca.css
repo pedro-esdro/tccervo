@@ -1,6 +1,9 @@
 /* Estilos básicos para os cards */
 .user-card,
 .tcc-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -24,6 +27,7 @@
     text-decoration: none;
     display: inline-block;
     margin-top: 10px;
+
 }
 
 /* Estilização do botão */
@@ -46,8 +50,13 @@
 
 .user-card img {
     width: 100%; /* Largura desejada */
-    height: 180px; /* Altura desejada */
+    height: 120px; /* Altura desejada */
     object-fit: cover; /* Evita distorções e mantém a proporção */
+}
+.tcc-card img {
+    width: 100%; /* Largura desejada */
+    height: 120px; /* Altura desejada */
+    object-fit: cover;
 }
 
 /* Estilos responsivos */
@@ -85,9 +94,17 @@
 body {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     min-height: 100vh; /* Preenche a altura da viewport */
 }
 
 main {
     flex: 1;
+    width: 90%;
+    margin-top: 20px;
+}
+
+main h2 {
+    margin-top: 20px;
 }

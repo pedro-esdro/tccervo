@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $otherFieldsError = empty($nomeTcc) || empty($ano) || !isset($curso);
 
-    if (empty($nomeTcc) || empty($ano) || !isset($curso) || empty($descricao)) {
+    if (empty($nomeTcc) || empty($ano) || empty($curso) || empty($descricao)) {
         echo "Preencha todas as informações obrigatórias(*).";
     } elseif ($odsError) {
         echo "Selecione no mínimo 1 e no máximo 3 ODS.";
