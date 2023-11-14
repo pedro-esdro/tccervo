@@ -44,7 +44,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang=pt-br">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,7 +54,7 @@
     <link rel="shortcut icon" href="assets\favicon\favicon.svg" type="image/x-icon">
 </head>
 <body>
-    <main class="form">
+    <main class="form" class="formcontato">
         <h2>Fale Conosco</h2>
         <form id="formulario"action="" method="post">
         <?php if (isset($erro)): ?>
