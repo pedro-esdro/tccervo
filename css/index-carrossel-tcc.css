@@ -42,6 +42,11 @@
     margin-right: 0;
 }
 
+.slide3 img {
+    width: 120px;
+    height: 180px;
+    object-fit: cover;
+}
 
 #prev-button2 {
     width: 40px;

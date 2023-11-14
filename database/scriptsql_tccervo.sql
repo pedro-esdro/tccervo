@@ -28,7 +28,7 @@ descricaoTcc varchar(255) not null,
 capaTcc varchar(255),
 anoTcc date not null,
 arquivoTcc varchar(255),
-inkTcc varchar(255),
+linkTcc varchar(255),
 data_postagem datetime not null,
 idCurso int,
 FOREIGN KEY (idCurso) REFERENCES tbCurso(idCurso));

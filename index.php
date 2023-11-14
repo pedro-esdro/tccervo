@@ -20,6 +20,8 @@ if (mysqli_num_rows($sql) > 0) {
     }
 }
 
+$sqlTccs = mysqli_query($conexao, "SELECT * FROM tbTcc ORDER BY data_postagem DESC");
+
 ?>
 
 <!DOCTYPE html>
@@ -186,44 +188,28 @@ if (mysqli_num_rows($sql) > 0) {
                 </div>
                 <div class="slider-container2">
                     <div class="slides3">
-                        
+                            <?php
+                                $cont = 0;
+                                while ($tccRow = mysqli_fetch_assoc($sqlTccs)):
+                                    $cont++;
+                                    if (!empty($tccRow['capaTcc'])) {
+                                        $caminhocapa = "database/tcc/capas/" . $tccRow['capaTcc'];
+                                        if (file_exists($caminhocapa)) {
+                                            $capa = $caminhocapa;
+                                        } else {
+                                            $capa = "https://placehold.co/150x180?text=Capa";
+                                        }
+                                    } else {
+                                        $capa = "https://placehold.co/150x180?text=Capa";
+                                    }
+                                    
+                            ?>
                             <div class='slide3'>
-                                <div class='espaco_tcc'>
-                                </div>
+                                    <a href="tcc-detalhes.php?idBuscTcc=<?=$tccRow['idTcc']?>">
+                                        <img src="<?=$capa?>" alt="Capa do TCC">
+                                    </a>
                             </div>
-                            <div class='slide3'>
-                                <div class='espaco_tcc'>
-                                </div>
-                            </div>
-                            <div class='slide3'>
-                                <div class='espaco_tcc'>
-                                </div>
-                            </div>
-                            <div class='slide3'>
-                                <div class='espaco_tcc'>
-                                </div>
-                            </div>
-                            <div class='slide3'>
-                                <div class='espaco_tcc'>
-                                </div>
-                            </div>
-                            <div class='slide3'>
-                                <div class='espaco_tcc'>
-                                </div>
-                            </div>
-                            <div class='slide3'>
-                                <div class='espaco_tcc'>
-                                </div>
-                            </div>
-                            <div class='slide3'>
-                                <div class='espaco_tcc'>
-                                </div>
-                            </div>
-                            <div class='slide3'>
-                                <div class='espaco_tcc'>
-                                </div>
-                            </div>
-                           
+                           <?php endwhile;?>
                     </div>
             </div>
             <div class="button-container2">

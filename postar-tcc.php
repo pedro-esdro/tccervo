@@ -13,7 +13,7 @@ if (!empty($idUsuario)) {
     $sqlOds = "SELECT * from tbOds";
     $resultOds = mysqli_query($conexao, $sqlOds);
 } else {
-    header("Location: index.php");
+    header("Location: login.php");
 }
 ?>
 <!DOCTYPE html>
