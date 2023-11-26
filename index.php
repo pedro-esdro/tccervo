@@ -65,9 +65,11 @@ $sqlTccs = mysqli_query($conexao, "SELECT * FROM tbTcc ORDER BY data_postagem DE
                             <a href="login.php">Entre</a>
                         </div>
                         <img src="assets/carrossel/carrossel_main_01.png" alt="img1" class="img1">
+                        <img src="assets/carrossel/red-carrossel-main01.png" alt="img1" class="img1red">
                     </div>
                     <div class="slide">
                         <img src="assets/carrossel/carrossel_main_02.png" alt="img1" class="img2">
+                        <img src="assets/carrossel/redcarrossel_main_02.png" alt="img1" class="img2red">
                     </div>
                     <div class="navigation-auto">
                         <div class="auto-btn1"></div>

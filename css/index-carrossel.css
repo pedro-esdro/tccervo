@@ -1,3 +1,5 @@
+
+
 .carrossel-main{
     width: 900px;
     margin: 0px auto;
@@ -45,7 +47,12 @@
     width: 800px;
     height: 430px;
 }
-
+.img1red{
+    display: none;
+}
+.img2red{
+    display: none;
+}
 .manual-navigation {
     position: absolute;
     width: 800px;
@@ -163,7 +170,6 @@
     
     .manual-navigation, .navigation-auto{
         width: 600px;
-        margin-top: 325px;
     }
     .navigation-auto div{
         border: 2px solid black;
@@ -179,3 +185,89 @@
     }
 
 }
+@media screen and (max-width: 720px) {
+    .carrossel-main{
+        width: 600px;
+    }
+    .slider {
+        width: 500px;
+    }
+    .slide .img1, .slide .img2{
+        width: 500px;
+        height: 350px;
+    }
+    
+    .manual-navigation, .navigation-auto{
+        width: 500px;
+    }
+    .navigation-auto div{
+        border: 2px solid black;
+    }
+    .botoes{
+        width: 300px;
+        left: 40px;
+        top: 270px;
+    }
+    .botoes a {
+        width: 100px;
+        padding: 8px 0px;
+    }
+
+}
+
+@media screen and (max-width: 620px) {
+    .carrossel-main {
+        width: 500px;
+    }
+    .slider {
+        width: 400px;
+    }
+    .slider .img1, .slide .img2 {
+        display: none;
+    }
+    .img1red, .img2red {
+        display: block;
+        width: 400px;
+        height: 350px;
+    }
+    .botoes {
+        left: 0;
+        justify-content: space-evenly;
+        width: 250px;
+    }
+    .manual-navigation, .navigation-auto{
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .carrossel-main {
+        width: 400px;
+    }
+    .slider {
+        width: 370px;
+    }
+    .slider .img1, .slide .img2 {
+        display: none;
+    }
+    .img1red, .img2red {
+        display: block;
+        width: 370px;
+        height: 350px;
+    }
+    .botoes {
+        top: 240px;
+        left: 0;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 180px;
+    }
+    .botoes a {
+        margin-bottom: 20px;
+    }
+    .manual-navigation, .navigation-auto{
+        width: 370px;
+    }
+}
+

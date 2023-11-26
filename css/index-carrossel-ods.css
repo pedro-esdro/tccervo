@@ -69,3 +69,47 @@
 .slides2 {
     transition: transform 1s;
 }
+
+@media screen and (max-width:950px){
+    .sub-container4{
+        width: 800px;
+    }
+    .slider-container {
+        width: 700px;
+    }
+}
+
+@media screen and (max-width: 820px){
+    .sub-container4 {
+        width: 700px;
+    }
+    .slider-container {
+        width: 600px;
+    }
+}
+
+@media screen and (max-width: 720px){
+    .sub-container4 {
+        width: 600px;
+    }
+    .slider-container {
+        width: 500px;
+    }
+}
+@media screen and (max-width: 620px){
+    .sub-container4 {
+        width: 500px;
+    }
+    .slider-container {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 520px){
+    .sub-container4 {
+        width: 400px;
+    }
+    .slider-container {
+        width: 300px;
+    }
+}
