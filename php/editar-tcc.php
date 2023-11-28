@@ -53,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ano = $_POST['anoTcc'];
     $curso = $_POST['curso'];
     $descricao = $_POST['descricaoTcc'];
+    
     $linkArquivo = $_POST['linkArquivo'] ?? "";
     $foto = $_FILES['capaTcc'] ?? "";
     $idCursos = array(
@@ -81,7 +82,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $idCurso = $idCursos[$curso];
         $ano = $ano . "-12-31";
 
-        // Atualizar informações do TCC existente
+        $nomeTcc = mysqli_real_escape_string($conexao, $nomeTcc);
+        $ano = mysqli_real_escape_string($conexao, $ano);
+        $descricao = mysqli_real_escape_string($conexao, $descricao);
+        $linkArquivo = mysqli_real_escape_string($conexao, $linkArquivo);
         $sqlUpdateTcc = "UPDATE tbTcc SET 
             nomeTcc = '$nomeTcc', 
             anoTcc = '$ano', 

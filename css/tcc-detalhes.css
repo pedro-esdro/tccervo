@@ -15,6 +15,7 @@ main {
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
+    height: fit-content;
 }
 .row {
     display: flex;
@@ -62,11 +63,15 @@ hr {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+.partbox{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
 .part {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 150px;
 }
 
 .part img {
@@ -74,4 +79,46 @@ hr {
     height: 100px; /* Altura desejada */
     display: inline-flex;
     margin-right: 10px;
+}
+
+
+.botr {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#descricaoContainer {
+    max-height: 200px;
+    overflow: hidden;
+    text-align: justify;
+    font-size: 0.95em;
+    transition: max-height 0.5s ease-in-out; /* Adiciona uma transição suave */
+}
+
+#descricaoContainer.expandido {
+    max-height: none; /* Se expandido, use a altura automática */
+}
+
+#lerMaisLink {
+    display: block;
+    text-align: left;
+    cursor: pointer;
+    color: #4D3F8F;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+#lerMaisLink:hover {
+    color: #78A1D1; /* Cor alterada no hover */
+}
+
+.odspart {
+    width: 35%;
+}
+
+.imgods {
+    display: flex;
+    flex-wrap: wrap;
 }

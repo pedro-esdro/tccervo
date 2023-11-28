@@ -24,7 +24,7 @@ codUsuario varchar(4) not null);
 create table tbTcc(
 idTcc int primary key auto_increment,
 nomeTcc varchar(50) not null,
-descricaoTcc varchar(255) not null,
+descricaoTcc varchar(2000) not null,
 capaTcc varchar(255),
 anoTcc date not null,
 arquivoTcc varchar(255),
@@ -82,6 +82,7 @@ INSERT INTO tbOds (idOds, nomeOds) VALUES
 (15, 'Vida Terrestre'),
 (16, 'Paz, Justiça e Instituições Eficazes'),
 (17, 'Parcerias e Meios de Implementação');
+
 
 select * from tbUsuario_tbCurso;
 INSERT INTO tbUsuario_tbCurso (idCurso, idUsuario)

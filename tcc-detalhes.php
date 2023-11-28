@@ -7,7 +7,7 @@ if (isset($_GET['idBuscTcc']) && !empty($_GET['idBuscTcc'])) {
     unset($_SESSION['idRecemEditTcc']);
 } elseif (isset($_SESSION['idRecemEditTcc']) && !empty($_SESSION['idRecemEditTcc'])) {
     $idTcc = $_SESSION['idRecemEditTcc'];
-} 
+}
 
 if (!empty($idTcc)) {
     // Recupere as informações do TCC do banco de dados (você precisa escrever a lógica para isso)
@@ -91,34 +91,41 @@ if (!empty($idTcc)) {
                 ?>
             </div>
             <div id="editar" class="button">
-                <a href="tcc-editar.php?id_tcc=<?=$tcc['idTcc']?>">Editar TCC</a>
+                <a href="tcc-editar.php?id_tcc=<?= $tcc['idTcc'] ?>">Editar TCC</a>
             </div>
         </div>
         <hr>
-        <div class="row">
-                <div class="part">
-                    <div>
-                        <h3>Descrição</h3>
+        <div class="row botr">
+            <div class="partbox">
+                <div class="part resumo">
+                    <div id="descricaoContainer">
+                        <h3>Resumo</h3>
                         <p><?= $descricao ?></p>
                     </div>
-                    <div>
-                        <h3>Trabalho</h3>
-                        <?php
-                             echo "<a  href='{$tcc['linkTcc']}' target='_blank'>Encontre o trabalho aqui! (Link externo)</a>";
-                        ?>
-                    </div>
+                    <?php if (strlen($descricao) > 500) : ?>
+                        <br>
+                        <a href="#" id="lerMaisLink">Ler mais</a>
+                    <?php endif; ?>
                 </div>
                 <div class="part">
-                    <h3>ODS</h3>
-                    <div class="imgods">
-                        <?php
-                            while($odsrow = mysqli_fetch_assoc($resultOds))
-                            {
-                                echo "<img src='assets/carrossel/ods/ODS_{$odsrow['idOds']}.png'>";
-                            }
-                        ?>
-                    </div>
+                    <h3>Trabalho</h3>
+                    <?php
+                    echo "<a href='{$tcc['linkTcc']}' target='_blank'>Encontre o trabalho aqui! (Link externo)</a>";
+                    ?>
                 </div>
+            </div>
+
+
+            <div class="part odspart">
+                <h3>ODS</h3>
+                <div class="imgods">
+                    <?php
+                    while ($odsrow = mysqli_fetch_assoc($resultOds)) {
+                        echo "<img src='assets/carrossel/ods/ODS_{$odsrow['idOds']}.png'>";
+                    }
+                    ?>
+                </div>
+            </div>
         </div>
     </main>
     <?php include 'html-components/footer.php'; ?>
@@ -126,12 +133,29 @@ if (!empty($idTcc)) {
     <script>
         $(document).ready(function() {
             $('#editar').hide();
+            var container = $('#descricaoContainer');
+    var link = $('#lerMaisLink');
+
+    link.click(function (e) {
+        e.preventDefault();
+
+        // Altera a classe para controlar o estado expandido
+        container.toggleClass('expandido');
+
+        // Atualiza o texto do link com base no estado expandido
+        if (container.hasClass('expandido')) {
+            link.text('Ler menos');
+        } else {
+            link.text('Ler mais');
+        }
+    });
+
             <?php
 
-            if (!empty($idUsuario) && !empty($tccId)){
+            if (!empty($idUsuario) && !empty($tccId)) {
                 $sqlUt = "SELECT * FROM tbUsuario_tbTcc where idUsuario = $idUsuario and idTcc = $tccId";
                 $utResult = mysqli_query($conexao, $sqlUt);
-                if(mysqli_num_rows($utResult) > 0){
+                if (mysqli_num_rows($utResult) > 0) {
                     $_SESSION['idEditarTcc_idTcc'] = $tccId;
                     $_SESSION['idEditarTcc'] = $idUsuario; ?>
                     $('#editar').show();

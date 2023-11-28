@@ -130,8 +130,8 @@ if (!isset($_SESSION['idEditarTcc']) || $_SESSION['idEditarTcc'] != $_SESSION['i
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="descricaoTcc">Descrição do TCC*:</label>
-                        <textarea name="descricaoTcc" id="descricaoTcc" required rows="4" cols="50" autocomplete="off" maxlength="255" placeholder="Fale sobre o trabalho"><?php echo isset($dadosTcc['descricaoTcc']) ? $dadosTcc['descricaoTcc'] : ''; ?></textarea>
+                        <label for="descricaoTcc">Resumo do TCC*:</label>
+                        <textarea name="descricaoTcc" id="descricaoTcc" required rows="4" cols="50" autocomplete="off" maxlength="2000" placeholder="Fale sobre o trabalho"><?php echo isset($dadosTcc['descricaoTcc']) ? $dadosTcc['descricaoTcc'] : ''; ?></textarea>
                     </div>
                     <div class="form-group" id="linkArquivo">
                         <label for="linkArquivo">Link para o arquivo*:</label>
