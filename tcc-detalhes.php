@@ -77,7 +77,7 @@ if (!empty($idTcc)) {
             <div id="foto-capa">
                 <img id="imagem-preview" src="<?= $capa ?>" alt="capa do trabalho">
             </div>
-            <div>
+            <div class="detalhes-tcc">
                 <h2><?= $tcc['nomeTcc'];  ?></h2>
                 <p><?= $curso['nomeCurso'] ?></p>
                 <p><?= date("Y", strtotime($tcc['anoTcc'])) ?></p>
