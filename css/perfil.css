@@ -170,16 +170,18 @@ hr {
 
 .info h3,
 .info2 h3 {
-    border: 1px solid black;
+    border: 1px solid rgba(0, 0, 0, 0.4);
     padding: 10px;
     border-radius: 8px 8px 0px 0px;
+    font-size: 1.1em;
 }
 
 .links-info {
     padding: 15px;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
+    border-left: 1px solid rgba(0, 0, 0, 0.4);
+    border-right: 1px solid rgba(0, 0, 0, 0.4);
     display: flex;
+    font-size: 0.95em;
     flex-direction: column;
 }
 
@@ -209,10 +211,11 @@ hr {
 
 .info2 p {
     padding: 15px;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
+    border-left: 1px solid rgba(0, 0, 0, 0.4);
+    border-right: 1px solid rgba(0, 0, 0, 0.4);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
     border-radius: 0px 0px 8px 8px;
+    font-size: 0.9em;
 }
 
 .inputs {
@@ -333,4 +336,103 @@ input[type="date"].data-filled {
 .minibuttons:hover {
     color: #7664c9;
     scale: 1.2;
+}
+
+
+@media screen and (max-width: 1300px){
+    main {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 1070px){
+    .perfil-parte {
+        justify-content: space-between;
+    }
+    .perfil-parte #foto-perfil {
+        width: fit-content;
+    }
+    .perfil-parte .txts {
+        width: 70%;
+        justify-content: space-evenly;
+    }
+}
+
+@media screen and (max-width: 930px){
+    main {
+        width: 85%;
+    }
+}
+
+@media screen and (max-width: 860px){
+    .perfil-parte {
+        align-items: flex-start;
+    }
+    .perfil-parte .txts {
+        flex-direction: column;
+        width: 65%;
+    }
+    .txts .txt {
+        margin-bottom: 10px;
+    }
+    .cursos-perfil {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .cursos-perfil li {
+        width: 40%;
+        margin-bottom: 3px;
+    }
+
+}
+
+@media screen and (max-width: 760px){
+    main {
+        width: 90%;
+    }
+    .perfil-parte {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .perfil-parte .txts {
+        width: 90%;
+    }
+}
+@media screen and (max-width: 630px){
+    main {
+        width: 95%; 
+        padding: 10px;
+        padding-top: 20px;
+    }
+    .perfil-parte .txts {
+        flex-direction: row;
+    }
+    .cursos-perfil {
+        display: block;
+    }
+    .cursos-perfil li {
+        width: 100%;
+        margin-bottom: 3px;
+    }
+}
+
+@media screen and (max-width: 530px){
+    .botoes {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 460px){
+    .txts {
+        font-size: 0.9em;
+    }
+}
+
+@media screen and (max-width: 420px){
+    .perfil-parte .txts{
+        flex-direction: column;
+    }
 }

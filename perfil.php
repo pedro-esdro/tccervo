@@ -159,7 +159,6 @@ if ($buscarUsuario && mysqli_num_rows($buscarUsuario) > 0) {
             $.get('php/pesquisa-pub.php', {
                 idPesq: idBusc
             }, function(resp) {
-                // Você pode fazer algo com a resposta (resp) se necessário
                 $('#publicacoes-conteudo').html(resp);
             }).fail(function() {
                 alert("Erro ao exibir");

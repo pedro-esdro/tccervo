@@ -21,4 +21,4 @@ document.getElementById("prev-button").addEventListener("click", prevSlide2);
 document.getElementById("next-button").addEventListener("click", nextSlide2);
 
 // Iniciar a transição automática a cada 10 segundos
-setInterval(nextSlide2, 10000);
+setInterval(nextSlide2, 5000);
