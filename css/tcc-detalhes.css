@@ -91,7 +91,9 @@ hr {
 
 #descricaoContainer {
     max-height: 200px;
-    overflow: hidden;
+    word-wrap: break-word;
+    max-width: 100%;
+    overflow-y: hidden;
     text-align: justify;
     font-size: 0.95em;
     transition: max-height 0.5s ease-in-out; /* Adiciona uma transição suave */

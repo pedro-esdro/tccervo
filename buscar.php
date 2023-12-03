@@ -80,6 +80,7 @@ if (isset($_GET['busca']) && !empty($_GET['busca'])) {
                             <button class="btn">Ver Perfil</button>
                         </a>
                     </div>
+                    
                 <?php endwhile; ?>
             <?php
             } else {

@@ -94,20 +94,13 @@ if (!empty($idUsuario)) {
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group">
-                        <label for="descricaoTcc">Resumo do TCC*:</label>
-                        <textarea name="descricaoTcc" id="descricaoTcc" required rows="4" cols="50" autocomplete="off" maxlength="2000" placeholder="Fale sobre o trabalho"></textarea>
-                    </div>
-
                     <div class="form-group" id="linkArquivo">
-                        <label for="linkArquivo">Link para o arquivo*:</label>
-                        <input type="text" name="linkArquivo" id="linkArquivo" placeholder="https://www.exemplo.com" pattern="^https:\/\/[\w\d.-]+\.[a-z]{2,4}(\/\S*)?$" required>
-                        <small>Formato: https://www.exemplo.com</small>
+                        <label for="linkArquivo">Link exterior:</label>
+                        <input type="text" name="linkArquivo" id="linkArquivoInput" placeholder="https://www.exemplo.com" pattern="^https:\/\/[\w\d.-]+\.[a-z]{2,4}(\/\S*)?$">
+                        <small>Um link opcional, como Github, Youtube, etc.<br>
+                            Formato: <strong>https://www.exemplo.com</strong></small>
                     </div>
 
-                </div>
-
-                <div class="form-row">
                     <div class="form-group">
                         <label for="curso">Curso*:</label>
                         <select name="curso" required>
@@ -120,16 +113,24 @@ if (!empty($idUsuario)) {
                         </select>
                     </div>
 
+                </div>
 
-                    <div class="form-group" id="uploadArquivo" style="display: none;">
-                        <div style="visibility: hidden;">a</div>
-                        <label class="arquivoinput" for="arquivoTcc">Arquivo (.PDF, .ZIP ou .RAR)*</label>
-                        <input type="file" name="arquivoTcc" id="arquivoTcc" style="display:none;">
-                        <p id="arquivoPreviewNome"></p>
+                <div class="form-row">
+                    <div class="form-group formresumo">
+                        <label for="descricaoTcc">Resumo do TCC*:</label>
+                        <textarea name="descricaoTcc" id="descricaoTcc" required rows="4" cols="50" autocomplete="off" maxlength="2000" placeholder="Fale sobre o trabalho"></textarea>
                     </div>
 
-
                 </div>
+                <div class="form-row">
+                    <div class="form-group" id="uploadArquivo">
+                        <label class="arquivoinput" for="arquivoTcc">Arquivo PDF*</label>
+                        <small>Monografia, documentação, etc.</small>
+                        <input type="file" name="arquivoTcc" id="arquivoTcc" required style="display:none;">
+                        <p id="arquivoPreviewNome"></p>
+                    </div>
+                </div>
+
                 <h3 id="odshead">ODS - Escolha até 3:</h3>
                 <div class="form-row ods-row">
                     <?php while ($rowOds = mysqli_fetch_assoc($resultOds)) : ?>

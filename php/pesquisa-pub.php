@@ -1,4 +1,4 @@
-<div class="button">
+<div id="postar" class="button">
     <a href="postar-tcc.php">Publicar TCC</a>
 </div>
 <style>
@@ -11,7 +11,9 @@
         padding: 10px;
         justify-content: space-between;
     }
-
+    #postar {
+        margin: 10px;
+    }
     .cardtcc img {
         width: 100px;
         height: 100px;
@@ -57,6 +59,8 @@
 
     .resumo {
         max-height: 120px;
+        max-width: 740px;
+        word-wrap: break-word;
         overflow-y: auto;
         text-align: justify;
         padding-right: 5px;
@@ -95,6 +99,11 @@
             flex-direction: column;
             width: 100%;
         }
+        .imgbox {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+        }
     }
 </style>
 <?php
@@ -131,7 +140,7 @@ if ($sqlQuery && mysqli_num_rows($sqlQuery) > 0) {
 ?>
         <div class="cardtcc">
             <div class="box">
-                <img src="<?= $capa ?>">
+                <div class="imgbox"><img src="<?= $capa ?>"></div>
                 <div class="cardtcc-info">
                     <h3><?php echo $queryRow['nomeTcc'] ?></h3>
                     <p><?php echo $nomeCurso ?></p>

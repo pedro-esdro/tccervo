@@ -13,7 +13,7 @@ function nextSlide3() {
 }
 
 function prevSlide3() {
-  currentSlide3 = (currentSlide3 - 1 + 17) % 10; // 17 é o número total de slides (ajuste conforme suas imagens)
+  currentSlide3 = (currentSlide3 - 1 + 10) % 10; // 17 é o número total de slides (ajuste conforme suas imagens)
   showSlide3();
 }
 

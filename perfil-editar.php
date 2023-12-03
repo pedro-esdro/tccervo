@@ -71,7 +71,7 @@ if (!isset($_SESSION['idEditar']) || $_SESSION['idEditar'] != $_SESSION['idUsuar
                             <label for="linkedin">Linkedin:</label>
                             <input placeholder="Seu usuário do Linkedin" value="<?= $linkedin ?>" type="text" name="linkedin" id="linkedin" autocomplete="off">
                         </div>
-                        <div class="input">
+                        <div class="input sobreinput">
                             <label for="sobre">Sobre você:</label>
                             <textarea id="sobre" name="sobre" rows="4" cols="50" autocomplete="off" maxlength="255" placeholder="Fale sobre você"><?= $sobre ?></textarea>
                         </div>

@@ -128,6 +128,7 @@ if ($buscarUsuario && mysqli_num_rows($buscarUsuario) > 0) {
                     </div>
                 </div>
                 <div id="publicacoes-conteudo">
+                    
                 </div>
             </div>
         </div>
@@ -160,6 +161,15 @@ if ($buscarUsuario && mysqli_num_rows($buscarUsuario) > 0) {
                 idPesq: idBusc
             }, function(resp) {
                 $('#publicacoes-conteudo').html(resp);
+                $('#postar').hide();
+                <?php
+                    if (!empty($idUsuario) && !empty($idBusc) && $idUsuario == $idBusc) {
+                    $_SESSION['idEditar'] = $idUsuario;
+                ?>
+                    $('#postar').show();
+                <?php
+                    }
+                ?>
             }).fail(function() {
                 alert("Erro ao exibir");
             });

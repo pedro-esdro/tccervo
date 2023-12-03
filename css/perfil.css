@@ -225,7 +225,9 @@ hr {
     width: 50%;
     justify-content: space-between;
 }
-
+.botoes ul {
+    list-style: none;
+}
 .input {
     width: 45%;
     margin-bottom: 15px;
@@ -338,7 +340,29 @@ input[type="date"].data-filled {
     scale: 1.2;
 }
 
+.sobreinput {
+    width: 100%;
+}
+textarea::-webkit-scrollbar {
+    width: 8px;
+}
 
+textarea::-webkit-scrollbar-track {
+    background: #d2cbf5;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background: #7d6dc2;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+    background: #4D3F8F;
+}
+
+textarea {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
 @media screen and (max-width: 1300px){
     main {
         width: 80%;
@@ -416,6 +440,23 @@ input[type="date"].data-filled {
     .cursos-perfil li {
         width: 100%;
         margin-bottom: 3px;
+    }
+
+    .edit-filho {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .inputs {
+        margin-top: 15px;
+        width: 100%;
+    }
+    .auxedit-filho {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+    }
+    .auxedit-filho .inputsenha {
+        width: 100%;
     }
 }
 
