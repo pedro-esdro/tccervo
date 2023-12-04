@@ -26,7 +26,9 @@ form {
     display: flex;
     justify-content: space-between;
 }
-
+.sbt2 {
+  display: none;
+}
 /* Estilos para a coluna da esquerda (capa do TCC e botões) */
 .left-column {
     width: 30%;
@@ -39,13 +41,28 @@ form {
   width: 200px;
 }
 #uploadArquivo   {
-  width: 200px;
+  width: 100%;
+}
+.pdf {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+}
+.pdf img {
+  height: 40px;
+  width: 40px;
 }
 .buttons {
     text-align: center;
     margin-top: 20px;
 }
-
+.buttons a {
+  color: #4D3F8F;
+  text-decoration: none;
+}
+.buttons a:hover {
+  text-decoration: underline;
+}
 /* Estilos para a coluna da direita (outros campos do formulário) */
 .right-column {
     width: 65%;
@@ -162,7 +179,7 @@ form select {
     display: flex;
     align-items: center;
     cursor: pointer;
-    width: 20%; /* Define a largura máxima para 8 itens por linha (100% / 8) */
+    width: 15%; /* Define a largura máxima para 8 itens por linha (100% / 8) */
     box-sizing: border-box; /* Inclui padding e borda na largura */
     margin-right: 4%; /* Espaço entre os itens (pode ajustar conforme necessário) */
   }
@@ -216,6 +233,7 @@ textarea:not(:placeholder-shown) {
     padding-top: 10px;
     padding-left: 10px;
     display: flex;
+    justify-content: left;
     flex-wrap: wrap;
     max-height: 200px; /* Altura máxima para mostrar 2 linhas de 8 itens */
     overflow-y: auto; /* Adiciona uma barra de rolagem vertical */
@@ -288,7 +306,7 @@ textarea:not(:placeholder-shown) {
     color: #4D3F8F;
     border: 1px solid #4D3F8F
   }
-  #btnDeletar{
+  .btnDeletar{
 
     background-color: rgb(225, 32, 32);
     text-align: center;
@@ -302,7 +320,7 @@ textarea:not(:placeholder-shown) {
     cursor: pointer;
     text-decoration: none;
   }
-  #btnDeletar:hover {
+  .btnDeletar:hover {
     background-color: #851923;
   }
 
@@ -335,4 +353,81 @@ textarea:not(:placeholder-shown) {
 .modal-content {
   max-width: 600px; /* Largura máxima do conteúdo do modal */
   margin: auto;
+}
+
+@media screen and (max-width: 1300px){
+  .custom-checkbox {
+    width: 20%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  form {
+    width: 95%;
+  }
+}
+@media screen and (max-width: 930px){
+  .custom-checkbox {
+    width: 25%;
+  }
+  .ods-row {
+    justify-content: space-evenly;
+  }
+}
+@media screen and (max-width: 820px){
+  .form-row {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+  .ods-row {
+    flex-direction: row;
+  }
+  .form-group {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 730px){
+  .sbt1 {
+    display: none;
+  }
+  .sbt2 {
+    display: block;
+  }
+  .tcc-container{
+    flex-direction: column;
+  }
+  .left-column {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .right-column {
+    width: 100%;
+  }
+  .form-row {
+    flex-direction: row;
+    align-items: baseline;
+  }
+  .form-group {
+    width: 45%;
+  }
+  .formresumo {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 520px){
+  .form-row {
+    flex-direction: column;
+  }
+  .form-group{
+    width: 100%;
+  }
+  .ods-row {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .custom-checkbox {
+    width: 30%;
+  }
 }

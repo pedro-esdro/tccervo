@@ -14,8 +14,13 @@ if (!empty($idTcc)) {
     $tccId = $idTcc; // Suponha que você tenha um parâmetro na URL com o ID do TCC
     $sqlTcc = "SELECT * FROM tbTcc WHERE idTcc = $tccId"; // Personalize essa consulta de acordo com sua estrutura de banco de dados
     $resultTcc = mysqli_query($conexao, $sqlTcc);
+
     $tcc = mysqli_fetch_assoc($resultTcc);
 
+    $nomeArquivo = $tcc['arquivoTcc'];
+    $caminhoArquivo = "./database/tcc/arquivos/".$nomeArquivo;
+
+    $descricao = $tcc["descricaoTcc"];
     // Recupere as informações do curso do TCC
     $sqlCurso = "SELECT C.nomeCurso
                 FROM tbCurso AS C
@@ -37,11 +42,6 @@ if (!empty($idTcc)) {
 
     $resultUsuario = mysqli_query($conexao, $sqlUsuario);
 
-    if (!empty($tcc["descricaoTcc"])) {
-        $descricao = $tcc["descricaoTcc"];
-    } else {
-        $descricao = "Sem descrição ainda.";
-    }
     if (!empty($tcc['capaTcc'])) {
         $caminhocapa = "database/tcc/capas/" . $tcc['capaTcc'];
         if (file_exists($caminhocapa)) {
@@ -52,6 +52,7 @@ if (!empty($idTcc)) {
     } else {
         $capa = "https://placehold.co/150x180?text=Capa";
     }
+
 } else {
     header("Location: index.php");
 }
@@ -67,6 +68,7 @@ if (!empty($idTcc)) {
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/tcc-detalhes.css">
     <link rel="stylesheet" href="css/navfooter.css">
+    <link rel="shortcut icon" href="assets\favicon\favicon.svg" type="image/x-icon">
     <script src="https://kit.fontawesome.com/cbdcf7d21d.js" crossorigin="anonymous"></script>
 </head>
 
@@ -98,19 +100,26 @@ if (!empty($idTcc)) {
         <div class="row botr">
             <div class="partbox">
                 <div class="part resumo">
-                    <div id="descricaoContainer">
-                        <h3>Resumo</h3>
-                        <p><?= $descricao ?></p>
-                    </div>
-                    <?php if (strlen($descricao) > 500) : ?>
-                        <br>
-                        <a href="#" id="lerMaisLink">Ler mais</a>
-                    <?php endif; ?>
+                    <h3>Resumo</h3>
+                    <p><?= $descricao ?></p>
                 </div>
                 <div class="part">
                     <h3>Trabalho</h3>
+                    <a href="<?=$caminhoArquivo?>" class="pdf" download>
+                        <img src="assets/icons/pdf.png">
+                        <p>Arquivo PDF</p>
+                    </a>
                     <?php
-                    echo "<a href='{$tcc['linkTcc']}' target='_blank'>Encontre o trabalho aqui! (Link externo)</a>";
+
+                        if (!empty($tcc['linkTcc'])){
+                            $link = $tcc['linkTcc'];
+
+                            $parsedLink = parse_url($link);
+
+                            $dominioLink = $parsedLink['host'];
+                            echo "<h3>Link externo</h3>";
+                            echo "<a href='$link' target='_blank'>$dominioLink</a>";
+                        }
                     ?>
                 </div>
             </div>
@@ -133,22 +142,6 @@ if (!empty($idTcc)) {
     <script>
         $(document).ready(function() {
             $('#editar').hide();
-            var container = $('#descricaoContainer');
-    var link = $('#lerMaisLink');
-
-    link.click(function (e) {
-        e.preventDefault();
-
-        // Altera a classe para controlar o estado expandido
-        container.toggleClass('expandido');
-
-        // Atualiza o texto do link com base no estado expandido
-        if (container.hasClass('expandido')) {
-            link.text('Ler menos');
-        } else {
-            link.text('Ler mais');
-        }
-    });
 
             <?php
 

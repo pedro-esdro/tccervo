@@ -19,6 +19,7 @@
     <title>Recuperar senha</title>
     <link rel="stylesheet" href="css/forms.css">
     <link rel="stylesheet" href="css/verify.css">
+    <link rel="shortcut icon" href="assets\favicon\favicon.svg" type="image/x-icon">
 </head>
 <body>
     <main class="form" style="text-align: center;">

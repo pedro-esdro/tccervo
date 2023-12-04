@@ -46,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $nomeTcc = mysqli_real_escape_string($conexao, $nomeTcc);
         $ano = mysqli_real_escape_string($conexao, $ano);
+        $descricao = str_replace(array("\r", "\n"), '', $descricao);
         $descricao = mysqli_real_escape_string($conexao, $descricao);
 
         $caminhoArquivo = "../database/tcc/arquivos/";

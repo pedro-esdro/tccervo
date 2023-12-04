@@ -27,6 +27,7 @@ if (!empty($idUsuario)) {
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/navfooter.css">
     <link rel="stylesheet" href="css/busca.css">
+    <link rel="shortcut icon" href="assets\favicon\favicon.svg" type="image/x-icon">
     <script src="https://kit.fontawesome.com/cbdcf7d21d.js" crossorigin="anonymous"></script>
 </head>
 
@@ -65,9 +66,9 @@ if (!empty($idUsuario)) {
                 </div>
 
 
-                <div class="buttons">
+                <div class="buttons sbt1">
                     <input class="submit" type="submit" value="Postar TCC"><br>
-                    <a href="index.php">Cancelar</a>
+                    <a href="javascript:history.go(-1)">Cancelar</a>
                 </div>
             </div>
 
@@ -127,7 +128,10 @@ if (!empty($idUsuario)) {
                         <label class="arquivoinput" for="arquivoTcc">Arquivo PDF*</label>
                         <small>Monografia, documentação, etc.</small>
                         <input type="file" name="arquivoTcc" id="arquivoTcc" required style="display:none;">
-                        <p id="arquivoPreviewNome"></p>
+                        <div class="pdf">
+                            <img src="assets/icons/pdf.png">
+                            <p id="arquivoPreviewNome"></p>
+                        </div>
                     </div>
                 </div>
 
@@ -139,6 +143,12 @@ if (!empty($idUsuario)) {
                             <img src="assets/carrossel/ods/ODS_<?php echo $rowOds['idOds'] ?>.png" alt="ods">
                         </label>
                     <?php endwhile; ?>
+                </div>
+                <div class="form-row">
+                    <div class="buttons sbt2">
+                        <input class="submit" type="submit" value="Postar TCC"><br>
+                        <a href="index.php">Cancelar</a>
+                    </div>
                 </div>
 
             </div>

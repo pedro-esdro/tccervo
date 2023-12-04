@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entrar</title>
     <link rel="stylesheet" href="css/forms.css">
+    <link rel="shortcut icon" href="assets\favicon\favicon.svg" type="image/x-icon">
 </head>
 <body>
     <main class="form">

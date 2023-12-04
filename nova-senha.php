@@ -18,6 +18,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperar Senha</title>
+    <link rel="shortcut icon" href="assets\favicon\favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="css/forms.css">
 </head>
 <body>

@@ -22,7 +22,27 @@ main {
     width: 90%;
     justify-content: space-between;
 }
+.pdf {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    border: 1px solid #b5b5b5;
+    border-radius: 6px;
+    padding: 5px 8px;
+    width: fit-content;
+    text-decoration: none;
+    color: #000 !important;
+}
+.pdf:hover {
+    text-decoration: none !important;
+    scale: 1.05;
+}
 
+.pdf img {
+    height: 40px !important;
+    width: 40px !important;
+}
 .autores a, .part a {
     text-decoration: none;
     color: #4D3F8F;
@@ -124,7 +144,39 @@ hr {
     display: flex;
     flex-wrap: wrap;
 }
-
+.partbox .resumo {
+    max-height: 230px;
+    overflow-y: auto; /* Adiciona uma barra de rolagem vertical */
+    margin-bottom: 15px;
+}
+.resumo {
+    text-align: justify;
+}
+.resumo p {
+    width: 95%;
+}
+.partbox .resumo::-webkit-scrollbar {
+    width: 8px; /* Largura da barra de rolagem */
+  }
+  
+  .partbox .resumo::-webkit-scrollbar-track {
+    background: #d2cbf5; 
+  }
+  
+  .partbox .resumo::-webkit-scrollbar-thumb {
+    background: #7d6dc2; /* Cor da alça da barra de rolagem */
+    border-radius: 6px; /* Borda arredondada da alça da barra de rolagem */
+  }
+  
+  .partbox .resumo::-webkit-scrollbar-thumb:hover {
+    background: #4D3F8F; /* Cor da alça da barra de rolagem quando o mouse está sobre ela */
+  }
+  
+@media screen and (max-width: 1400px){
+    main {
+        width: 90%;
+    }
+}
 @media screen and (max-width: 1280px) {
     .topr {
         flex-wrap: wrap;
@@ -160,6 +212,7 @@ hr {
 @media screen and (max-width: 1060px){
     .botr .partbox {
         flex-direction: column;
+        width: 100%;
     }
     .partbox .part{
         width: 100%;
@@ -167,5 +220,30 @@ hr {
     }
     .topr{
         width: 100%;
+    }
+
+}
+
+@media screen and (max-width: 860px){
+    .topr {
+        flex-direction: column;
+        align-items: center;
+    }
+    .topr  .fotocapa, .topr .detalhes-tcc, .topr .autores {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+       align-items: center;
+       margin-bottom: 24px;
+    }
+}
+
+@media screen and (max-width: 560px){
+    main {
+        padding: 20px;
+    }
+    .odspart {
+        width: 100%;
+        align-items: center;
     }
 }

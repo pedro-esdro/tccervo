@@ -31,6 +31,8 @@ if (!isset($_SESSION['idEditarTcc']) || $_SESSION['idEditarTcc'] != $_SESSION['i
                 $dadosTcc = mysqli_fetch_assoc($resultTcc);
                 $capa = "https://placehold.co/150x180?text=Capa";
 
+                $arquivoPartes = explode('_', $dadosTcc['arquivoTcc']);
+                $arquivo = $arquivoPartes[1];
                 if (!empty($dadosTcc['capaTcc'])) {
                     $caminhocapa = "database/tcc/capas/" . $dadosTcc['capaTcc'];
 
@@ -61,9 +63,10 @@ if (!isset($_SESSION['idEditarTcc']) || $_SESSION['idEditarTcc'] != $_SESSION['i
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/navfooter.css">
     <link rel="stylesheet" href="css/busca.css">
+    <link rel="shortcut icon" href="assets\favicon\favicon.svg" type="image/x-icon">
     <script src="https://kit.fontawesome.com/cbdcf7d21d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -98,10 +101,10 @@ if (!isset($_SESSION['idEditarTcc']) || $_SESSION['idEditarTcc'] != $_SESSION['i
                         </div>
                     </div>
                 </div>
-                <div class="buttons">
+                <div class="buttons sbt1">
                     <input class="submit" type="submit" value="Salvar Alterações"><br>
-                    <button id="btnDeletar">Deletar TCC</button><br><br>
-                    <a href="index.php">Cancelar</a>
+                    <button class="btnDeletar">Deletar TCC</button><br><br>
+                    <a href="tcc-detalhes.php?idBuscTcc=<?= $idTccParaEditar ?>">Cancelar</a>
                 </div>
             </div>
 
@@ -129,19 +132,13 @@ if (!isset($_SESSION['idEditarTcc']) || $_SESSION['idEditarTcc'] != $_SESSION['i
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group">
-                        <label for="descricaoTcc">Resumo do TCC*:</label>
-                        <textarea name="descricaoTcc" id="descricaoTcc" required rows="4" cols="50" autocomplete="off" maxlength="2000" placeholder="Fale sobre o trabalho"><?php echo isset($dadosTcc['descricaoTcc']) ? $dadosTcc['descricaoTcc'] : ''; ?></textarea>
-                    </div>
+
                     <div class="form-group" id="linkArquivo">
-                        <label for="linkArquivo">Link para o arquivo*:</label>
-                        <input type="text" name="linkArquivo" id="linkArquivo" placeholder="https://www.exemplo.com" pattern="^https:\/\/[\w\d.-]+\.[a-z]{2,4}(\/\S*)?$" value="<?= $dadosTcc['linkTcc'] ?>" required>
-                        <small>Formato: https://www.exemplo.com</small>
+                        <label for="linkArquivo">Link exterior:</label>
+                        <input type="text" name="linkArquivo" id="linkArquivoInput" placeholder="https://www.exemplo.com" pattern="^https:\/\/[\w\d.-]+\.[a-z]{2,4}(\/\S*)?$" value="<?php echo isset($dadosTcc['linkTcc']) ? $dadosTcc['linkTcc'] : ''; ?>">
+                        <small>Um link opcional, como Github, Youtube, etc.<br>
+                            Formato: <strong>https://www.exemplo.com</strong></small>
                     </div>
-
-
-                </div>
-                <div class="form-row">
                     <div class="form-group">
                         <label for="curso">Curso*:</label>
                         <select name="curso" required>
@@ -155,7 +152,28 @@ if (!isset($_SESSION['idEditarTcc']) || $_SESSION['idEditarTcc'] != $_SESSION['i
                         </select>
                     </div>
 
+                </div>
+                <div class="form-row">
+                    <div class="form-group formresumo">
+                        <label for="descricaoTcc">Resumo do TCC*:</label>
+                        <textarea name="descricaoTcc" id="descricaoTcc" required rows="4" cols="50" autocomplete="off" maxlength="2000" placeholder="Fale sobre o trabalho"><?php echo isset($dadosTcc['descricaoTcc']) ? $dadosTcc['descricaoTcc'] : ''; ?></textarea>
+                    </div>
 
+
+
+
+
+                </div>
+                <div class="form-row">
+                    <div class="form-group" id="uploadArquivo">
+                        <label class="arquivoinput" for="arquivoTcc">Arquivo PDF*</label>
+                        <small>Monografia, documentação, etc.</small>
+                        <input type="file" name="arquivoTcc" id="arquivoTcc" required style="display:none;">
+                        <div class="pdf">
+                            <img src="assets/icons/pdf.png">
+                            <p id="arquivoPreviewNome"> <?= $arquivo ?></p>
+                        </div>
+                    </div>
                 </div>
                 <h3 id="odshead">ODS - Escolha até 3:</h3>
                 <div class="form-row ods-row">
@@ -184,7 +202,13 @@ if (!isset($_SESSION['idEditarTcc']) || $_SESSION['idEditarTcc'] != $_SESSION['i
                         </label>
                     <?php endwhile; ?>
                 </div>
-
+                <div class="form-row">
+                    <div class="buttons sbt2">
+                        <input class="submit" type="submit" value="Salvar Alterações"><br>
+                        <button class="btnDeletar">Deletar TCC</button><br><br>
+                        <a href="tcc-detalhes.php?idBuscTcc=<?= $idTccParaEditar ?>">Cancelar</a>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -197,8 +221,8 @@ if (!isset($_SESSION['idEditarTcc']) || $_SESSION['idEditarTcc'] != $_SESSION['i
 <script src="js/editartcc.js"></script>
 <script>
     $(document).ready(function() {
-    
-         $('#btnDeletar').on('click', function () {
+
+        $('.btnDeletar').on('click', function() {
             // Exibir mensagem de confirmação usando SweetAlert
             Swal.fire({
                 title: 'Tem certeza?',
@@ -216,8 +240,10 @@ if (!isset($_SESSION['idEditarTcc']) || $_SESSION['idEditarTcc'] != $_SESSION['i
                         url: 'php/deletar_tcc.php', // Substitua pelo nome correto da sua página de deleção
                         type: 'POST',
                         dataType: 'json', // Espera um retorno em JSON
-                        data: { idTcc: <?php echo $_SESSION['idEditarTcc_idTcc']; ?> },
-                        success: function (response) {
+                        data: {
+                            idTcc: <?php echo $_SESSION['idEditarTcc_idTcc']; ?>
+                        },
+                        success: function(response) {
                             if (response.success) {
                                 // Se a exclusão foi bem-sucedida, exibir mensagem de sucesso
                                 Swal.fire({
@@ -242,7 +268,7 @@ if (!isset($_SESSION['idEditarTcc']) || $_SESSION['idEditarTcc'] != $_SESSION['i
                                 });
                             }
                         },
-                        error: function () {
+                        error: function() {
                             // Se ocorreu um erro na requisição AJAX, exibir mensagem de erro
                             Swal.fire({
                                 title: 'Erro ao deletar TCC!',

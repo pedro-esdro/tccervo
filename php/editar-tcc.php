@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ano = $_POST['anoTcc'];
     $curso = $_POST['curso'];
     $descricao = $_POST['descricaoTcc'];
-    
+    $arquivoTcc = $_FILES['arquivoTcc'] ?? "";
     $linkArquivo = $_POST['linkArquivo'] ?? "";
     $foto = $_FILES['capaTcc'] ?? "";
     $idCursos = array(
@@ -84,13 +84,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $nomeTcc = mysqli_real_escape_string($conexao, $nomeTcc);
         $ano = mysqli_real_escape_string($conexao, $ano);
+        $descricao = str_replace(array("\r", "\n"), '', $descricao);
         $descricao = mysqli_real_escape_string($conexao, $descricao);
         $linkArquivo = mysqli_real_escape_string($conexao, $linkArquivo);
         $sqlUpdateTcc = "UPDATE tbTcc SET 
             nomeTcc = '$nomeTcc', 
             anoTcc = '$ano', 
             descricaoTcc = '$descricao', 
-            linkTcc = '$linkArquivo', 
             idCurso = $idCurso 
             WHERE idTcc = $idTccParaEditar";
 
@@ -109,6 +109,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     mysqli_query($conexao, "UPDATE tbTcc SET capaTcc = '$nomeFoto' WHERE idTcc = $idTccParaEditar");
                 } else {
                     echo "Erro ao carregar imagem";
+                }
+            }
+            if (!empty($linkArquivo)){
+                mysqli_query($conexao, "UPDATE tbTcc SET linkTcc = '$linkArquivo' WHERE idTcc = $idTccParaEditar");
+            }
+            else {
+                mysqli_query($conexao, "UPDATE tbTcc SET linkTcc = '' WHERE idTcc = $idTccParaEditar");
+            }
+            if (isset($_FILES['arquivoTcc']) && $_FILES['arquivoTcc']['error'] == UPLOAD_ERR_OK){
+                $caminhoArquivo = "../database/tcc/arquivos/";
+                $nomeArquivo = $arquivoTcc["name"];
+                $caminhoTemporarioArquivo = $arquivoTcc["tmp_name"];
+                $nomeArquivo = uniqid() . "_" . $nomeArquivo;
+                $caminhoFinalArquivo = $caminhoArquivo . $nomeArquivo;
+
+                if (move_uploaded_file($caminhoTemporarioArquivo, $caminhoFinalArquivo)) {
+                    mysqli_query($conexao, "UPDATE tbTcc SET arquivoTcc = '$nomeArquivo' WHERE idTcc = $idTccParaEditar");
+                }
+                else {
+                    echo "Erro ao alterar o arquivo";
                 }
             }
             $_SESSION['idRecemEditTcc'] = $idTccParaEditar;
