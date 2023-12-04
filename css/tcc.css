@@ -269,16 +269,15 @@ textarea:not(:placeholder-shown) {
       transform: translateX(0) rotate(0deg);
     }
     25% {
-      transform: translateX(-3px) rotate(3);
+      transform: translateX(-1px) rotate(1);
     }
     50% {
-      transform: translateX(3px) rotate(-3deg);
+      transform: translateX(1px) rotate(-1deg);
     }
     75% {
-      transform: translateX(-3px) rotate(3deg);
+      transform: translateX(-1px) rotate(1deg);
     }
   }
-
   @keyframes avisotremido{
     0% {margin-left: 0;}
     25% {margin-left: 7px;}

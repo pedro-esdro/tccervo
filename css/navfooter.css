@@ -1,12 +1,28 @@
 @font-face {
     font-family: 'Cunia';
     src: url('../fonts/Cunia/cunia-webfont.woff2') format('woff2'),
-         url('../fonts/Cunia/cunia-webfont.woff2') format('woff');
+        url('../fonts/Cunia/cunia-webfont.woff2') format('woff');
     font-weight: normal;
     font-style: normal;
 
 }
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+
+#customSpinner {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+  }
+
 
 * {
     margin: 0px;
@@ -14,6 +30,7 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
+
 nav {
     display: flex;
     height: 10vh;
@@ -38,12 +55,13 @@ nav .logo {
     align-items: center;
     color: #FFF;
 }
-nav .logo a{
+
+nav .logo a {
     text-decoration: none;
     color: #fff;
     margin-top: 10px;
     font-family: 'Cunia', sans-serif;
-    font-size: 1.8em; 
+    font-size: 1.8em;
 }
 
 .nav-list {
@@ -52,14 +70,15 @@ nav .logo a{
     list-style: none;
     align-items: center;
 }
-.nav-list > li {
+
+.nav-list>li {
     padding: 0px 12px;
     height: 100%;
     display: flex;
     align-items: center;
 }
 
-nav a:hover{
+nav a:hover {
     transition: 0.3s;
     opacity: 0.7;
 }
@@ -68,6 +87,7 @@ nav a:hover{
     cursor: pointer;
     position: relative;
 }
+
 .dropdown:hover .dropdown-content {
     display: flex;
     flex-direction: column;
@@ -89,6 +109,7 @@ nav a:hover{
     left: -100%;
     top: 100%;
 }
+
 .dropdown-content li {
     height: 100%;
     text-align: center;
@@ -101,10 +122,12 @@ nav a:hover{
     color: #4D3F8F;
 }
 
-.dropdown li a:hover{
+.dropdown li a:hover {
     opacity: 1;
-    box-shadow: inset 0px 3px 5px rgba(0,0,0, 0.4);;
+    box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.4);
+    ;
 }
+
 nav .search-box {
     display: flex;
     margin: auto 0;
@@ -164,6 +187,7 @@ nav .search-box .adv-search:hover {
 nav ul .adv-search {
     display: none;
 }
+
 nav .bar {
     position: relative;
     margin: auto;
@@ -175,6 +199,7 @@ nav .bar span {
     color: #fff;
     font-size: 2em;
 }
+
 input[type="checkbox"] {
     display: none;
 }
@@ -187,25 +212,30 @@ input[type="checkbox"] {
         justify-content: center;
         padding-bottom: 10px;
     }
+
     .nav-list {
         display: none;
         width: 100%;
         flex-direction: column;
         transition: 0.3s;
     }
-    .nav-list > li {
+
+    .nav-list>li {
         width: 100%;
         text-align: center;
     }
-    .nav-list > li a {
+
+    .nav-list>li a {
         width: 100%;
         font-size: 1.4em;
         padding: 25px;
         display: block;
     }
-    nav ul li:hover a{
-        box-shadow: inset 0px 3px 5px rgba(0,0,0, 0.4);
+
+    nav ul li:hover a {
+        box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.4);
     }
+
     nav .search-box {
         margin-top: 10px;
         width: 90%;
@@ -213,44 +243,54 @@ input[type="checkbox"] {
         justify-content: center;
         margin-bottom: 15px;
     }
+
     nav .search-box input {
         width: 90%;
     }
+
     nav .search-box a {
         display: none;
     }
+
     nav ul .adv-search {
         display: block;
     }
+
     nav ul .adv-search a {
         color: #4D3F8F;
         background-color: #fff;
     }
+
     nav ul .adv-search:hover a {
         color: #fff;
         background-color: #4D3F8F;
     }
+
     .dropdown {
         display: flex;
         flex-direction: column;
         justify-content: center;
         width: 100%;
     }
-    .dropdown-content{
+
+    .dropdown-content {
         position: absolute;
         left: 0%;
         top: 100%;
         width: 100%;
     }
+
     .dropdown-content li {
         position: relative;
         display: block;
     }
-    .dropdown-content li:hover a{
+
+    .dropdown-content li:hover a {
         opacity: 1;
-        box-shadow: inset 0px 3px 5px rgba(0,0,0, 0.4);
+        box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.4);
         background-color: #FFF;
     }
+
     nav .bar {
         display: block;
         position: absolute;
@@ -258,24 +298,30 @@ input[type="checkbox"] {
         right: 80px;
         cursor: pointer;
     }
+
     nav .bar #times {
         display: none;
 
     }
-    #check:checked ~ nav .bar #times {
+
+    #check:checked~nav .bar #times {
         display: block;
     }
-    #check:checked ~ nav .bar #bars {
+
+    #check:checked~nav .bar #bars {
         display: none;
     }
-    #check:checked ~ nav .nav-list {
+
+    #check:checked~nav .nav-list {
         display: flex;
     }
-    #check:checked ~ nav {
+
+    #check:checked~nav {
         height: 470px;
     }
-    
+
 }
+
 footer {
     display: flex;
     width: 100%;
@@ -284,7 +330,8 @@ footer {
     text-align: center;
     padding: 15px 30px;
 }
-footer .icon a{
+
+footer .icon a {
     display: inline-flex;
     align-items: center;
     font-family: Cunia, sans-serif;
@@ -293,6 +340,7 @@ footer .icon a{
     cursor: pointer;
     text-decoration: none;
 }
+
 footer ul {
     display: flex;
     list-style: none;
@@ -310,19 +358,23 @@ footer ul li a {
     letter-spacing: 1px;
     padding: 5px 10px;
 }
+
 footer ul li a:hover {
     text-decoration: underline;
 }
+
 @media screen and (max-width: 700px) {
     footer {
         display: block;
         text-align: left;
     }
+
     footer ul {
         margin-top: 10px;
         display: flex;
         flex-direction: column;
     }
+
     footer ul li a {
         font-size: 1em;
         padding: 6px;

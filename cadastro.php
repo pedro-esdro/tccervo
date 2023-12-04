@@ -6,8 +6,11 @@
     <title>Cadastro</title>
     <link rel="stylesheet" href="css/forms.css">
     <link rel="shortcut icon" href="assets\favicon\favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.css">
 </head>
 <body>
+    <div id="customSpinner">
+    </div>
     <main class="form">
         <h2>Cadastro</h2>
         <p>Realize o seu cadastro</p>
@@ -59,6 +62,8 @@
         <div class="link">Já tem uma conta? <a href="login.php">Entre</a></div>
         <div class="link"><a href="index.php">Voltar à página inicial</a></div>
     </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
     <script src="js/cadastro.js"></script>
 </body>
 </html>

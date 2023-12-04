@@ -123,3 +123,7 @@ SELECT U.idUsuario, U.nomeUsuario
                FROM tbOds_tbTcc AS TOds
                JOIN tbOds AS O ON TOds.idOds = O.idOds
                WHERE TOds.idTcc = 6626988;
+               
+               
+select * from tbTcc;
+select * from tbUsuario;

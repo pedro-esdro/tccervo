@@ -32,7 +32,10 @@ $(document).ready(function () {
         // Limpar o campo de entrada de arquivo
         $(this).val("");
         // Limpar a prévia da imagem
-        $("#imagem-preview").attr("src", "https://placehold.co/150x180?text=Capa");
+        $("#imagem-preview").attr(
+          "src",
+          "https://placehold.co/150x180?text=Capa"
+        );
       }
     }
   });
@@ -40,24 +43,24 @@ $(document).ready(function () {
     var fileInput = $(this)[0];
 
     if (fileInput.files && fileInput.files[0]) {
-        var file = fileInput.files[0];
+      var file = fileInput.files[0];
 
-        if (file.type === "application/pdf") {
-            // O arquivo é um PDF, você pode fazer o que quiser aqui
-            $("#arquivoPreviewNome").text(file.name);
-            errortxt.textContent = "";
-            errortxt.style.display = "none";
-        } else {
-            // O arquivo não é um PDF, mostre uma mensagem de erro
-            errortxt.textContent = "Erro: Insira um arquivo PDF!";
-            errortxt.style.display = "block";
-            // Limpar o campo de entrada de arquivo
-            $(this).val("");
-            // Limpar o texto de visualização
-            $("#arquivoPreviewNome").text("");
-        }
+      if (file.type === "application/pdf") {
+        // O arquivo é um PDF, você pode fazer o que quiser aqui
+        $("#arquivoPreviewNome").text(file.name);
+        errortxt.textContent = "";
+        errortxt.style.display = "none";
+      } else {
+        // O arquivo não é um PDF, mostre uma mensagem de erro
+        errortxt.textContent = "Erro: Insira um arquivo PDF!";
+        errortxt.style.display = "block";
+        // Limpar o campo de entrada de arquivo
+        $(this).val("");
+        // Limpar o texto de visualização
+        $("#arquivoPreviewNome").text("");
+      }
     }
-});
+  });
 
   $("#linkArquivo input").on("blur", function () {
     var linkInput = $(this).val();

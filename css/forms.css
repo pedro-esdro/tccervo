@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+  
+#customSpinner {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+  }
+
 * {
     margin: 0px;
     padding: 0px;
@@ -22,7 +36,7 @@ body {
     width: 100%;
     max-width: 500px;
     border-radius: 12px;
-    box-shadow: -3px 3px 10px -5px rgba(0,0,0,0.2);
+    box-shadow: -3px 3px 10px -5px rgba(0, 0, 0, 0.2);
     padding: 30px;
 }
 
@@ -30,10 +44,12 @@ body {
     font-size: 1.7em;
     font-weight: 700;
 }
+
 .form p {
     font-size: 0.9em;
     padding-bottom: 8px;
 }
+
 .form form {
     margin: 8px 0;
 }
@@ -57,12 +73,15 @@ body {
     margin-right: 8px;
     width: 100%;
 }
+
 .form .grid-details .input:last-child {
     margin-left: 8px;
     width: 100%;
 }
 
-.form form .input input, .form form .input select, textarea {
+.form form .input input,
+.form form .input select,
+textarea {
     margin: 6px 0;
     width: 100%;
     height: 40px;
@@ -78,13 +97,18 @@ textarea {
     resize: none;
 }
 
-.form form .input input:focus, .form form .input input:valid, .form form .input select:focus, .form form .input select:valid, textarea:focus, textarea:valid {
+.form form .input input:focus,
+.form form .input input:valid,
+.form form .input select:focus,
+.form form .input select:valid,
+textarea:focus,
+textarea:valid {
     border: 2px solid #4D3F8F;
     transition: 0.1s ease;
     outline: none;
 }
 
-.form form input.button{
+.form form input.button {
     margin: 12px 0;
     height: 45px;
     border: none;
@@ -95,6 +119,7 @@ textarea {
     border-radius: 6px;
     cursor: pointer;
 }
+
 .form .link {
     text-align: center;
     margin: 10px 0;
@@ -106,6 +131,7 @@ textarea {
     text-decoration: none;
     font-weight: 700;
 }
+
 .form .link a:hover {
     transition: 0.1s;
     text-decoration: underline;
@@ -116,13 +142,16 @@ textarea {
 }
 
 .form .terms input {
-    height: 15px; width: 15px;
+    height: 15px;
+    width: 15px;
 }
+
 .form .terms a {
     color: #4D3F8F;
     text-decoration: none;
     font-weight: 700;
 }
+
 .form .terms a:hover {
     transition: 0.1s;
     text-decoration: underline;
