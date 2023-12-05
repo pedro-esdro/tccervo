@@ -11,7 +11,7 @@ nomeOds varchar(70) not null);
 
 create table tbUsuario(
 idUsuario int primary key,
-nomeUsuario varchar(50) not null,
+nomeUsuario varchar(100) not null,
 emailUsuario varchar(100) not null,
 linkedinUsuario varchar(50),
 sobreUsuario varchar(255),

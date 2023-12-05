@@ -124,7 +124,8 @@ if (!isset($_SESSION['idEditar']) || $_SESSION['idEditar'] != $_SESSION['idUsuar
                 <div class="edit-filho auxedit-filho">
                     <div class="inputsenha">
                         <input class="submit" type="submit" value="Concluir">
-                        <a href="perfil.php?idBusc=<?php echo $_SESSION['idUsuario'] ?? "" ?>">Cancelar</a>
+                        <br>
+                        <a class="cancelar1" href="perfil.php?idBusc=<?php echo $_SESSION['idUsuario'] ?? "" ?>">Cancelar</a>
                     </div>
                     <div class="inputsenha">
                         <div class="edit-filho">

@@ -124,6 +124,7 @@ if ($buscarUsuario && mysqli_num_rows($buscarUsuario) > 0) {
                     </div>
                     <div class="info2">
                         <h3>Sobre</h3>
+                        <p><strong>Id de usuário:</strong> <?= $idBusc?></p>
                         <p><?= $sobre ?></p>
                     </div>
                 </div>

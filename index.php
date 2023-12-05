@@ -17,6 +17,10 @@ if (mysqli_num_rows($sql) > 0) {
         if ($row['verificacaoUsuario'] != "Verificado") {
             header("Location: verificar.php");
         }
+        else
+        {
+            $podePublicar = true;
+        }
     }
 }
 
@@ -34,6 +38,7 @@ $sqlTccs = mysqli_query($conexao, "SELECT * FROM tbTcc ORDER BY data_postagem DE
     <script src="https://kit.fontawesome.com/cbdcf7d21d.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="assets\favicon\favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="css/navfooter.css">
     <link rel="stylesheet" href="css/index-carrossel.css">
     <link rel="stylesheet" href="css/index-carrossel-ods.css">
@@ -60,10 +65,22 @@ $sqlTccs = mysqli_query($conexao, "SELECT * FROM tbTcc ORDER BY data_postagem DE
                     <input type="radio" name="radio-btn" id="radio1">
                     <input type="radio" name="radio-btn" id="radio2">
                     <div class="slide first">
+                        <?php
+                            if(isset($podePublicar) && $podePublicar){
+                        ?>
+                            <div class="botoes">
+                                <a href="postar-tcc.php?">Publicar TCC</a>
+                            </div>
+                        <?php 
+                            }
+                            else
+                            {
+                        ?>
                         <div class="botoes">
                             <a href="cadastro.php">Cadastre-se</a>
                             <a href="login.php">Entre</a>
                         </div>
+                         <?php   }?>
                         <img src="assets/carrossel/carrossel_main_01.png" alt="img1" class="img1">
                         <img src="assets/carrossel/red-carrossel-main01.png" alt="img1" class="img1red">
                     </div>
@@ -227,6 +244,31 @@ $sqlTccs = mysqli_query($conexao, "SELECT * FROM tbTcc ORDER BY data_postagem DE
     <script src="js/index-carrossel-ods.js"></script>
     <script src="js/index-carrossel-tcc.js"></script>
     <script>
+        <?php
+            if (isset($idUsuario) && $idUsuario != "")
+            {
+        ?>
+   $(document).ready(function() {
+    Swal.fire({
+        title: 'Bem-vindo, <?=$nome?>!',
+        color: '#fff',
+        imageUrl: "/tccervo/assets/logo/logo64h.svg",
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: "Custom image",
+        background: "#4d3f8f",
+        confirmButtonText: 'Obrigado',
+        customClass: {
+            popup: 'custom-popup-class', // Adicione uma classe personalizada à janela modal
+            confirmButton: 'custom-confirm-button-class' // Adicione uma classe personalizada ao botão de confirmação
+        },
+        buttonsStyling: false // Desative o estilo padrão dos botões
+    });
+});
+
+            
+        <?php } ?>
+
         $(document).ready(function() {
             $('#busca').click(function() {
                 var termoBusca = $('#buscatxt').val();

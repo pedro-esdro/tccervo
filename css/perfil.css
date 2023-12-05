@@ -21,7 +21,15 @@ main {
     flex-direction: column;
     margin-bottom: 30px;
 }
-
+.cancelar1 {
+    width: 150px;
+    text-align: center;
+    color:  #4D3F8F;
+    text-decoration: none;
+}
+.cancelar1:hover{
+    text-decoration: underline;
+}
 .perfil-parte,
 .perfil-edit {
     position: relative;
@@ -94,6 +102,9 @@ main {
     flex-direction: row;
     width: 50%;
     justify-content: space-between;
+}
+.txts .txt {
+    margin-right: 30px;
 }
 
 .button {

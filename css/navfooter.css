@@ -60,6 +60,9 @@ nav .logo a {
     text-decoration: none;
     color: #fff;
     margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: 'Cunia', sans-serif;
     font-size: 1.8em;
 }

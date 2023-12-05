@@ -6,7 +6,22 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
+.custom-popup-class .swal2-confirm {
+    color: #4D3F8F !important; /* Defina a cor do texto do botão de confirmação */
+    font-size: 1.1em;
+    border-radius: 6px;
+    padding: 10px 20px !important; /* Adicione padding ao botão */
+    border: none !important; /* Remova a borda do botão */
+    outline: none !important; /* Remova o contorno do botão */
+    width: 200px !important; /* Defina uma largura maior para o botão */
+}
 
+.custom-popup-class .swal2-confirm:hover{
+    background-color: #4D3F8F;
+    color: #fff !important; 
+    border: 1px solid #fff !important;
+    cursor: pointer;
+}
 body {
     height: 100%;
     width: 100%;

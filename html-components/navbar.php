@@ -4,8 +4,7 @@
 <input type="checkbox" id="check">
 <nav>
     <div class="logo">
-    <img class="logo64" src="assets\logo\logo64h.svg" alt="logo do site">
-        <a href="index.php">TCCERVO</a>
+        <a href="index.php"><img class="logo64" src="assets\logo\logo64h.svg" alt="logo do site">TCCERVO</a>
     </div>
     <div class="search-box">
         <input type="search" name="search" id="buscatxt" placeholder="Busque aqui">
