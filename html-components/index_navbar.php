@@ -15,6 +15,7 @@
     </div>
     <ul class="nav-list">
         <li><a href="index.php">Início</a></li>
+        <li id="publicar"><a href="postar-tcc.php">Publicar</a></li>
         <li id="entrar"><a href="login.php">Entrar</a></li>
         <li><a href="sobre.php">Sobre</a></li>
         <li class="dropdown">
@@ -36,9 +37,11 @@
 <script>
      $(document).ready(function(){
         $('#entrar').show();
+        $('#publicar').hide();
         if(idUsuario != "")
         {
             $('#entrar').hide();
+            $('#publicar').show();
         }
      })
 </script>
