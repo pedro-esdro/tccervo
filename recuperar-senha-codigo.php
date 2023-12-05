@@ -23,6 +23,8 @@
     <link rel="shortcut icon" href="assets\favicon\favicon.svg" type="image/x-icon">
 </head>
 <body>
+<div id="customSpinner">
+    </div>
     <main class="form" style="text-align: center;">
         <h2>Recupere sua senha</h2>
         <p>Um email com o código de para recuperação de senha foi enviado para você no email <?php echo "<b>$emailUsuarioRec</b>";?>. Insira o código a seguir.</p>
@@ -40,6 +42,8 @@
             <div class="link"><a href="recuperar-senha.php">Cancelar</a></div>
         </form>
     </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
     <script src="js/recuperar-senha-codigo.js"></script>
 </body>
 </html>

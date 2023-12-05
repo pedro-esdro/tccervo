@@ -1,11 +1,9 @@
 <?php
-// Certifique-se de que o usuário esteja autenticado e obtenha o ID do usuário
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cursoId']) && isset($_SESSION['idUsuario'])) {
     $cursoId = $_POST['cursoId'];
     $idUsuario = $_SESSION['idUsuario'];
 
-    // Conecte-se ao banco de dados
     include 'db.php';
 
     // Verifique se o curso está associado ao usuário

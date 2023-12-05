@@ -8,7 +8,6 @@ if (isset($_GET['idBuscTcc']) && !empty($_GET['idBuscTcc'])) {
 } elseif (isset($_SESSION['idRecemEditTcc']) && !empty($_SESSION['idRecemEditTcc'])) {
     $idTcc = $_SESSION['idRecemEditTcc'];
 }
-
 if (!empty($idTcc)) {
     // Recupere as informações do TCC do banco de dados (você precisa escrever a lógica para isso)
     $tccId = $idTcc; // Suponha que você tenha um parâmetro na URL com o ID do TCC

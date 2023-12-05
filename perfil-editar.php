@@ -43,12 +43,15 @@ if (!isset($_SESSION['idEditar']) || $_SESSION['idEditar'] != $_SESSION['idUsuar
     <title>Meu Perfil</title>
     <script src="https://kit.fontawesome.com/cbdcf7d21d.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="assets\favicon\favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.css">
     <link rel="stylesheet" href="css/navfooter.css">
     <link rel="stylesheet" href="css/perfil.css">
 </head>
 
 <body>
     <?php include 'html-components/navbar.php'; ?>
+    <div id="customSpinner">
+    </div>
     <main>
         <form action="" method="post" enctype="multipart/form-data">
             <div class="perfil-edit">
@@ -88,7 +91,7 @@ if (!isset($_SESSION['idEditar']) || $_SESSION['idEditar'] != $_SESSION['idUsuar
                                 // Execute a consulta e exiba os cursos
                                 $result = mysqli_query($conexao, $sql);
                                 while ($row = mysqli_fetch_assoc($result)) {
-                                    echo "<li>{$row['nomeCurso']} <button class='remover-curso' data-curso-id='{$row['idCurso']}'</button><i class='fas fa-times minibuttons'></i></li>";
+                                    echo "<li>{$row['nomeCurso']} <button type='button'class='remover-curso' data-curso-id='{$row['idCurso']}'</button><i class='fas fa-times minibuttons'></i></li>";
                                 }
                                 ?>
                             </ul>
@@ -109,7 +112,7 @@ if (!isset($_SESSION['idEditar']) || $_SESSION['idEditar'] != $_SESSION['idUsuar
                                 // Execute a consulta e exiba os cursos
                                 $result = mysqli_query($conexao, $sql);
                                 while ($row = mysqli_fetch_assoc($result)) {
-                                    echo "<li>{$row['nomeCurso']} <button class='adicionar-curso' data-curso-id='{$row['idCurso']}'><i class='fas fa-plus minibuttons'></i></button></li>";
+                                    echo "<li>{$row['nomeCurso']} <button type='button'class='adicionar-curso' data-curso-id='{$row['idCurso']}'><i class='fas fa-plus minibuttons'></i></button></li>";
                                 }
                                 ?>
                             </ul>
@@ -151,6 +154,7 @@ if (!isset($_SESSION['idEditar']) || $_SESSION['idEditar'] != $_SESSION['idUsuar
     <?php include 'html-components/footer.php'; ?>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
 <script src="js/perfil-editar.js"></script>
 
 </html>

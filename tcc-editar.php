@@ -40,6 +40,19 @@ if (!isset($_SESSION['idEditarTcc']) || $_SESSION['idEditarTcc'] != $_SESSION['i
                         $capa = $caminhocapa;
                     }
                 }
+                $sqlAutoresDoTcc = "SELECT U.idUsuario, U.nomeUsuario
+                   FROM tbUsuario_tbTcc AS UTcc
+                   JOIN tbUsuario AS U ON UTcc.idUsuario = U.idUsuario
+                   WHERE UTcc.idTcc = $idTccParaEditar AND U.idUsuario != $idUsuario";
+
+
+                $resultAutoresDoTcc = mysqli_query($conexao, $sqlAutoresDoTcc);
+
+                // Lista de autores associados atualmente ao TCC
+                $autoresAtuais = [];
+                while ($rowAutoresDoTcc = mysqli_fetch_assoc($resultAutoresDoTcc)) {
+                    $autoresAtuais[] = $rowAutoresDoTcc;
+                }
             } else {
                 header("Location: index.php");
                 exit;
@@ -66,11 +79,14 @@ if (!isset($_SESSION['idEditarTcc']) || $_SESSION['idEditarTcc'] != $_SESSION['i
     <link rel="shortcut icon" href="assets\favicon\favicon.svg" type="image/x-icon">
     <script src="https://kit.fontawesome.com/cbdcf7d21d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
     <?php include 'html-components/navbar.php'; ?>
+    <div id="customSpinner">
+    </div>
     <form action="" method="post" enctype="multipart/form-data">
         <div class="error-text">
         </div>
@@ -83,27 +99,23 @@ if (!isset($_SESSION['idEditarTcc']) || $_SESSION['idEditarTcc'] != $_SESSION['i
                     <label class="arquivoinput" for="capaTcc">Escolher uma capa</label>
                     <input type="file" name="capaTcc" id="capaTcc" style="display:none">
                 </div>
-                <div class="add-colaboradores">
-                    <button id="add-col-button">Adicionar outros autores</button>
-                </div>
-                <div id="modal" class="modal">
-                    <div class="modal-content">
-                        <span class="close-modal">&times;</span>
-                        <h2>Adicionar outros autores</h2>
-                        <input type="text" id="search-users-modal" placeholder="Pesquisar usuários...">
-                        <div id="usuarios-no-projeto">
-                            <h3>Usuários no Projeto</h3>
-                            <div id="adicionados-modal"></div>
-                        </div>
-                        <div id="usuarios-disponiveis">
-                            <h3>Usuários Disponíveis</h3>
-                            <div id="disponiveis-modal"></div>
-                        </div>
-                    </div>
+                <div class="addAutores">
+                    <h3>Adicionar autores - opcional</h3>
+                    <p>Adicione até 5 outros autores pelo id de usuário</p>
+
+                    <?php
+                    // Iterar sobre os 5 inputs de autor
+                    for ($i = 0; $i < 5; $i++) {
+                        $placeholder = ($i < count($autoresAtuais)) ? $autoresAtuais[$i]['idUsuario'] : 'Id de usuário do Autor';
+                        $value = ($i < count($autoresAtuais)) ? $autoresAtuais[$i]['idUsuario'] : '';
+                    ?>
+
+                        <input class="inputautor" type="text" name="autores[]" pattern="[0-9]+" title="Somente números são permitidos" placeholder="<?= $placeholder ?>" value="<?= $value ?>">
+                    <?php } ?>
                 </div>
                 <div class="buttons sbt1">
                     <input class="submit" type="submit" value="Salvar Alterações"><br>
-                    <button class="btnDeletar">Deletar TCC</button><br><br>
+                    <button type="button" class="btnDeletar">Deletar TCC</button><br><br>
                     <a href="tcc-detalhes.php?idBuscTcc=<?= $idTccParaEditar ?>">Cancelar</a>
                 </div>
             </div>
@@ -168,7 +180,7 @@ if (!isset($_SESSION['idEditarTcc']) || $_SESSION['idEditarTcc'] != $_SESSION['i
                     <div class="form-group" id="uploadArquivo">
                         <label class="arquivoinput" for="arquivoTcc">Arquivo PDF*</label>
                         <small>Monografia, documentação, etc.</small>
-                        <input type="file" name="arquivoTcc" id="arquivoTcc" required style="display:none;">
+                        <input type="file" name="arquivoTcc" id="arquivoTcc" style="display:none;">
                         <div class="pdf">
                             <img src="assets/icons/pdf.png">
                             <p id="arquivoPreviewNome"> <?= $arquivo ?></p>
@@ -218,6 +230,7 @@ if (!isset($_SESSION['idEditarTcc']) || $_SESSION['idEditarTcc'] != $_SESSION['i
     <?php include 'html-components/footer.php'; ?>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
 <script src="js/editartcc.js"></script>
 <script>
     $(document).ready(function() {
@@ -282,25 +295,6 @@ if (!isset($_SESSION['idEditarTcc']) || $_SESSION['idEditarTcc'] != $_SESSION['i
                     });
                 }
             });
-        });
-
-
-        var modal = $('#modal');
-        var overlay = $('#overlay');
-        var addButton = $('#add-col-button');
-        var closeModalButton = $('.close-modal');
-
-        addButton.click(function(event) {
-            event.preventDefault();
-
-            modal.show();
-            overlay.show();
-
-        });
-
-        closeModalButton.click(function() {
-            modal.hide();
-            overlay.hide();
         });
 
     });

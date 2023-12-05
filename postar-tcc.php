@@ -28,10 +28,13 @@ if (!empty($idUsuario)) {
     <link rel="stylesheet" href="css/navfooter.css">
     <link rel="stylesheet" href="css/busca.css">
     <link rel="shortcut icon" href="assets\favicon\favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.css">
     <script src="https://kit.fontawesome.com/cbdcf7d21d.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
+    <div id="customSpinner">
+    </div>
     <?php include 'html-components/navbar.php'; ?>
     <form action="" method="post" enctype="multipart/form-data">
         <div class="error-text">
@@ -45,26 +48,15 @@ if (!empty($idUsuario)) {
                     <label class="arquivoinput" for="capaTcc">Escolher uma capa</label>
                     <input type="file" name="capaTcc" id="capaTcc" style="display:none">
                 </div>
-
-                <div class="add-colaboradores">
-                    <button id="add-col-button">Adicionar outros autores</button>
+                <div class="addAutores">
+                    <h3>Adicionar autores -- opcional</h3>
+                    <p>Adicione até 5 outros autores pelo id de usuário</p>
+                    <input class="inputautor" type="text" name="autores[]" pattern="[0-9]+" title="Somente números são permitidos" placeholder="Id de usuário do Autor">
+                    <input class="inputautor" type="text" name="autores[]" pattern="[0-9]+" title="Somente números são permitidos" placeholder="Id de usuário do Autor">
+                    <input class="inputautor" type="text" name="autores[]" pattern="[0-9]+" title="Somente números são permitidos" placeholder="Id de usuário do Autor">
+                    <input class="inputautor" type="text" name="autores[]" pattern="[0-9]+" title="Somente números são permitidos" placeholder="Id de usuário do Autor">
+                    <input class="inputautor" type="text" name="autores[]" pattern="[0-9]+" title="Somente números são permitidos" placeholder="Id de usuário do Autor">
                 </div>
-                <div id="modal" class="modal">
-                    <div class="modal-content">
-                        <span class="close-modal">&times;</span>
-                        <h2>Adicionar outros autores</h2>
-                        <input type="text" id="search-users-modal" placeholder="Pesquisar usuários...">
-                        <div id="usuarios-no-projeto">
-                            <h3>Usuários no Projeto</h3>
-                            <div id="adicionados-modal"></div>
-                        </div>
-                        <div id="usuarios-disponiveis">
-                            <h3>Usuários Disponíveis</h3>
-                            <div id="disponiveis-modal"></div>
-                        </div>
-                    </div>
-                </div>
-
 
                 <div class="buttons sbt1">
                     <input class="submit" type="submit" value="Postar TCC"><br>
@@ -127,7 +119,7 @@ if (!empty($idUsuario)) {
                     <div class="form-group" id="uploadArquivo">
                         <label class="arquivoinput" for="arquivoTcc">Arquivo PDF*</label>
                         <small>Monografia, documentação, etc.</small>
-                        <input type="file" name="arquivoTcc" id="arquivoTcc" required style="display:none;">
+                        <input type="file" name="arquivoTcc" id="arquivoTcc" style="display:none;">
                         <div class="pdf">
                             <img src="assets/icons/pdf.png">
                             <p id="arquivoPreviewNome"></p>
@@ -155,34 +147,10 @@ if (!empty($idUsuario)) {
 
         </div>
     </form>
-    <!-- Adicione esta div ao seu HTML -->
-    <div id="overlay"></div>
-
-    <?php include 'html-components/footer.php'; ?>
+        <?php include 'html-components/footer.php'; ?>
 </body>
+<!-- Adicione esta linha ao final do seu HTML para incluir o script -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
 <script src="js/postartcc.js"></script>
-<script>
-    $(document).ready(function() {
-        var modal = $('#modal');
-        var overlay = $('#overlay');
-        var addButton = $('#add-col-button');
-        var closeModalButton = $('.close-modal');
-
-        addButton.click(function(event) {
-            event.preventDefault();
-
-            modal.show();
-            overlay.show();
-
-        });
-
-        closeModalButton.click(function() {
-            modal.hide();
-            overlay.hide();
-        });
-
-    });
-</script>
-
 </html>

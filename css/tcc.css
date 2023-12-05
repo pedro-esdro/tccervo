@@ -224,6 +224,7 @@ textarea:not(:placeholder-shown) {
   transition: 0.1s ease;
   outline: none;
 }
+
 .semborda {
     border: 1px solid #ccc !important;
 }
@@ -285,26 +286,6 @@ textarea:not(:placeholder-shown) {
     75% {margin-left: -7px;}
     100% {margin-left: 0;}
   }
-
-  #add-col-button {
-    display: block;
-    text-align: center;
-    font-size: 1.05em;
-    background-color: #4d3f8f;
-    width: 100%;
-    padding: 10px 3px;
-    border: none;
-    outline: none;
-    color: #fff;
-    border-radius: 8px;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  #add-col-button:hover {
-    background-color: #fff;
-    color: #4D3F8F;
-    border: 1px solid #4D3F8F
-  }
   .btnDeletar{
 
     background-color: rgb(225, 32, 32);
@@ -322,37 +303,14 @@ textarea:not(:placeholder-shown) {
   .btnDeletar:hover {
     background-color: #851923;
   }
-
-/* Estilo para o overlay (fundo escurecido) */
-#overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Cor preta com opacidade de 50% */
-  z-index: 1000; /* Coloca o overlay sobre todos os outros elementos */
-}
-
-/* Estilo para o modal */
-.modal {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 20px;
-  background-color: #fff;
-  z-index: 1001; /* Coloca o modal sobre o overlay */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra ao modal */
-}
-
-/* Estilo para o conteúdo do modal */
-.modal-content {
-  max-width: 600px; /* Largura máxima do conteúdo do modal */
-  margin: auto;
-}
+  .inputautor {
+    border: 1px solid #ccc;
+  }
+  .inputautor:not(:focus).valid {
+    border: 2px solid #4D3F8F;
+    transition: 0.1s ease;
+    outline: none;
+  }
 
 @media screen and (max-width: 1300px){
   .custom-checkbox {

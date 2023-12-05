@@ -11,6 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $arquivoTcc = $_FILES['arquivoTcc'] ?? "";
     $foto = $_FILES['capaTcc'] ?? "";
     $odsSelecionadas = $_POST["ods"] ?? [];
+    $autores = $_POST['autores'] ?? []; 
     $idCursos = array(
         "Informática para Internet" => 1,
         "Administração" => 2,
@@ -35,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     else if (!isset($_FILES['arquivoTcc']) || $_FILES['arquivoTcc']['error'] != UPLOAD_ERR_OK) {
         echo "Insira um arquivo PDF.";
     } 
-    elseif ($odsError) {
+    else if ($odsError) {
         echo "Selecione no mínimo 1 e no máximo 3 ODS.";
     } 
     else {
@@ -58,7 +59,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (move_uploaded_file($caminhoTemporarioArquivo, $caminhoFinalArquivo)) {
             $sqlInsert = "INSERT INTO tbTcc (idTcc, nomeTcc, anoTcc, descricaoTcc, arquivoTcc, data_postagem, idCurso) VALUES ($idTcc, '$nomeTcc', '$ano', '$descricao', '$nomeArquivo', '$horaAtual', $idCurso)";
             if (mysqli_query($conexao, $sqlInsert)) {
-
+                
+                if (isset($autores) && !empty($autores)) {
+                    foreach($autores as $autor)
+                    {
+                        if (ctype_digit($autor)) {
+                            $idUsuario = intval($autor);
+                            $stmt = $conexao->prepare("SELECT idUsuario FROM tbUsuario WHERE idUsuario = ?");
+                            $stmt->bind_param('i', $idUsuario);
+                            $stmt->execute();
+                            $stmt->store_result();
+                            if ($stmt->num_rows > 0) {
+                                // Insere o autor na tabela tbUsuario_tbTcc
+                                try {
+                                    $result = mysqli_query($conexao, "INSERT INTO tbUsuario_tbTcc (idUsuario, idTcc) VALUES ($idUsuario, $idTcc)");
+                                    
+                                    if (!$result) {
+                                        echo "Algum erro aconteceu ao adicionar novos autores. Verifique se os IDs estão corretos e se não há igualdades.";
+                                        die();
+                                    }
+                                } catch (mysqli_sql_exception $e) {
+                                    if ($e->getCode() == 1062) {
+                                        echo "Algum erro aconteceu ao adicionar novos autores. Verifique se os IDs estão corretos e se não há igualdades.";
+                                        die();
+                                    } else {
+                                        echo "Algum erro aconteceu ao adicionar novos autores. Verifique se os IDs estão corretos e se não há igualdades.";
+                                        die();
+                                    }
+                                }
+                                          
+                            } else {
+                                // O usuário não existe, pode tratar essa condição conforme necessário
+                                echo "Usuário com ID $idUsuario não encontrado.";
+                                die();
+                            }
+                        }
+                    }
+                }
                 if (!empty($foto) && $foto["error"] === UPLOAD_ERR_OK) {
                     $caminhoFoto = "../database/tcc/capas/";
                     $nomeFoto = $foto["name"];
@@ -73,7 +110,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo "Erro ao carregar imagem";
                     }
                 }
-
                 if (!empty($linkArquivo)) {
                     $linkArquivo = mysqli_real_escape_string($conexao, $linkArquivo);
                     $sqlInsertLink = "UPDATE tbTcc SET linkTcc = '$linkArquivo' WHERE idTcc = $idTcc";
@@ -81,6 +117,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo "Erro ao inserir link";
                     } 
                 }
+
+                
                 foreach ($odsSelecionadas as $ods) {
                     $idOds = obterIdDaOdsPorNome($ods, $conexao);
 
@@ -94,11 +132,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $idUsuario = $_SESSION['idUsuario']; // Substitua pelo nome da variável de sessão correta
                 $sqlInsertUsuarioTcc = "INSERT INTO tbUsuario_tbTcc (idUsuario, idTcc) VALUES ($idUsuario, $idTcc)";
 
-                if (mysqli_query($conexao, $sqlInsertUsuarioTcc)) {
-                    echo "success";
-                } else {
-                    echo "Erro ao associar usuário ao TCC.";
-                }
+
+                    try {
+                        $result = mysqli_query($conexao, $sqlInsertUsuarioTcc);
+                        
+                        if (!$result) {
+                            echo "Algum erro aconteceu ao adicionar novos autores. Verifique se os IDs estão corretos e se não há igualdades.";
+                            die();
+                        }
+                        else {
+                            echo "success";
+                        }
+                    } catch (mysqli_sql_exception $e) {
+                        if ($e->getCode() == 1062) {
+                            echo "Não insira seu próprio id ($idUsuario) no campo de outros autores";
+                            die();
+                        } else {
+                            echo "Algum erro aconteceu ao adicionar novos autores. Verifique se os IDs estão corretos e se não há igualdades.";
+                            die();
+                        }
+                    }
             } else {
                 echo "Erro ao carregar TCC";
             }
