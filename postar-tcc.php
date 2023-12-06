@@ -127,7 +127,7 @@ if (!empty($idUsuario)) {
                     </div>
                 </div>
 
-                <h3 id="odshead">ODS - Escolha até 3:</h3>
+                <h3 id="odshead" class="odst">ODS - Escolha até 3 - <a href="https://brasil.un.org/pt-br/sdgs" target="_blank"><img src="assets/icons/questionIcon.png" width="20px" height="20px"><span>O que são ODS?</span></a></h3>
                 <div class="form-row ods-row">
                     <?php while ($rowOds = mysqli_fetch_assoc($resultOds)) : ?>
                         <label class="custom-checkbox">

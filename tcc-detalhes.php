@@ -125,7 +125,7 @@ if (!empty($idTcc)) {
 
 
             <div class="part odspart">
-                <h3>ODS</h3>
+                <h3 class="odst">ODS - <a href="https://brasil.un.org/pt-br/sdgs" target="_blank"><img src="assets/icons/questionIcon.png" width="20px" height="20px"><span>O que são ODS?</span></a></h3>
                 <div class="imgods">
                     <?php
                     while ($odsrow = mysqli_fetch_assoc($resultOds)) {

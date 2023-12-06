@@ -1,7 +1,7 @@
 <?php
 include_once 'php/db.php';
 session_start();
-
+$odsId = isset($_GET['ods_id']) ? intval($_GET['ods_id']) : 0;
 $idUsuario = $_SESSION['idUsuario'] ?? "";
 $sqlOds = "SELECT * from tbOds";
 $resultOds = mysqli_query($conexao, $sqlOds);
@@ -16,6 +16,7 @@ $resultOds = mysqli_query($conexao, $sqlOds);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.css">
     <link rel="shortcut icon" href="assets\favicon\favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="css/navfooter.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/filtros.css">
     <title>Busca avançada</title>
 </head>
@@ -57,16 +58,17 @@ $resultOds = mysqli_query($conexao, $sqlOds);
                     </select>
                 </div>
                 <div class="formselect odsselect">
-                    <p>Ods - Escolha 1</p>
+                    <p class="odst">Ods - Escolha 1 - <a href="https://brasil.un.org/pt-br/sdgs" target="_blank"><img src="assets/icons/questionIcon.png" width="20px" height="20px"><span>O que são ODS?</span></a></p>
                     <div class="odsbox">
                         <?php while ($rowOds = mysqli_fetch_assoc($resultOds)) : ?>
                             <label class="custom-checkbox">
-                                <input type="checkbox" name="ods" value="<?php echo $rowOds['nomeOds'] ?>">
+                                <input type="checkbox" name="ods" value="<?php echo $rowOds['nomeOds'] ?>" <?php echo ($rowOds['idOds'] == $odsId) ? 'checked' : ''; ?>>
                                 <img src="assets/carrossel/ods/ODS_<?php echo $rowOds['idOds'] ?>.png" alt="ods">
                             </label>
                         <?php endwhile; ?>
                     </div>
                 </div>
+            </div>
             </div>
             <div class="formbutton">
                 <input id="buscar" type="submit" value="Buscar">

@@ -100,94 +100,94 @@ $sqlTccs = mysqli_query($conexao, "SELECT * FROM tbTcc ORDER BY data_postagem DE
             </div>
         </section>
         <section class="carrossel-ods">
-            <h2>Navegue por ODS</h2>
+            <h2 class="odst"><span>Navegue por ODS - </span><a href="https://brasil.un.org/pt-br/sdgs" target="_blank"><img src="assets/icons/questionIcon.png" width="28px" height="28px"><span>O que são ODS?</span></a></h2>
             <div class="sub-container4">
                 <div class="button-container">
                     <button id="prev-button"><img src="assets/carrossel/ods/prev-button.png" alt="prev"></button>
                 </div>
                 <div class="slider-container">
                     <div class="slides2">
-                        <a href="">
+                        <a href="filtros.php?ods_id=1">
                             <div class="slide2 first">
                                 <img src="assets/carrossel/ods/ODS_1.png" alt="ODS_1">
                             </div>
                         </a>
-                        <a href="">
+                        <a href="filtros.php?ods_id=2">
                             <div class="slide2">
                                 <img src="assets/carrossel/ods/ODS_2.png" alt="ODS_2">
                             </div>
                         </a>
-                        <a href="">
+                        <a href="filtros.php?ods_id=3">
                             <div class="slide2">
                                 <img src="assets/carrossel/ods/ODS_3.png" alt="ODS_3">
                             </div>
                         </a>
-                        <a href="">
+                        <a href="filtros.php?ods_id=4">
                             <div class="slide2">
                                 <img src="assets/carrossel/ods/ODS_4.png" alt="ODS_4">
                             </div>
                         </a>
-                        <a href="">
+                        <a href="filtros.php?ods_id=5">
                             <div class="slide2">
                                 <img src="assets/carrossel/ods/ODS_5.png" alt="ODS_5">
                             </div>
                         </a>
-                        <a href="">
+                        <a href="filtros.php?ods_id=6">
                             <div class="slide2">
                                 <img src="assets/carrossel/ods/ODS_6.png" alt="ODS_6">
                             </div>
                         </a>
-                        <a href="">
+                        <a href="filtros.php?ods_id=7">
                             <div class="slide2">
                                 <img src="assets/carrossel/ods/ODS_7.png" alt="ODS_7">
                             </div>
                         </a>
-                        <a href="">
+                        <a href="filtros.php?ods_id=8">
                             <div class="slide2">
                                 <img src="assets/carrossel/ods/ODS_8.png" alt="ODS_8">
                             </div>
                         </a>
-                        <a href="">
+                        <a href="filtros.php?ods_id=9">
                             <div class="slide2">
                                 <img src="assets/carrossel/ods/ODS_9.png" alt="ODS_9">
                             </div>
                         </a>
-                        <a href="">
+                        <a href="filtros.php?ods_id=10">
                             <div class="slide2">
                                 <img src="assets/carrossel/ods/ODS_10.png" alt="ODS_10">
                             </div>
                         </a>
-                        <a href="">
+                        <a href="filtros.php?ods_id=11">
                             <div class="slide2">
                                 <img src="assets/carrossel/ods/ODS_11.png" alt="ODS_11">
                             </div>
                         </a>
-                        <a href="">
+                        <a href="filtros.php?ods_id=12">
                             <div class="slide2">
                                 <img src="assets/carrossel/ods/ODS_12.png" alt="ODS_12">
                             </div>
                         </a>
-                        <a href="">
+                        <a href="filtros.php?ods_id=13">
                             <div class="slide2">
                                 <img src="assets/carrossel/ods/ODS_13.png" alt="ODS_13">
                             </div>
                         </a>
-                        <a href="">
+                        <a href="filtros.php?ods_id=14">
                             <div class="slide2">
                                 <img src="assets/carrossel/ods/ODS_14.png" alt="ODS_14">
                             </div>
                         </a>
-                        <a href="">
+                        <a href="filtros.php?ods_id=15">
                             <div class="slide2">
                                 <img src="assets/carrossel/ods/ODS_15.png" alt="ODS_15">
                             </div>
                         </a>
-                        <a href="">
+                        <a href="filtros.php?ods_id=16">
                             <div class="slide2">
                                 <img src="assets/carrossel/ods/ODS_16.png" alt="ODS_16">
                             </div>
                         </a>
-                        <a href="">
+                        <a href="filtros.php?ods_id=17">
                             <div class="slide2">
                                 <img src="assets/carrossel/ods/ODS_17.png" alt="ODS_17" class="img">
                             </div>

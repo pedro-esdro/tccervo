@@ -21,7 +21,9 @@ form {
     flex-direction: column;
     margin-bottom: 30px;
 }
-
+.odst a {
+  font-size: 1.2em;
+}
 .tcc-container {
     display: flex;
     justify-content: space-between;

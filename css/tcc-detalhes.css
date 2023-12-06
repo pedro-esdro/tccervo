@@ -38,7 +38,18 @@ main {
     text-decoration: none !important;
     scale: 1.05;
 }
-
+.odst {
+    margin-bottom: 10px;
+}
+.odst img {
+    width: 24px !important;
+    height: 24px !important; 
+    margin-right: 0 !important;
+}
+.odst a {
+    color: #000 !important;
+    font-size: 1.1em;
+}
 .pdf img {
     height: 40px !important;
     width: 40px !important;

@@ -6,7 +6,9 @@ body {
     align-items: center;
     background-color: #f0f0f0;
 }
-
+.odst a {
+    font-size: 1.1em;
+}
 main {
     flex-grow: 1;
     position: relative;
