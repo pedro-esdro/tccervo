@@ -130,7 +130,7 @@ $.getScript('https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js', 
           $('#customSpinner').hide();
 
           if (data == "success") {
-            window.location.assign("./perfil.php");
+            window.location.assign("./tcc-detalhes.php");
           } else {
             errortxt.textContent = data;
             errortxt.style.display = "block";

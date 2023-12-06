@@ -14,7 +14,7 @@
 .slider-container2 {
     margin: 0 auto;
     width: 800px;
-    height: 190px;
+    height: 400pxpx;
     overflow: hidden;
     display: flex;
 }
@@ -29,23 +29,6 @@
     width: 190px;
     flex-shrink: 0;
     transition: 2s;
-}
-
-.slide3 div {
-    width: 120px;
-    height: 180px;
-    margin-right: 30px;
-    border: 1px black solid;
-}
-
-.slide3 div {
-    margin-right: 0;
-}
-
-.slide3 img {
-    width: 120px;
-    height: 180px;
-    object-fit: cover;
 }
 
 #prev-button2 {

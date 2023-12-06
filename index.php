@@ -221,13 +221,20 @@ $sqlTccs = mysqli_query($conexao, "SELECT * FROM tbTcc ORDER BY data_postagem DE
                                     } else {
                                         $capa = "https://placehold.co/150x180?text=Capa";
                                     }
-                                    
+                                    $sqlCursoTcc = mysqli_query($conexao, "SELECT * FROM tbCurso where idCurso = {$tccRow['idCurso']}");
+                                    $cursoTcc = mysqli_fetch_assoc($sqlCursoTcc)
                             ?>
-                            <div class='slide3'>
-                                    <a href="tcc-detalhes.php?idBuscTcc=<?=$tccRow['idTcc']?>">
-                                        <img src="<?=$capa?>" alt="Capa do TCC">
+                                <div class="tcc-card slide3">
+                                    <img src="<?= $capa ?>" alt="Foto da capa">
+                                    <h3><?= $tccRow['nomeTcc'] ?></h3>
+                                    <br>
+                                    <h4>Curso</h4>
+                                    <p><?= $cursoTcc['nomeCurso'] ?></p>
+                                    <p><?= date("Y", strtotime($tccRow['anoTcc'])) ?></p>
+                                    <a href="tcc-detalhes.php?idBuscTcc=<?php echo $tccRow['idTcc']; ?>" class="btn-link" target="_blank">
+                                        <button class="btn">Ver mais detalhes</button>
                                     </a>
-                            </div>
+                                </div>
                            <?php endwhile;?>
                     </div>
             </div>

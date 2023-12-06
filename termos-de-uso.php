@@ -1,5 +1,6 @@
 <?php
     session_start();
+    $idUsuario = $_SESSION['idUsuario'] ?? "";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

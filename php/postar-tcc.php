@@ -141,6 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             die();
                         }
                         else {
+                             $_SESSION['idRecemCriado'] = $idTcc;
                             echo "success";
                         }
                     } catch (mysqli_sql_exception $e) {

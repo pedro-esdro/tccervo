@@ -5,8 +5,14 @@ $idUsuario = $_SESSION['idUsuario'] ?? "";
 if (isset($_GET['idBuscTcc']) && !empty($_GET['idBuscTcc'])) {
     $idTcc = $_GET['idBuscTcc'];
     unset($_SESSION['idRecemEditTcc']);
+    unset($_SESSION['idRecemCriado']);
 } elseif (isset($_SESSION['idRecemEditTcc']) && !empty($_SESSION['idRecemEditTcc'])) {
     $idTcc = $_SESSION['idRecemEditTcc'];
+    unset($_SESSION['idRecemCriado']);
+}
+elseif (isset($_SESSION['idRecemCriado']) && !empty($_SESSION['idRecemCriado'])){
+    $idTcc = $_SESSION['idRecemCriado'];
+    unset($_SESSION['idRecemEditTcc']);
 }
 if (!empty($idTcc)) {
     // Recupere as informações do TCC do banco de dados (você precisa escrever a lógica para isso)

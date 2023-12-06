@@ -113,8 +113,8 @@ if ($buscarUsuario && mysqli_num_rows($buscarUsuario) > 0) {
                         <h3>Informações de contato</h3>
                         <div class="links-info">
                             <p>
-                                <img src="assets/icons/linkedin.png" alt="logo do linkedin">
-                                Linkedin | <?= $linkedin ?>
+                                <a href=""><img src="assets/icons/linkedin.png" alt="logo do linkedin">
+                                                                Linkedin | <?= $linkedin ?></a>
                             </p>
                             <p>
                                 <img src="assets/icons/email.png" alt="imagem de email">
