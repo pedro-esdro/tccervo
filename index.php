@@ -16,9 +16,7 @@ if (mysqli_num_rows($sql) > 0) {
         $nome = $_SESSION['nomeUsuario'];
         if ($row['verificacaoUsuario'] != "Verificado") {
             header("Location: verificar.php");
-        }
-        else
-        {
+        } else {
             $podePublicar = true;
         }
     }
@@ -66,21 +64,19 @@ $sqlTccs = mysqli_query($conexao, "SELECT * FROM tbTcc ORDER BY data_postagem DE
                     <input type="radio" name="radio-btn" id="radio2">
                     <div class="slide first">
                         <?php
-                            if(isset($podePublicar) && $podePublicar){
+                        if (isset($podePublicar) && $podePublicar) {
                         ?>
                             <div class="botoes">
                                 <a href="postar-tcc.php?">Publicar TCC</a>
                             </div>
-                        <?php 
-                            }
-                            else
-                            {
+                        <?php
+                        } else {
                         ?>
-                        <div class="botoes">
-                            <a href="cadastro.php">Cadastre-se</a>
-                            <a href="login.php">Entre</a>
-                        </div>
-                         <?php   }?>
+                            <div class="botoes">
+                                <a href="cadastro.php">Cadastre-se</a>
+                                <a href="login.php">Entre</a>
+                            </div>
+                        <?php   } ?>
                         <img src="assets/carrossel/carrossel_main_01.png" alt="img1" class="img1">
                         <img src="assets/carrossel/red-carrossel-main01.png" alt="img1" class="img1red">
                     </div>
@@ -207,40 +203,40 @@ $sqlTccs = mysqli_query($conexao, "SELECT * FROM tbTcc ORDER BY data_postagem DE
                 </div>
                 <div class="slider-container2">
                     <div class="slides3">
-                            <?php
-                                $cont = 0;
-                                while ($tccRow = mysqli_fetch_assoc($sqlTccs)):
-                                    $cont++;
-                                    if (!empty($tccRow['capaTcc'])) {
-                                        $caminhocapa = "database/tcc/capas/" . $tccRow['capaTcc'];
-                                        if (file_exists($caminhocapa)) {
-                                            $capa = $caminhocapa;
-                                        } else {
-                                            $capa = "https://placehold.co/150x180?text=Capa";
-                                        }
-                                    } else {
-                                        $capa = "https://placehold.co/150x180?text=Capa";
-                                    }
-                                    $sqlCursoTcc = mysqli_query($conexao, "SELECT * FROM tbCurso where idCurso = {$tccRow['idCurso']}");
-                                    $cursoTcc = mysqli_fetch_assoc($sqlCursoTcc)
-                            ?>
-                                <div class="tcc-card slide3">
-                                    <img src="<?= $capa ?>" alt="Foto da capa">
-                                    <h3><?= $tccRow['nomeTcc'] ?></h3>
-                                    <br>
-                                    <h4>Curso</h4>
-                                    <p><?= $cursoTcc['nomeCurso'] ?></p>
-                                    <p><?= date("Y", strtotime($tccRow['anoTcc'])) ?></p>
-                                    <a href="tcc-detalhes.php?idBuscTcc=<?php echo $tccRow['idTcc']; ?>" class="btn-link" target="_blank">
-                                        <button class="btn">Ver mais detalhes</button>
-                                    </a>
-                                </div>
-                           <?php endwhile;?>
+                        <?php
+                        $cont = 0;
+                        while ($tccRow = mysqli_fetch_assoc($sqlTccs)) :
+                            $cont++;
+                            if (!empty($tccRow['capaTcc'])) {
+                                $caminhocapa = "database/tcc/capas/" . $tccRow['capaTcc'];
+                                if (file_exists($caminhocapa)) {
+                                    $capa = $caminhocapa;
+                                } else {
+                                    $capa = "https://placehold.co/150x180?text=Capa";
+                                }
+                            } else {
+                                $capa = "https://placehold.co/150x180?text=Capa";
+                            }
+                            $sqlCursoTcc = mysqli_query($conexao, "SELECT * FROM tbCurso where idCurso = {$tccRow['idCurso']}");
+                            $cursoTcc = mysqli_fetch_assoc($sqlCursoTcc)
+                        ?>
+                            <div class="tcc-card slide3">
+                                <img src="<?= $capa ?>" alt="Foto da capa">
+                                <h3><?= $tccRow['nomeTcc'] ?></h3>
+                                <br>
+                                <h4>Curso</h4>
+                                <p><?= $cursoTcc['nomeCurso'] ?></p>
+                                <p><?= date("Y", strtotime($tccRow['anoTcc'])) ?></p>
+                                <a href="tcc-detalhes.php?idBuscTcc=<?php echo $tccRow['idTcc']; ?>" class="btn-link" target="_blank">
+                                    <button class="btn">Ver mais detalhes</button>
+                                </a>
+                            </div>
+                        <?php endwhile; ?>
                     </div>
-            </div>
-            <div class="button-container2">
-                <button id="next-button2"><img src="assets/carrossel/ods/next-button.png" alt="next"></button>
-            </div>
+                </div>
+                <div class="button-container2">
+                    <button id="next-button2"><img src="assets/carrossel/ods/next-button.png" alt="next"></button>
+                </div>
             </div>
         </section>
     </main>
@@ -252,28 +248,27 @@ $sqlTccs = mysqli_query($conexao, "SELECT * FROM tbTcc ORDER BY data_postagem DE
     <script src="js/index-carrossel-tcc.js"></script>
     <script>
         <?php
-            if (isset($idUsuario) && $idUsuario != "")
-            {
+        if (isset($idUsuario) && $idUsuario != "") {
         ?>
-   $(document).ready(function() {
-    Swal.fire({
-        title: 'Bem-vindo, <?=$nome?>!',
-        color: '#fff',
-        imageUrl: "/tccervo/assets/logo/logo64h.svg",
-        imageWidth: 400,
-        imageHeight: 200,
-        imageAlt: "Custom image",
-        background: "#4d3f8f",
-        confirmButtonText: 'Obrigado',
-        customClass: {
-            popup: 'custom-popup-class', // Adicione uma classe personalizada à janela modal
-            confirmButton: 'custom-confirm-button-class' // Adicione uma classe personalizada ao botão de confirmação
-        },
-        buttonsStyling: false // Desative o estilo padrão dos botões
-    });
-});
+            $(document).ready(function() {
+                Swal.fire({
+                    title: 'Bem-vindo, <?= $nome ?>!',
+                    color: '#fff',
+                    imageUrl: "/tccervo/assets/logo/logo64h.svg",
+                    imageWidth: 400,
+                    imageHeight: 200,
+                    imageAlt: "Custom image",
+                    background: "#4d3f8f",
+                    confirmButtonText: 'Obrigado',
+                    customClass: {
+                        popup: 'custom-popup-class',
+                        confirmButton: 'custom-confirm-button-class' 
+                    },
+                    buttonsStyling: false 
+                });
+            });
 
-            
+
         <?php } ?>
 
         $(document).ready(function() {

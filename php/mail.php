@@ -17,13 +17,13 @@
             $mail->isSMTP();                                            
             $mail->Host       = 'smtp.gmail.com';                     
             $mail->SMTPAuth   = true;                                   
-            $mail->Username   = 'pehen092@gmail.com';                     
-            $mail->Password   = 'gage wqxs xyix ccxi';                               
+            $mail->Username   = 'suporte.tccervo@gmail.com';                     
+            $mail->Password   = 'trsd jttd idys njvq';                               
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
             $mail->Port       = 465;
 
             // Remetente e destinatário
-            $mail->setFrom('pehen092@gmail.com', 'TCCervo');
+            $mail->setFrom('suporte.tccervo@gmail.com', 'TCCervo');
             $mail->addAddress($email, $nome);
 
             // Conteúdo
@@ -67,14 +67,14 @@
             $mail->isSMTP();                                            
             $mail->Host       = 'smtp.gmail.com';                     
             $mail->SMTPAuth   = true;                                   
-            $mail->Username   = 'pehen092@gmail.com';                     
-            $mail->Password   = 'gage wqxs xyix ccxi';                               
+            $mail->Username   = 'suporte.tccervo@gmail.com';                     
+            $mail->Password   = 'trsd jttd idys njvq';                               
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
             $mail->Port       = 465;
 
             // Remetente e destinatário
             $mail->setFrom($email, $nome);
-            $mail->addAddress('pehen092@gmail.com', 'TCCervo');
+            $mail->addAddress('suporte.tccervo@gmail.com', 'TCCervo');
 
             $mail->addCustomHeader('Reply-To', $email);
 

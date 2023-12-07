@@ -82,3 +82,5 @@ INSERT INTO tbOds (idOds, nomeOds) VALUES
 (15, 'Vida Terrestre'),
 (16, 'Paz, Justiça e Instituições Eficazes'),
 (17, 'Parcerias e Meios de Implementação');
+
+select * from tbUsuario;
