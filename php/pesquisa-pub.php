@@ -163,7 +163,7 @@ if ($sqlQuery && mysqli_num_rows($sqlQuery) > 0) {
 }else
 {
     ?>
-    <p style="text-align: center;">Nenhuma publicação ainda.</p>
+    <p style="text-align: center; display: flex; flex-direction: column; justify-content:center; align-items: center;"><img src="./assets/icons/tccnaopub.png" width="64px" height="64px">Nenhuma publicação ainda.</p>
     <?php
 }
 ?>
