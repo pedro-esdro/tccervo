@@ -39,7 +39,7 @@ if ($buscarUsuario && mysqli_num_rows($buscarUsuario) > 0) {
     if (!empty($row["linkedinUsuario"])) {
         $linkedin = $row["linkedinUsuario"];
     } else {
-        $linkedin = "Sem linkedin associado";
+        $linkedin = false;
     }
     if (!empty($row["sobreUsuario"])) {
         $sobre = $row["sobreUsuario"];
@@ -113,8 +113,17 @@ if ($buscarUsuario && mysqli_num_rows($buscarUsuario) > 0) {
                         <h3>Informações de contato</h3>
                         <div class="links-info">
                             <p>
-                                <a href=""><img src="assets/icons/linkedin.png" alt="logo do linkedin">
-                                                                Linkedin | <?= $linkedin ?></a>
+                                <?php  
+                                    if ($linkedin)
+                                    {
+                                ?>       <a target="_blank"href="<?= $linkedin ?>"><img src="assets/icons/linkedin.png" alt="logo do linkedin">Linkedin | Link para o perfil </a>
+                                <?php  }
+                                else{
+                                    ?>
+                                    <p><img src="assets/icons/linkedin.png" alt="logo do linkedin">Linkedin | Sem Linkedin associado</p>
+                                <?php
+                                ;}?>
+                                       
                             </p>
                             <p>
                                 <img src="assets/icons/email.png" alt="imagem de email">

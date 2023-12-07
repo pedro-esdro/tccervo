@@ -91,6 +91,25 @@ $(document).ready(function () {
     $(this).toggleClass("ativo");
   });
 
+  $("#linkedin").on("blur", function () {
+    var linkInput = $(this).val();
+    var linkRegex = /^https:\/\/www\.linkedin\.com\/in\/.+$/;
+  
+    if (linkInput == "") {
+      errortxt.textContent = "";
+      errortxt.style.display = "none";
+    } else if (!linkRegex.test(linkInput)) {
+      errortxt.textContent =
+        "Erro: Insira um link válido começando por https://www.linkedin.com/in/";
+      errortxt.style.display = "block";
+      $(this).removeClass("valid");
+    } else {
+      errortxt.textContent = "";
+      errortxt.style.display = "none";
+      $(this).addClass("valid");
+    }
+  });
+  
   $.getScript(
     "https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js",
     function () {

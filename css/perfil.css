@@ -488,3 +488,9 @@ textarea {
         flex-direction: column;
     }
 }
+.nome {
+    width: 100%;
+}
+.linkedin {
+    width: 100%;
+}

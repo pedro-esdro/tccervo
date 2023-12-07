@@ -160,5 +160,10 @@ if ($sqlQuery && mysqli_num_rows($sqlQuery) > 0) {
         </div>
 <?php
     }
+}else
+{
+    ?>
+    <p style="text-align: center;">Nenhuma publicação ainda.</p>
+    <?php
 }
 ?>

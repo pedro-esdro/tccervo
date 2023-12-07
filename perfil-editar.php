@@ -66,13 +66,14 @@ if (!isset($_SESSION['idEditar']) || $_SESSION['idEditar'] != $_SESSION['idUsuar
                         <input type="file" name="foto" id="foto" style="display:none">
                     </div>
                     <div class="inputs">
-                        <div class="input">
+                        <div class="input nome">
                             <label for="nome">Nome*: </label>
                             <input placeholder="Seu nome" type="text" name="nome" id="nome" value="<?= $nome ?>" pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s'-]*" required autocomplete="off">
                         </div>
-                        <div class="input">
-                            <label for="linkedin">Linkedin:</label>
-                            <input placeholder="Seu usuário do Linkedin" value="<?= $linkedin ?>" type="text" name="linkedin" id="linkedin" autocomplete="off">
+                        <div class="input linkedin">
+                            <label for="linkedin">Linkedin - Link de perfil:</label>
+                            <input id="linkedin" placeholder="https://www.linkedin.com/in/exemplo/" value="<?= $linkedin ?>" type="text" name="linkedin" pattern="^https:\/\/www\.linkedin\.com\/in\/.+$" id="linkedin" autocomplete="off">
+                            <small>Formato: <strong>https://www.linkedin.com/in/exemplo/</strong></small>
                         </div>
                         <div class="input sobreinput">
                             <label for="sobre">Sobre você:</label>

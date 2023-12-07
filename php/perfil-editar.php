@@ -40,9 +40,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (!empty($linkedin)) {
                 $updates[] = "linkedinUsuario = '$linkedin'";
             }
+            else {
+                $updates[] = "linkedinUsuario = ''";
+            }
     
             if (!empty($sobre)) {
                 $updates[] = "sobreUsuario = '$sobre'";
+            }
+            else
+            {
+                $updates[] = "sobreUsuario = ''";
             }
             if (!empty($_POST['senhaatual']) || !empty($_POST['senhanova']) || !empty($_POST['csenhanova'])) {
                 if (
